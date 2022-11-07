@@ -1,0 +1,51 @@
+[
+    {
+        "id": 1,
+        "name": "University of Dhaka"
+    },
+
+    {
+        "id": 2,
+        "name": "University of Rajshahi"
+    },
+
+    {
+        "id": 3,
+        "name": "Bangladesh Agricultural University"
+    },
+
+    {
+        "id": 4,
+        "name": "Bangladesh University of Engineering & Technology"
+    },
+
+    {
+        "id": 5,
+        "name": "University of Chittagong"
+    },
+
+    {
+        "id": 6,
+        "name": "Jahangirnagar University"
+    },
+
+    {
+        "id": 7,
+        "name": "Islamic University, Bangladesh"
+    },
+
+    {
+        "id": 8,
+        "name": "Shahjalal University of Science & Technology"
+    }, 
+
+    {
+        "id": 9,
+        "name": "Khulna University"
+    }, 
+
+    {
+        "id": 10,
+        "name": "National University"
+    }
+]
