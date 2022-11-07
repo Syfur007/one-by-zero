@@ -1,51 +1,214 @@
 [
     {
         "id": 1,
-        "name": "University of Dhaka"
+        "name": "Barishal University"
     },
-
     {
         "id": 2,
-        "name": "University of Rajshahi"
-    },
-
-    {
-        "id": 3,
         "name": "Bangladesh Agricultural University"
     },
-
+    {
+        "id": 3,
+        "name": "Bangladesh Open University"
+    },
     {
         "id": 4,
-        "name": "Bangladesh University of Engineering & Technology"
+        "name": "Bangabandhu Sheikh Mujib Medical University"
     },
-
     {
         "id": 5,
-        "name": "University of Chittagong"
+        "name": "Bangabandhu Sheikh Mujibur Rahman University, Kishoreganj"
     },
-
     {
         "id": 6,
-        "name": "Jahangirnagar University"
+        "name": "Bangabandhu Sheikh Mujibur Rahman Agricultural University"
     },
-
     {
         "id": 7,
-        "name": "Islamic University, Bangladesh"
+        "name": "Bangabandhu Sheikh Mujibur Rahman Aviation And Aerospace University (BSMRAAU)"
     },
-
     {
         "id": 8,
-        "name": "Shahjalal University of Science & Technology"
+        "name": "Bangabandhu Sheikh Mujibur Rahman Digital University, Bangladesh"
     }, 
-
     {
         "id": 9,
-        "name": "Khulna University"
+        "name": "Bangabandhu Sheikh Mujibur Rahman Maritime University, Bangladesh"
     }, 
-
     {
         "id": 10,
+        "name": "Bangabandhu Sheikh Mujibur Rahman Science & Technology University"
+    }, 
+    {
+        "id": 11,
+        "name": "Bangabandhu Sheikh Mujibur Rahman Science & Technology University, Pirojpur"
+    }, 
+    {
+        "id": 12,
+        "name": "Bangamata Sheikh Fojilatunnesa Mujib Science and Technology University"
+    }, 
+    {
+        "id": 13,
+        "name": "Bangladesh University of Engineering & Technology"
+    }, 
+    {
+        "id": 14,
+        "name": "Bangladesh University of Professionals"
+    }, 
+    {
+        "id": 15,
+        "name": "Bangladesh University of Textiles"
+    }, 
+    {
+        "id": 16,
+        "name": "Begum Rokeya University, Rangpur"
+    }, 
+    {
+        "id": 17,
+        "name": "Chandpur Science and Technology University"
+    }, 
+    {
+        "id": 18,
+        "name": "Chittagong Medical University"
+    }, 
+    {
+        "id": 19,
+        "name": "Chittagong University of Engineering & Technology"
+    }, 
+    {
+        "id": 20,
+        "name": "Chittagong Veterinary and Animal Sciences University"
+    }, 
+    {
+        "id": 21,
+        "name": "Comilla University"
+    }, 
+    {
+        "id": 22,
+        "name": "Dhaka University of Engineering & Technology"
+    }, 
+    {
+        "id": 23,
+        "name": "Hajee Mohammad Danesh Science & Technology University"
+    }, 
+    {
+        "id": 24,
+        "name": "Hobiganj Agricultural University"
+    }, 
+    {
+        "id": 25,
+        "name": "Islamic Arabic University"
+    }, 
+    {
+        "id": 26,
+        "name": "Islamic University, Bangladesh"
+    }, 
+    {
+        "id": 27,
+        "name": "Jagannath University"
+    }, 
+    {
+        "id": 28,
+        "name": "Jahangirnagar University"
+    }, 
+    {
+        "id": 29,
+        "name": "Jatiya Kabi Kazi Nazrul Islam University"
+    }, 
+    {
+        "id": 30,
+        "name": "Jessore University of Science & Technology"
+    }, 
+    {
+        "id": 31,
+        "name": "Khulna Agricultural University"
+    }, 
+    {
+        "id": 32,
+        "name": "Khulna University"
+    }, 
+    {
+        "id": 33,
+        "name": "Khulna University of Engineering & Technology"
+    }, 
+    {
+        "id": 34,
+        "name": "Kurigram Agricultural University"
+    }, 
+    {
+        "id": 35,
+        "name": "Mawlana Bhashani Science & Technology University"
+    }, 
+    {
+        "id": 36,
         "name": "National University"
+    }, 
+    {
+        "id": 37,
+        "name": "Noakhali Science & Technology University"
+    }, 
+    {
+        "id": 38,
+        "name": "Patuakhali Science And Technology University"
+    }, 
+    {
+        "id": 39,
+        "name": "Pabna University of Science and Technology"
+    }, 
+    {
+        "id": 40,
+        "name": "Rabindra University, Bangladesh"
+    }, 
+    {
+        "id": 41,
+        "name": "Rajshahi Medical University"
+    }, 
+    {
+        "id": 42,
+        "name": "Rajshahi University of Engineering & Technology"
+    }, 
+    {
+        "id": 43,
+        "name": "Rangamati Science and Technology University"
+    }, 
+    {
+        "id": 44,
+        "name": "Shahjalal University of Science & Technology"
+    }, 
+    {
+        "id": 45,
+        "name": "Sheikh Hasina Medical University, Khulna"
+    }, 
+    {
+        "id": 46,
+        "name": "Sheikh Hasina University"
+    }, 
+    {
+        "id": 47,
+        "name": "Sher-e-Bangla Agricultural University"
+    }, 
+    {
+        "id": 48,
+        "name": "Sunamganj Science and Technology University"
+    }, 
+    {
+        "id": 49,
+        "name": "Sylhet Medical University"
+    }, 
+    {
+        "id": 50,
+        "name": "Sylhet Agricultural University"
+    }, 
+    {
+        "id": 51,
+        "name": "University of Chittagong"
+    }, 
+    {
+        "id": 52,
+        "name": "University of Dhaka"
+    }, 
+    {
+        "id": 53,
+        "name": "University of Rajshahi"
     }
 ]
