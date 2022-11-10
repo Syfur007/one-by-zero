@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main/Main";
-import Course from "../../pages/Course/Course";
+import Course from "../../pages/Course/Course/Course";
 import Home from "../../pages/Home/Home/Home";
 
 const router = createBrowserRouter([
