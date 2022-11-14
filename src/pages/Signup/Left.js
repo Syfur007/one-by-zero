@@ -28,7 +28,7 @@ const Left = () => {
 		<div className="flex-1 w-[50%]">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className=" bg-[#ffff] mx-auto login-form-height  rounded-2xl  p-10 w-[65%] m-10"
+				className=" bg-[#ffff] mx-auto login-form-height  rounded-2xl  p-10 w-[70%] m-10"
 			>
 				<h1 className="mx-auto text-2xl text-[#5b24ea] font-semibold py-5">
 					Signup
