@@ -1,0 +1,37 @@
+.login-form-height {
+	min-height: 85vh;
+}
+.input {
+	border-width: 1px;
+	border-radius: 100px;
+}
+
+.PhoneInputCountrySelect {
+	width: 100%;
+	margin: auto;
+	border: 1px solid rgb(207, 203, 203);
+	margin-bottom: 10px;
+	border-radius: 100px;
+	padding: 10px 20px;
+}
+.PhoneInputCountryIconImg {
+	width: 50px;
+	height: 40px !important;
+	border-radius: 5px;
+}
+
+.PhoneInputInput {
+	width: 100%;
+	border: 1px solid rgb(212, 210, 210);
+	padding: 8px 20px;
+	margin-top: 5px;
+	border-radius: 100px;
+}
+.button {
+	background: linear-gradient(to right, #5b24ea, #2e029e);
+	transition: 0.5s;
+}
+
+.button:hover {
+	background: linear-gradient(to right, #501ece, #290e6d);
+}
