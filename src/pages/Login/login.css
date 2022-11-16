@@ -26,6 +26,12 @@
 	padding: 8px 20px;
 	margin-top: 5px;
 	border-radius: 100px;
+	outline: none;
+}
+
+.PhoneInputInput:active,
+.PhoneInputInput:focus {
+	border-color: #5b24ea;
 }
 .button {
 	background: linear-gradient(to right, #5b24ea, #2e029e);

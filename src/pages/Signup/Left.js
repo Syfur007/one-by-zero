@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import Loading from "../Shared/Loading/Loading";
+import Alert from "../Shared/Alert/Alert";
 
 const Left = () => {
+	const navigate = useNavigate();
+	const [error, setError] = useState("");
+
 	const {
 		register,
 		handleSubmit,
@@ -14,14 +20,68 @@ const Left = () => {
 		control,
 		formState: { errors },
 	} = useForm();
+	const [signupLoading, setSignupLoading] = useState(false);
+	const { createUser, updateUserProfile, handleGoogleSignIn } =
+		useContext(AuthContext);
 	const onSubmit = (data) => {
+		setSignupLoading(true);
 		const email = watch("email");
 		const password = watch("password");
 		const name = watch("name");
 		const phoneInputWithCountrySelect = watch("phoneInputWithCountrySelect");
-		console.log(email, password, name, phoneInputWithCountrySelect);
 		const isValid = isValidPhoneNumber(phoneInputWithCountrySelect);
-		console.log(isValid);
+
+		if (!isValid) {
+			setError("Phonenumber is not valid");
+			return;
+		}
+
+		createUser(email, password)
+			.then((user) => {
+				console.log(user);
+				handleUpdateUserProfile(name);
+				localStorage.setItem(
+					"onbyzero-user-phonenumber",
+					phoneInputWithCountrySelect
+				);
+			})
+			.catch((err) => {
+				console.log(err.message);
+				let message = err.message.split(":")[1];
+				setError(message);
+				setSignupLoading(false);
+			});
+		// console.log(email, password, name, phoneInputWithCountrySelect);
+		// console.log(isValid);
+	};
+
+	const handleUpdateUserProfile = (name) => {
+		const profile = {
+			name,
+		};
+
+		updateUserProfile(profile)
+			.then(() => {})
+			.catch((err) => {
+				let message = err.message.split(":")[1];
+				setError(message);
+				setSignupLoading(false);
+			});
+		setSignupLoading(false);
+		navigate("/");
+	};
+
+	const signInWithGoogle = () => {
+		handleGoogleSignIn()
+			.then((user) => {
+				console.log(user);
+				navigate("/");
+			})
+			.catch((err) => {
+				let message = err.message.split(":")[1];
+				setError(message);
+				console.log(err);
+			});
 	};
 
 	return (
@@ -30,6 +90,7 @@ const Left = () => {
 				onSubmit={handleSubmit(onSubmit)}
 				className=" bg-[#ffff] mx-auto login-form-height  rounded-2xl  p-10 w-[70%] m-10"
 			>
+				{error && <Alert>{error}</Alert>}
 				<h1 className="mx-auto text-2xl text-[#5b24ea] font-semibold py-5">
 					Signup
 				</h1>
@@ -94,7 +155,15 @@ const Left = () => {
 						type="submit"
 						className="w-full button bg-[#5b24ea] py-2 rounded-full items-center justify-between text-xl flex text-white"
 					>
-						<p className="text-center flex-1">Register</p>
+						<p className="text-center flex-1">
+							{signupLoading ? (
+								<div className="flex items-center justify-center">
+									<Loading></Loading> <span>Loading.....</span>
+								</div>
+							) : (
+								"Register"
+							)}
+						</p>
 						<p className="mr-3 p-2 bg-white rounded-full text-[#5b24ea]">
 							<FaArrowRight></FaArrowRight>
 						</p>
@@ -108,11 +177,12 @@ const Left = () => {
 
 				<div className="text-center w-full mx-auto">
 					<button
+						onClick={signInWithGoogle}
 						className="w-full flex items-center button text-white  rounded-full py-3 justify-center"
 						type="button"
 					>
 						<FcGoogle className="w-6 h-6 mr-2"></FcGoogle>
-						<span>Login with google</span>
+						<span>Signup with google</span>
 					</button>
 				</div>
 				<p className="text-xl mt-5 py-5 text-[#5b24ea]">
