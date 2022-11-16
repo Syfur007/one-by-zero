@@ -1,12 +1,11 @@
 import React from "react";
 
 const Footer = () => {
-	return (
-		<div>
-			<p>Footer of Oishe</p>
-			<p>Zahid is Sexy</p>
-		</div>
-	);
+  return (
+    <footer className="bg-gray-500 py-10 text-center text-white">
+      <p> Copyright &copy; OneByZero Education</p>
+    </footer>
+  );
 };
 
 export default Footer;
