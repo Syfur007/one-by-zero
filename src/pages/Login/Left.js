@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaArrowRight } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import Alert from "../Shared/Alert/Alert";
+import Loading from "../Shared/Loading/Loading";
 
 const Left = () => {
+	const navigate = useNavigate();
+	const { signIn, handleGoogleSignIn } = useContext(AuthContext);
+	const [error, setError] = useState();
+	const [signInLoading, setSignInLoading] = useState(false);
 	const {
 		register,
 		handleSubmit,
@@ -12,9 +19,35 @@ const Left = () => {
 		formState: { errors },
 	} = useForm();
 	const onSubmit = (data) => {
+		setSignInLoading(true);
 		const email = watch("email");
 		const password = watch("password");
+		signIn(email, password)
+			.then((user) => {
+				console.log(user);
+				setSignInLoading(false);
+				navigate("/");
+			})
+			.catch((err) => {
+				console.log(err);
+				setSignInLoading(false);
+				let message = err.message.split(":")[1];
+				setError(message);
+			});
 		console.log(email, password);
+	};
+
+	const signInWithGoogle = () => {
+		handleGoogleSignIn()
+			.then((user) => {
+				console.log(user);
+				navigate("/");
+			})
+			.catch((err) => {
+				let message = err.message.split(":")[1];
+				setError(message);
+				console.log(err);
+			});
 	};
 	return (
 		<div className="flex-1 w-[50%]">
@@ -22,6 +55,8 @@ const Left = () => {
 				onSubmit={handleSubmit(onSubmit)}
 				className=" bg-[#ffff] mx-auto login-form-height  rounded-2xl h-[60vh] p-10 w-[65%] m-10"
 			>
+				{error && <Alert>{error}</Alert>}
+
 				<h1 className="mx-auto text-2xl text-[#5b24ea] font-semibold py-5">
 					Login
 				</h1>
@@ -60,7 +95,15 @@ const Left = () => {
 						type="submit"
 						className="w-full button bg-[#5b24ea] py-2 rounded-full items-center justify-between text-xl flex text-white"
 					>
-						<p className="text-center flex-1">Login</p>
+						<p className="text-center flex-1">
+							{signInLoading ? (
+								<div className="flex items-center justify-center">
+									<Loading></Loading> <span>Loading.....</span>
+								</div>
+							) : (
+								"Login"
+							)}
+						</p>
 						<p className="mr-3 p-2 bg-white rounded-full text-[#5b24ea]">
 							<FaArrowRight></FaArrowRight>
 						</p>
@@ -74,6 +117,7 @@ const Left = () => {
 
 				<div className="text-center w-full mx-auto">
 					<button
+						onClick={signInWithGoogle}
 						className="w-full flex items-center button text-white  rounded-full py-3 justify-center"
 						type="button"
 					>
