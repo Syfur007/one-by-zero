@@ -15,3 +15,7 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
 }
+
+.modal {
+	height: 100vh !important;
+}
