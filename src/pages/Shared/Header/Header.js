@@ -1,7 +1,13 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+	const [showModel, setShowModel] = useState(true);
+
+	useEffect(() => {
+		setShowModel(true);
+	}, [showModel]);
+
 	const menuItems = (
 		<>
 			<li>
@@ -18,7 +24,7 @@ const Header = () => {
 	return (
 		<>
 			<div className="navbar bg-info text-base-100">
-				<div className="navbar-start">
+				<div className="navbar-start w-[20%]">
 					<div className="dropdown">
 						<label tabIndex={0} className="btn btn-ghost lg:hidden">
 							<svg
@@ -45,7 +51,7 @@ const Header = () => {
 					</div>
 					<a className="btn btn-ghost normal-case text-xl">OneBYZero</a>
 				</div>
-				<div className="navbar-center hidden lg:flex">
+				<div className="navbar-start w-full hidden lg:flex">
 					<ul className="menu menu-horizontal p-0">{menuItems}</ul>
 				</div>
 				<div className="navbar-end">
@@ -54,42 +60,50 @@ const Header = () => {
 					</Link>
 				</div>
 			</div>
-
-			<div className="">
-				<input type="checkbox" id="my-modal-3" className="modal-toggle" />
-				<div className="modal">
-					<div className="modal-box relative">
-						<label
-							htmlFor="my-modal-3"
-							className="btn btn-sm btn-circle absolute right-2 top-2"
-						>
-							✕
-						</label>
-						<div>
-							<h1 className="text-2xl font-semibold">
-								What are you want to Contribute?
-							</h1>
-							<ul className="text-xl my-5">
-								<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#3503b4] rounded-sm text-white bg-info">
-									<Link className="block w-full" href="#">
-										questions
-									</Link>
-								</li>
-								<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#3503b4] rounded-sm text-white bg-info">
-									<Link className="block w-full" href="#">
-										books
-									</Link>
-								</li>
-								<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#3503b4] rounded-sm text-white bg-info">
-									<Link className="block w-full" href="#">
-										slides
-									</Link>
-								</li>
-							</ul>
+			{showModel && (
+				<div className="">
+					<input type="checkbox" id="my-modal-3" className="modal-toggle" />
+					<div className="modal">
+						<div className="modal-box relative">
+							<label
+								htmlFor="my-modal-3"
+								className="btn btn-sm btn-circle absolute right-2 top-2"
+							>
+								✕
+							</label>
+							<div>
+								<h1 className="text-2xl font-semibold">
+									What are you want to Contribute?
+								</h1>
+								<ul className="text-xl my-5">
+									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#3503b4] rounded-sm text-white bg-info">
+										<Link
+											className="block w-full"
+											to="/contribute/question"
+											id="my-modal-3"
+											onClick={() => {
+												setShowModel(false);
+											}}
+										>
+											questions
+										</Link>
+									</li>
+									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#3503b4] rounded-sm text-white bg-info">
+										<Link className="block w-full" href="#">
+											books
+										</Link>
+									</li>
+									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#3503b4] rounded-sm text-white bg-info">
+										<Link className="block w-full" href="#">
+											slides
+										</Link>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			)}
 		</>
 	);
 };
