@@ -19,6 +19,10 @@ const Header = () => {
 					Contribute
 				</label>
 			</li>
+
+			<li>
+				<Link to="/resources">Resources</Link>
+			</li>
 		</>
 	);
 	return (
@@ -79,7 +83,7 @@ const Header = () => {
 									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#3503b4] rounded-sm text-white bg-info">
 										<Link
 											className="block w-full"
-											to="/contribute/question"
+											to="/contribute/questions"
 											id="my-modal-3"
 											onClick={() => {
 												setShowModel(false);
@@ -89,12 +93,26 @@ const Header = () => {
 										</Link>
 									</li>
 									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#3503b4] rounded-sm text-white bg-info">
-										<Link className="block w-full" href="#">
+										<Link
+											className="block w-full"
+											to="/contribute/books"
+											id="my-modal-3"
+											onClick={() => {
+												setShowModel(false);
+											}}
+										>
 											books
 										</Link>
 									</li>
 									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#3503b4] rounded-sm text-white bg-info">
-										<Link className="block w-full" href="#">
+										<Link
+											className="block w-full"
+											to="/contribute/slides"
+											id="my-modal-3"
+											onClick={() => {
+												setShowModel(false);
+											}}
+										>
 											slides
 										</Link>
 									</li>
