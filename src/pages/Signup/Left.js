@@ -57,7 +57,7 @@ const Left = () => {
 
 	const handleUpdateUserProfile = (name) => {
 		const profile = {
-			name,
+			displayName: name,
 		};
 
 		updateUserProfile(profile)

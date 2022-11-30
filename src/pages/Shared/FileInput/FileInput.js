@@ -1,7 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
 
 const FileInput = ({ name, showResources }) => {
 	const navigate = useNavigate();
@@ -9,6 +9,7 @@ const FileInput = ({ name, showResources }) => {
 	const [departments, setDepartments] = useState([]);
 	const [courses, setCourses] = useState([]);
 
+	const { setMycourseInfo } = useContext(CourseContext);
 	const {
 		register,
 		formState: { errors },
@@ -20,7 +21,7 @@ const FileInput = ({ name, showResources }) => {
 	const semester = watch("semester");
 	const varsity = watch("university");
 	const department = watch("department");
-	console.log(year, semester, varsity, department);
+	// console.log(year, semester, varsity, department);
 
 	// fetch course data
 	useEffect(() => {
@@ -39,7 +40,7 @@ const FileInput = ({ name, showResources }) => {
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
-				setCourses(data[0].courses);
+				setCourses(data[0]?.courses);
 			});
 	}, [department, semester, varsity, year]);
 	// fetch university data
@@ -64,11 +65,27 @@ const FileInput = ({ name, showResources }) => {
 	}, []);
 
 	const onSubmit = (data) => {
-		navigate("/course");
-		console.log(data);
+		const course = data.course;
+		const department = data.department;
+		const semester = Number(data.semester);
+		const university = data.university;
+		const year = Number(data.year);
+
+		// console.log(course, department, semester, year, university);
+		const courseInfo = {
+			courseTitle: course,
+			department,
+			semester,
+			varsity: university,
+			year,
+		};
+		if (showResources) {
+			navigate("/course");
+			setMycourseInfo(courseInfo);
+			console.log(data);
+		}
 	};
 
-	console.log(courses);
 	return (
 		<div className="w-full my-10">
 			<h1 className="text-4xl text-center uppercase mb-10">
@@ -99,7 +116,7 @@ const FileInput = ({ name, showResources }) => {
 						className="select select-bordered w-full"
 					>
 						<option disabled selected value="Computer Science & Engineering">
-							Computer Science & Engineering
+							Computer Science and Engineering
 						</option>
 						{departments.map((uni) => (
 							<option disabled value={uni.name} key={uni._id}>
@@ -152,13 +169,16 @@ const FileInput = ({ name, showResources }) => {
 						))}
 					</select>
 				</div>
-				<div class="form-control w-full mt-5">
-					<input
-						type="file"
-						className="file-input file-input-bordered file-input-success w-full "
-						required
-					/>
-				</div>
+				{!showResources && (
+					<div class="form-control w-full mt-5">
+						<input
+							type="file"
+							className="file-input file-input-bordered file-input-success w-full "
+							required
+						/>
+					</div>
+				)}
+
 				<div className="mt-5">
 					<button type="submit" className="btn btn-active btn-secondary">
 						{showResources ? "show resources" : `upload ${name}`}

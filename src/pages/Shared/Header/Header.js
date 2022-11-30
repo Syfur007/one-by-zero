@@ -1,8 +1,10 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
 	const [showModel, setShowModel] = useState(true);
+	const { user, logOut } = useContext(AuthContext);
 
 	useEffect(() => {
 		setShowModel(true);
@@ -19,12 +21,19 @@ const Header = () => {
 					Contribute
 				</label>
 			</li>
-
 			<li>
 				<Link to="/resources">Resources</Link>
 			</li>
 		</>
 	);
+
+	const logoutHandler = () => {
+		logOut()
+			.then(() => {})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 	return (
 		<>
 			<div className="navbar bg-info text-base-100">
@@ -53,15 +62,27 @@ const Header = () => {
 							{menuItems}
 						</ul>
 					</div>
-					<a className="btn btn-ghost normal-case text-xl">OneBYZero</a>
+					<a className="btn btn-ghost normal-case text-xl">OneByZero</a>
 				</div>
 				<div className="navbar-start w-full hidden lg:flex">
 					<ul className="menu menu-horizontal p-0">{menuItems}</ul>
 				</div>
 				<div className="navbar-end">
-					<Link to="/login" className="btn">
-						Login
-					</Link>
+					{!user?.uid ? (
+						<Link to="/login" className="btn">
+							Login
+						</Link>
+					) : (
+						<>
+							<Link to="/profile">profile</Link>
+							<button
+								className="btn btn-primary btn-sm mx-10"
+								onClick={logoutHandler}
+							>
+								logout
+							</button>
+						</>
+					)}
 				</div>
 			</div>
 			{showModel && (

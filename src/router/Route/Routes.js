@@ -6,8 +6,10 @@ import Slides from "../../pages/Contribute/Slides";
 import Course from "../../pages/Course/Course/Course";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/Login/Login";
+import Profile from "../../pages/Profile/Profile";
 import Resources from "../../pages/Resources/Resources";
 import Signup from "../../pages/Signup/Signup";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
 	{
@@ -32,7 +34,11 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/contribute/questions",
-				element: <Question></Question>,
+				element: (
+					<PrivateRoute>
+						<Question></Question>
+					</PrivateRoute>
+				),
 			},
 			{
 				path: "/contribute/slides",
@@ -44,7 +50,15 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/resources",
-				element: <Resources></Resources>,
+				element: (
+					<PrivateRoute>
+						<Resources></Resources>
+					</PrivateRoute>
+				),
+			},
+			{
+				path: "/profile",
+				element: <Profile></Profile>,
 			},
 		],
 	},

@@ -1,0 +1,41 @@
+[
+	{
+		"id": 1,
+		"varsity": "",
+		"department": "",
+		"course-title": "",
+		"course-code": "",
+		"year": "",
+		"semester": "",
+		"books": [
+			{
+				"name": "",
+				"author": "",
+				"book-link": ""
+			},
+			{}
+		],
+		"slides": [
+			{
+				"name": "",
+				"author": "",
+				"link": ""
+			},
+			{}
+		],
+		"questions": [
+			{
+				"name": "",
+				"author": "",
+				"link": ""
+			},
+			{}
+		],
+		"teacher": [
+			{
+				"profile-link": ""
+			}
+		]
+	},
+	{}
+]

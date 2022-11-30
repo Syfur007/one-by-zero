@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
 	Tabs,
 	TabsHeader,
@@ -7,14 +7,37 @@ import {
 	TabPanel,
 } from "@material-tailwind/react";
 import Resources from "../Resources/Resources";
+import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
 
 const CourseHeader = () => {
+	const [course, setCourse] = useState(null);
+	const { mycourseInfo } = useContext(CourseContext);
+
+	useEffect(() => {
+		const fetchCourse = async () => {
+			const res = await fetch(
+				`http://localhost:8080/resources/course/questions`,
+				{
+					method: "POST",
+					headers: {
+						"content-type": "application/json",
+					},
+					body: JSON.stringify(mycourseInfo),
+				}
+			);
+			const data = await res.json();
+			localStorage.setItem("one-by-zero-course", JSON.stringify(data));
+			setCourse(data);
+			console.log(data);
+		};
+		fetchCourse();
+	}, [mycourseInfo]);
 	return (
-		<div className="bg-purple-900 text-white py-10 h-[70vh]">
-			<div className=" w-[80%] mx-auto">
-				<Tabs id="custom-animation" value="1">
+		<div className="text-white py-10 bg-[#150e27] ">
+			<div className=" w-[80%] mx-auto z-10">
+				<Tabs id="custom-animation" style={{ zIndex: 1 }} value="1">
 					<TabsHeader className="z-10">
-						<Tab key="1" value="1" className="">
+						<Tab key="1" value="1" className="z-10">
 							Resources
 						</Tab>
 						<Tab key="2" value="2">
@@ -34,7 +57,7 @@ const CourseHeader = () => {
 						}}
 					>
 						<TabPanel key="1" value="1">
-							<Resources></Resources>
+							<Resources course={course}></Resources>
 						</TabPanel>
 						<TabPanel key="2" value="2">
 							CSss
