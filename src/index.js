@@ -4,8 +4,9 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import AuthProvider from "./contexts/AuthProvider/AuthProvider";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 import CourseProvider from "./contexts/CourseProvider/CourseProvider";
 
 const queryClient = new QueryClient();
@@ -16,9 +17,14 @@ root.render(
 		<QueryClientProvider client={queryClient}>
 			<AuthProvider>
 				<CourseProvider>
-					<App />
+					<div className="w-full bg-[#150E27]">
+						<div className="mx-auto max-w-screen-2xl">
+							<App />
+						</div>
+					</div>
 				</CourseProvider>
 			</AuthProvider>
+			<ReactQueryDevtools />
 		</QueryClientProvider>
 	</React.StrictMode>
 );

@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -10,9 +9,15 @@ const FileInput = ({ name, showResources }) => {
 	const [showFileModal, setShowFileModal] = useState(false);
 	const navigate = useNavigate();
 
-	const { setMycourseInfo } = useContext(CourseContext);
-	const [courseInfoFromLocalStorage, setCourseInfoFromLocalStorage] =
-		useState(null);
+	const {
+		setMycourseInfo,
+		universities,
+		departments,
+		courseInfoFromLocalStorage,
+		years,
+		semesters,
+	} = useContext(CourseContext);
+
 	const [courses, setCourses] = useState([]);
 	const {
 		register,
@@ -21,10 +26,14 @@ const FileInput = ({ name, showResources }) => {
 		watch,
 	} = useForm();
 
-	let year = watch("year");
-	let semester = watch("semester");
-	let varsity = watch("university");
-	let department = watch("department");
+	let year = watch("year") || courseInfoFromLocalStorage?.year;
+	let semester = watch("semester") || courseInfoFromLocalStorage?.semester;
+	let varsity = watch("university") || courseInfoFromLocalStorage?.varsity;
+
+	let department =
+		watch("department") || courseInfoFromLocalStorage?.department;
+
+	// console.log(year, varsity, semester, department);
 
 	// fetch course data
 	useEffect(() => {
@@ -43,63 +52,12 @@ const FileInput = ({ name, showResources }) => {
 			})
 				.then((res) => res.json())
 				.then((data) => {
-					console.log(data);
 					setCourses(data[0]?.courses);
 				})
 				.catch((err) => {
-					console.log(err);
+					console.log("sina-error", err);
 				});
 	}, [department, semester, varsity, year]);
-
-	useEffect(() => {
-		const getMyCourseInfoFromLocalstorage = JSON.parse(
-			localStorage.getItem("one-by-zero-courseInfo")
-		);
-		setCourseInfoFromLocalStorage(getMyCourseInfoFromLocalstorage);
-	}, []);
-	const fetchDepartment = async () => {
-		const res = await fetch("http://localhost:8080/department");
-		const data = await res.json();
-		console.log(data);
-		return data;
-	};
-	const fetchUniversities = async () => {
-		const res = await fetch("http://localhost:8080/university");
-		const data = await res.json();
-		return data;
-	};
-	const { data: departments = [], isLoading: isLoadingFetchDepartment } =
-		useQuery({
-			queryKey: ["departments"],
-			queryFn: fetchDepartment,
-		});
-
-	const { data: universities = [], isLoading: isLoadingFetchUniversities } =
-		useQuery({
-			queryKey: ["universities"],
-			queryFn: fetchUniversities,
-		});
-
-	// const { data: courses = [], isLoading: isLoadingFetchCoursesData } = useQuery(
-	// 	{
-	// 		queryKey: ["courses", year, semester, varsity, department],
-	// 		queryFn: () => {
-	// 			return fetchCourses(year, semester, varsity, department);
-	// 		},
-	// 	}
-	// );
-
-	// if (isLoadingFetchCoursesData) {
-	// 	return <Loading></Loading>;
-	// }
-
-	if (isLoadingFetchDepartment) {
-		return <Loading></Loading>;
-	}
-
-	if (isLoadingFetchUniversities) {
-		return <Loading></Loading>;
-	}
 
 	const onSubmit = (data) => {
 		const course = data.course;
@@ -108,7 +66,7 @@ const FileInput = ({ name, showResources }) => {
 		const university = data.university;
 		const year = Number(data.year);
 
-		// console.log(course, department, semester, year, university);
+		console.log(course, department, semester, year, university);
 		const courseInfo = {
 			courseTitle: course,
 			department,
@@ -116,14 +74,15 @@ const FileInput = ({ name, showResources }) => {
 			varsity: university,
 			year,
 		};
+
 		if (showResources) {
-			navigate("/course");
 			localStorage.setItem(
 				"one-by-zero-courseInfo",
 				JSON.stringify(courseInfo)
 			);
 			setMycourseInfo(courseInfo);
-			console.log(data);
+			navigate("/course");
+			return;
 		}
 	};
 
@@ -149,11 +108,12 @@ const FileInput = ({ name, showResources }) => {
 							University of Barishal
 						</option>
 
-						{universities.map((uni) => (
-							<option value={uni.name} disabled key={uni._id}>
-								{uni.name}
-							</option>
-						))}
+						{universities &&
+							universities.map((uni) => (
+								<option value={uni.name} disabled key={uni._id}>
+									{uni.name}
+								</option>
+							))}
 					</select>
 				</div>
 				<div className="mt-5 w-4/3">
@@ -183,15 +143,31 @@ const FileInput = ({ name, showResources }) => {
 						className="w-full select select-bordered"
 						required
 					>
-						<option value={courseInfoFromLocalStorage?.year}>
+						<option
+							value={
+								courseInfoFromLocalStorage?.year
+									? courseInfoFromLocalStorage.year
+									: ""
+							}
+						>
 							{courseInfoFromLocalStorage
-								? `${courseInfoFromLocalStorage?.year}`
+								? `${
+										courseInfoFromLocalStorage?.year === 1
+											? "1st"
+											: courseInfoFromLocalStorage?.year === 2
+											? "2nd"
+											: courseInfoFromLocalStorage?.year === 3
+											? "3rd"
+											: "4th"
+								  }`
 								: "Select Year"}
 						</option>
-						<option value="1">1st</option>
-						<option value="2">2nd</option>
-						<option value="3">3rd</option>
-						<option value="4">4th</option>
+						{years &&
+							years.map((year, index) => (
+								<option value={year.value} key={index}>
+									{year.name}
+								</option>
+							))}
 					</select>
 				</div>
 				<div className="mt-5 w-4/3">
@@ -203,13 +179,25 @@ const FileInput = ({ name, showResources }) => {
 						className="w-full select select-bordered"
 						required
 					>
-						<option value={courseInfoFromLocalStorage?.semester}>
+						<option
+							value={
+								courseInfoFromLocalStorage?.semester
+									? courseInfoFromLocalStorage?.semester
+									: ""
+							}
+						>
 							{courseInfoFromLocalStorage
-								? courseInfoFromLocalStorage?.semester
+								? courseInfoFromLocalStorage?.semester === 1
+									? "1st"
+									: "2nd"
 								: "Select Semester"}
 						</option>
-						<option value="1">1st</option>
-						<option value="2">2nd</option>
+						{semesters &&
+							semesters.map((semester, index) => (
+								<option value={semester.value} key={index}>
+									{semester.name}
+								</option>
+							))}
 					</select>
 				</div>
 				<div className="mt-5 w-4/3">
@@ -221,7 +209,13 @@ const FileInput = ({ name, showResources }) => {
 						className="w-full select select-bordered"
 						required
 					>
-						<option value={courseInfoFromLocalStorage?.courseTitle}>
+						<option
+							value={
+								courseInfoFromLocalStorage?.courseTitle
+									? courseInfoFromLocalStorage?.courseTitle
+									: ""
+							}
+						>
 							{courseInfoFromLocalStorage
 								? courseInfoFromLocalStorage?.courseTitle
 								: "Select Course"}
@@ -246,12 +240,6 @@ const FileInput = ({ name, showResources }) => {
 						{showFileModal && (
 							<FIleModal setShowFileModal={setShowFileModal}></FIleModal>
 						)}
-
-						{/* <input
-							type="file"
-							className="w-full file-input file-input-bordered file-input-primary "
-							required
-						/> */}
 					</div>
 				)}
 

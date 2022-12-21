@@ -19,3 +19,7 @@ code {
 .modal {
 	height: 100vh !important;
 }
+
+.input {
+	border-radius: 5px !important;
+}

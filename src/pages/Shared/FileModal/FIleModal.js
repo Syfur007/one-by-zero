@@ -16,6 +16,9 @@ const FIleModal = ({ setShowFileModal }) => {
 	const handleFileChange = (e) => {
 		setFile(e.target.files[0]);
 	};
+	const submitHandler = (event) => {
+		event.preventDefault();
+	};
 	return (
 		<div>
 			{/* Put this part before </body> tag */}

@@ -1,15 +1,19 @@
 import React, { useContext } from "react";
+import { useState } from "react";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
 import CourseHeader from "../CourseHeader/CourseHeader";
+import CourseModal from "../CourseModal/CourseModal";
 
 const Course = () => {
-	const { mycourseInfo } = useContext(CourseContext);
+	const [elements, setElements] = useState([]);
+	const { courses } = useContext(CourseContext);
 	return (
 		<div>
 			<h1 className="bg-[#150E27] text-2xl capitalize pt-5 text-white text-center">
-				{mycourseInfo && mycourseInfo?.courseTitle}
+				{courses && courses?.courseTitle}
 			</h1>
-			<CourseHeader></CourseHeader>
+			<CourseHeader setElements={setElements}></CourseHeader>
+			{elements && <CourseModal elements={elements}></CourseModal>}
 		</div>
 	);
 };
