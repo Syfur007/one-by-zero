@@ -6,8 +6,8 @@ import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import Loading from "../Shared/Loading/Loading";
 import Alert from "../Shared/Alert/Alert";
+import SigninLoader from "../Shared/Loading/SigninLoader";
 
 const Left = () => {
 	const navigate = useNavigate();
@@ -28,22 +28,58 @@ const Left = () => {
 		const email = watch("email");
 		const password = watch("password");
 		const name = watch("name");
+		const image = watch("image");
 		const phoneInputWithCountrySelect = watch("phoneInputWithCountrySelect");
 		const isValid = isValidPhoneNumber(phoneInputWithCountrySelect);
 
 		if (!isValid) {
 			setError("Phonenumber is not valid");
+			setSignupLoading(false);
 			return;
 		}
 
+		if (!image[0].type.includes("image")) {
+			setError("Enter valid image");
+			setSignupLoading(false);
+			return;
+		}
 		createUser(email, password)
 			.then((user) => {
-				console.log(user);
-				handleUpdateUserProfile(name);
-				localStorage.setItem(
-					"onbyzero-user-phonenumber",
-					phoneInputWithCountrySelect
-				);
+				const formData = new FormData();
+				formData.append("image", image[0]);
+				const imageHostKey = process.env.REACT_APP_imgbb_key;
+				// upload file in imgbb
+				const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+				fetch(url, { method: "POST", body: formData })
+					.then((res) => res.json())
+					.then((imgData) => {
+						if (imgData.success) {
+							handleUpdateUserProfile(name, imgData?.data?.url);
+						}
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+				// save data to mongodb
+				fetch("http://localhost:8080/api/user/", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						email: email,
+						phoneNumber: phoneInputWithCountrySelect,
+					}),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						console.log(data);
+						setSignupLoading(false);
+						navigate("/");
+					})
+					.catch((err) => {
+						setSignupLoading(false);
+					});
 			})
 			.catch((err) => {
 				console.log(err.message);
@@ -51,31 +87,44 @@ const Left = () => {
 				setError(message);
 				setSignupLoading(false);
 			});
-		// console.log(email, password, name, phoneInputWithCountrySelect);
-		// console.log(isValid);
 	};
 
-	const handleUpdateUserProfile = (name) => {
+	const handleUpdateUserProfile = (name, image) => {
 		const profile = {
 			displayName: name,
+			photoURL: image,
 		};
-
 		updateUserProfile(profile)
 			.then(() => {})
 			.catch((err) => {
 				let message = err.message.split(":")[1];
 				setError(message);
-				setSignupLoading(false);
 			});
-		setSignupLoading(false);
-		navigate("/");
 	};
 
 	const signInWithGoogle = () => {
 		handleGoogleSignIn()
 			.then((user) => {
 				console.log(user);
-				navigate("/");
+				fetch("http://localhost:8080/api/user/", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						email: user?.user?.email,
+						phoneNumber: user?.user?.phoneNumber,
+					}),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						console.log(data);
+						setSignupLoading(false);
+						navigate("/");
+					})
+					.catch((err) => {
+						setSignupLoading(false);
+					});
 			})
 			.catch((err) => {
 				let message = err.message.split(":")[1];
@@ -103,8 +152,27 @@ const Left = () => {
 						})}
 						className=" border-gray-300 input placeholder:text-gray-600 w-full pl-5 py-2 focus:border-[#5b24ea]  outline-none"
 					/>
-					<p className="text-red-800 text-center mt-1">
+					<p className="mt-1 text-center text-red-800">
 						{errors?.name?.message}
+					</p>
+				</div>
+
+				<div className="mt-6">
+					<label
+						htmlFor=""
+						className="block mb-2 ml-2 font-medium text-primary"
+					>
+						User Image
+					</label>
+					<input
+						type="file"
+						{...register("image", {
+							required: "Image should not be empty.",
+						})}
+						className="border-gray-300 file-input-primary file-input   w-full focus:border-[#5b24ea]  outline-none"
+					/>
+					<p className="mt-1 text-center text-red-800">
+						{errors?.image?.message}
 					</p>
 				</div>
 				<div className="mt-6">
@@ -116,11 +184,11 @@ const Left = () => {
 						})}
 						className=" border-gray-300 input placeholder:text-gray-600 w-full pl-5 py-2 focus:border-[#5b24ea]  outline-none"
 					/>
-					<p className="text-red-800 text-center mt-1">
+					<p className="mt-1 text-center text-red-800">
 						{errors?.email?.message}
 					</p>
 				</div>
-				<div className="mt-6 w-full">
+				<div className="w-full mt-6">
 					<PhoneInputWithCountry
 						name="phoneInputWithCountrySelect"
 						control={control}
@@ -128,7 +196,7 @@ const Left = () => {
 						defaultCountry="BD"
 						placeholder="PhoneNumber"
 					/>
-					<p className="text-red-800 text-center mt-1">
+					<p className="mt-1 text-center text-red-800">
 						{errors?.phoneInputWithCountrySelect?.message}
 					</p>
 				</div>
@@ -146,19 +214,21 @@ const Left = () => {
 						})}
 						className=" border-gray-300 input placeholder:text-gray-600 w-full pl-5 py-2 focus:border-[#5b24ea]  outline-none"
 					/>
-					<p className="text-red-800 text-center mt-1">
+					<p className="mt-1 text-center text-red-800">
 						{errors?.password?.message}
 					</p>
 				</div>
+
 				<div className="w-full mt-8 ">
 					<button
 						type="submit"
 						className="w-full button bg-[#5b24ea] py-2 rounded-full items-center justify-between text-xl flex text-white"
 					>
-						<p className="text-center flex-1">
+						<p className="flex-1 text-center">
 							{signupLoading ? (
 								<div className="flex items-center justify-center">
-									<Loading></Loading> <span>Loading.....</span>
+									<SigninLoader></SigninLoader>
+									<span>Loading.....</span>
 								</div>
 							) : (
 								"Register"
@@ -169,16 +239,16 @@ const Left = () => {
 						</p>
 					</button>
 				</div>
-				<div className="text-center flex  my-3 sm:w-3/4 w-full mx-auto items-center">
+				<div className="flex items-center w-full mx-auto my-3 text-center sm:w-3/4">
 					<span className="w-full block h-[1px] mr-2 bg-[#5b24ea]"></span>
 					<h4 className="text-2xl text-[#5b24ea] ">OR</h4>
 					<span className="w-full block h-[1px] ml-2 bg-[#5b24ea]"></span>
 				</div>
 
-				<div className="text-center w-full mx-auto">
+				<div className="w-full mx-auto text-center">
 					<button
 						onClick={signInWithGoogle}
-						className="w-full flex items-center button text-white  rounded-full py-3 justify-center"
+						className="flex items-center justify-center w-full py-3 text-white rounded-full button"
 						type="button"
 					>
 						<FcGoogle className="w-6 h-6 mr-2"></FcGoogle>
