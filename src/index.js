@@ -17,8 +17,8 @@ root.render(
 		<QueryClientProvider client={queryClient}>
 			<AuthProvider>
 				<CourseProvider>
-					<div className="w-full bg-[#150E27]">
-						<div className="mx-auto max-w-screen-2xl">
+					<div className="">
+						<div className="mx-auto max-w-screen-2xl bg-primary">
 							<App />
 						</div>
 					</div>

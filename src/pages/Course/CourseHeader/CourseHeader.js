@@ -16,7 +16,7 @@ import CourseModal from "../CourseModal/CourseModal";
 const CourseHeader = ({ setElements }) => {
 	return (
 		<>
-			<div className="text-white py-10 bg-[#150e27] ">
+			<div className="text-white py-10 bg-[#5D25E9] ">
 				<div className=" sm:w-[80%] w-[95%] mx-auto z-10">
 					<Tabs id="custom-animation" style={{ zIndex: 1 }} value="1">
 						<TabsHeader className="z-10">

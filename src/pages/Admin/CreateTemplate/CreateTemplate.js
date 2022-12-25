@@ -3,21 +3,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
-import FIleModal from "../FileModal/FIleModal";
+import Loading from "../../Shared/Loading/Loading";
 
-const FileInput = ({ name, showResources }) => {
-	const [showFileModal, setShowFileModal] = useState(false);
-	const [file, setFile] = useState("");
-	const [examName, setExamName] = useState("");
-	const [session, setSession] = useState("");
-	const [bookName, setBookName] = useState("");
-	const [author, setAuthor] = useState("");
-	const navigate = useNavigate();
-
+const CreateTemplate = ({ name, showResources }) => {
+	const [createLoading, setCreateLoading] = useState(false);
 	const {
-		setMycourseInfo,
 		universities,
 		departments,
 		courseInfoFromLocalStorage,
@@ -26,25 +17,21 @@ const FileInput = ({ name, showResources }) => {
 		semesters,
 	} = useContext(CourseContext);
 
-	const { user } = useContext(AuthContext);
-
 	const [courses, setCourses] = useState([]);
 	const {
 		register,
 		formState: { errors },
 		handleSubmit,
 		watch,
+		reset,
 	} = useForm();
 
 	let year = watch("year") || courseInfoFromLocalStorage?.year;
 	let semester = watch("semester") || courseInfoFromLocalStorage?.semester;
 	let varsity = watch("university") || courseInfoFromLocalStorage?.varsity;
-
 	let department =
 		watch("department") || courseInfoFromLocalStorage?.department;
 
-	console.log(year, varsity, semester, department);
-	console.log(courses);
 	// fetch course data
 	useEffect(() => {
 		if (year && semester && varsity && department)
@@ -75,6 +62,13 @@ const FileInput = ({ name, showResources }) => {
 		const semester = Number(data.semester);
 		const university = data.university;
 		const year = Number(data.year);
+		const teacherName = data.teacherName || null;
+		const teacherEmail = data.teacherEmail || null;
+		const session = data.session || null;
+		const link = data.link || null;
+		const courseCode = data.courseCode;
+		const creditHours = data.creditHours;
+		const syllabus = data.syllabus;
 
 		const courseInfo = {
 			courseTitle: course,
@@ -84,81 +78,55 @@ const FileInput = ({ name, showResources }) => {
 			year,
 		};
 
-		if (!course || !department || !semester || !varsity || !year) {
-			toast.error("please,Fill all the blank");
-			return;
-		}
-
 		setCourseInfoFromLocalStorage(courseInfo);
 		localStorage.setItem("one-by-zero-courseInfo", JSON.stringify(courseInfo));
 
-		if (showResources) {
-			setMycourseInfo(courseInfo);
-			navigate("/course");
-			return;
-		}
-
-		if (!file) {
-			toast.error("please,add file");
-			return;
-		}
-
-		const createContributeQuestions = {
+		let createCourseTemplate = {
 			courseInfo: {
 				...courseInfo,
 			},
-			questions: {
-				name: user?.displayName,
-				email: user?.email,
-				session,
-				examName,
-				link: file,
-			},
+			courseCode,
+			creditHours,
+			syllabus,
 		};
 
-		const createContributeBooks = {
-			courseInfo,
-			books: {
-				name: user?.displayName,
-				email: user?.email,
-				link: file,
-				bookName,
-				author,
-			},
-		};
-
-		if (name === "questions") {
-			try {
-				const { data } = await axios.post(
-					`http://localhost:8080/api/contribute/${name}`,
-					createContributeQuestions
-				);
+		if (teacherName || teacherEmail || session || link) {
+			createCourseTemplate = {
+				...createCourseTemplate,
+				courseTeachers: {
+					teacherName,
+					teacherEmail,
+					session,
+					link,
+				},
+			};
+		}
+		try {
+			setCreateLoading(true);
+			console.log("befor call", createCourseTemplate);
+			const { data } = await axios.post(
+				`http://localhost:8080/api/admin/createCourseTemplate`,
+				createCourseTemplate
+			);
+			if (data) {
 				console.log(data);
-				if (data) {
-					toast.success("question is added");
-					setFile("");
-				}
-			} catch (error) {
-				console.log(error);
+				toast.success("template is created");
+				setCreateLoading(false);
+				reset();
 			}
-		} else {
-			try {
-				const { data } = await axios.post(
-					`http://localhost:8080/api/contribute/${name}`,
-					createContributeBooks
-				);
-				if (data) {
-					toast.success(`${name.substring(0, name.length - 1)} is added`);
-					setFile("");
-				}
-			} catch (error) {
-				console.log(error);
-			}
+		} catch (error) {
+			setCreateLoading(false);
+			toast.error(error.message);
+			console.log(error);
 		}
 	};
 
+	if (createLoading) {
+		return <Loading></Loading>;
+	}
+
 	return (
-		<div className="w-full pt-[64px] pb-10 mt-5 ">
+		<div className="w-full my-10 ">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className="w-1/2 p-10 mx-auto bg-[#25184e] shadow-2xl rounded-2xl"
@@ -168,7 +136,7 @@ const FileInput = ({ name, showResources }) => {
 					{showResources ? "Show my Resources" : `give ${name}`}
 				</h1>
 				<div className="w-4/3">
-					<label htmlFor="" className="block mb-1 font-bold text-white">
+					<label htmlFor="" className="mb-1 font-bold text-white capitalize ">
 						university
 					</label>
 					<select
@@ -299,37 +267,97 @@ const FileInput = ({ name, showResources }) => {
 							))}
 					</select>
 				</div>
-				{!showResources && (
-					<div className={`w-full mt-5 form-control ${file && "hidden"}`}>
-						<label
-							htmlFor="file-input-modal-3"
-							onClick={() => setShowFileModal(true)}
-							className="btn btn-md btn-primary"
-							disabled={file}
-						>
-							add file
-						</label>
-						{showFileModal && (
-							<FIleModal
-								setShowFileModal={setShowFileModal}
-								setFile={setFile}
-								session={session}
-								setSession={setSession}
-								setExamName={setExamName}
-								setAuthor={setAuthor}
-								setBookName={setBookName}
-								author={author}
-								bookName={bookName}
-								examName={examName}
-								name={name}
-							></FIleModal>
-						)}
+
+				<div className="mt-5 w-4/3">
+					<label htmlFor="" className="block mb-1 font-bold text-white">
+						courseCode
+					</label>
+					<input
+						{...register("courseCode")}
+						className="w-full input input-bordered"
+						type="text"
+						placeholder="CSE-YYYYY"
+					></input>
+				</div>
+
+				<div className="mt-5 w-4/3">
+					<label htmlFor="" className="block mb-1 font-bold text-white">
+						creditHours
+					</label>
+					<input
+						{...register("creditHours")}
+						className="w-full input input-bordered"
+						type="text"
+						placeholder="3 Credit, 45 Hours"
+					></input>
+				</div>
+
+				<div className="mt-5 w-4/3">
+					<label htmlFor="" className="block mb-1 font-bold text-white">
+						syllabus
+					</label>
+					<input
+						{...register("syllabus")}
+						className="w-full input input-bordered"
+						type="text"
+						placeholder="s1,s2,s3..."
+					></input>
+				</div>
+				<div>
+					<h3 className="mt-2 mb-0 text-xl text-center text-white ">
+						courseTeachers
+					</h3>
+					<div>
+						<div className="mt-3 w-4/3">
+							<label htmlFor="" className="block mb-1 font-bold text-white">
+								TeacherName
+							</label>
+							<input
+								{...register("teacherName")}
+								className="w-full input input-bordered"
+								type="text"
+								placeholder="Md.Sina..."
+							></input>
+						</div>
+						<div className="mt-3 w-4/3">
+							<label htmlFor="" className="block mb-1 font-bold text-white">
+								TeacherEmail
+							</label>
+							<input
+								{...register("teacherEmail")}
+								className="w-full input input-bordered"
+								type="email"
+								placeholder="sina@..."
+							></input>
+						</div>
+						<div className="mt-3 w-4/3">
+							<label htmlFor="" className="block mb-1 font-bold text-white">
+								Session
+							</label>
+							<input
+								{...register("session")}
+								className="w-full input input-bordered"
+								type="text"
+								placeholder="2017-18"
+							></input>
+						</div>
+						<div className="mt-3 w-4/3">
+							<label htmlFor="" className="block mb-1 font-bold text-white">
+								Link
+							</label>
+							<input
+								{...register("link")}
+								className="w-full input input-bordered"
+								type="text"
+								placeholder="https://facebook.com/sina"
+							></input>
+						</div>
 					</div>
-				)}
+				</div>
 
 				<div className="mt-5">
 					<button type="submit" className="btn btn-primary">
-						{showResources ? "show resources" : `upload ${name}`}
+						CreateTemplate
 					</button>
 				</div>
 			</form>
@@ -337,4 +365,4 @@ const FileInput = ({ name, showResources }) => {
 	);
 };
 
-export default FileInput;
+export default CreateTemplate;

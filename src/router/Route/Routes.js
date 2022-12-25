@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main/Main";
 import Books from "../../pages/Contribute/Books";
+import HandNote from "../../pages/Contribute/HandNote";
 import Question from "../../pages/Contribute/Question";
 import Slides from "../../pages/Contribute/Slides";
 import Course from "../../pages/Course/Course/Course";
@@ -10,6 +11,11 @@ import Profile from "../../pages/Profile/Profile";
 import Resources from "../../pages/Resources/Resources";
 import Signup from "../../pages/Signup/Signup";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Admin from "../../pages/Admin/Admin/Admin";
+import AdminLayout from "../../Layout/Admin/AdminLayout";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import CreateTemplate from "../../pages/Admin/CreateTemplate/CreateTemplate";
+import CourseBookDetails from "../../pages/Course/CourseBook/CourseBookDetails";
 
 const router = createBrowserRouter([
 	{
@@ -49,6 +55,10 @@ const router = createBrowserRouter([
 				element: <Books></Books>,
 			},
 			{
+				path: "/contribute/handnotes",
+				element: <HandNote></HandNote>,
+			},
+			{
 				path: "/resources",
 				element: (
 					<PrivateRoute>
@@ -59,6 +69,28 @@ const router = createBrowserRouter([
 			{
 				path: "/profile",
 				element: <Profile></Profile>,
+			},
+			{
+				path: "/course/book/:bookName",
+				element: <CourseBookDetails></CourseBookDetails>,
+			},
+		],
+	},
+	{
+		path: "/admin",
+		element: <AdminLayout></AdminLayout>,
+		children: [
+			{
+				path: "/admin",
+				element: (
+					<AdminRoute>
+						<Admin></Admin>,
+					</AdminRoute>
+				),
+			},
+			{
+				path: "/admin/createtemplate",
+				element: <CreateTemplate></CreateTemplate>,
 			},
 		],
 	},

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { createContext, useState } from "react";
 import { useEffect } from "react";
+import Loading from "../../pages/Shared/Loading/Loading";
 export const CourseContext = createContext();
 
 const CourseProvider = ({ children }) => {
@@ -10,6 +11,7 @@ const CourseProvider = ({ children }) => {
 	const [mycourseInfo, setMycourseInfo] = useState(
 		JSON.parse(localStorage.getItem("one-by-zero-courseInfo")) || null
 	);
+	const [courseLoading, setCourseLoading] = useState(false);
 	const [years, setYears] = useState([]);
 	const [semesters, setSemesters] = useState([]);
 	const [courses, setCourses] = useState([]);
@@ -67,31 +69,28 @@ const CourseProvider = ({ children }) => {
 		);
 		setCourseInfoFromLocalStorage(getMyCourseInfoFromLocalstorage);
 	}, [courseInfoFromLocalStorage?.semester, courseInfoFromLocalStorage?.year]);
-	// course information
-
 	useEffect(() => {
-		console.log(
-			"🚀 ~ file: CourseProvider.js:72 ~ useEffect ~ mycourseInfo",
-			mycourseInfo
-		);
+		// course information
 		const fetchCourseData = async () => {
+			setCourseLoading(true);
 			try {
 				const { data } = await axios.post(
 					"http://localhost:8080/resources/course",
 					mycourseInfo
 				);
-				console.log(
-					"🚀 ~ file: CourseProvider.js:92 ~ fetchCourseData ~ data",
-					data
-				);
+				setCourseLoading(false);
 				setCourses(data);
 			} catch (error) {
+				setCourseLoading(false);
 				console.log(error);
 			}
 		};
-
 		fetchCourseData();
 	}, [mycourseInfo]);
+
+	if (courseLoading) {
+		return <Loading></Loading>;
+	}
 
 	const courseInfo = {
 		open,
@@ -102,6 +101,7 @@ const CourseProvider = ({ children }) => {
 		universities,
 		departments,
 		courseInfoFromLocalStorage,
+		setCourseInfoFromLocalStorage,
 		years,
 		semesters,
 		courses,

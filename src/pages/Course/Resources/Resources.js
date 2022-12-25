@@ -6,6 +6,7 @@ import CourseQuestion from "../CourseQuestion/CourseQuestion";
 import CourseBook from "../CourseBook/CourseBook";
 import CourseSlides from "../CourseSlides/CourseSlides";
 import { useNavigate } from "react-router-dom";
+import ClassNotes from "../ClassNotes/ClassNotes";
 
 const Resources = ({ course: fetchCourseData, setElements }) => {
 	const navigate = useNavigate();
@@ -35,6 +36,12 @@ const Resources = ({ course: fetchCourseData, setElements }) => {
 					<CourseSlides course={courses}></CourseSlides>
 				</div>
 			);
+		} else if (name === "notes") {
+			temp = (
+				<div>
+					<ClassNotes course={courses}></ClassNotes>
+				</div>
+			);
 		}
 		setElements(temp);
 		setOpen((prev) => !prev);
@@ -55,7 +62,10 @@ const Resources = ({ course: fetchCourseData, setElements }) => {
 					>
 						<h3 className="text-xl font-semibold">Books</h3>
 					</div>
-					<div className="max-w-[56] max-auto bg-[#150a31] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#150a31] rounded-lg">
+					<div
+						onClick={() => resourceTypesHandler("notes")}
+						className="max-w-[56] max-auto bg-[#150a31] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#150a31] rounded-lg"
+					>
 						<h3 className="text-xl font-semibold">Class Notes</h3>
 					</div>
 					<div

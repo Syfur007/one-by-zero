@@ -4,22 +4,22 @@ const CourseSlides = ({ course }) => {
 	console.log(course.slides);
 	return (
 		<div className=" w-[90vw]">
-			<h1 className="text-center text-4xl uppercase mb-5">Slides</h1>
-			<h2 className="text-center text-2xl capitalize mb-5">
+			<h1 className="mb-5 text-4xl text-center uppercase">Slides</h1>
+			<h2 className="mb-5 text-2xl text-center capitalize">
 				{course?.courseTitle}
 			</h2>
-			<h2 className="text-center text-2xl capitalize mb-5">
+			<h2 className="mb-5 text-2xl text-center capitalize">
 				{course?.courseCode}
 			</h2>
 			<div>
-				{course?.slides ? (
+				{course?.slides.length > 0 ? (
 					course.slides.map((q, index) => {
 						return (
 							<div key={index}>
 								<div className="mt-5 ">
 									<span className="mr-2">slides-link:</span>
 									<a
-										className="text-light-blue-900  underline"
+										className="underline text-light-blue-900"
 										target="_blank"
 										href={q.link}
 										rel="noreferrer"
@@ -27,14 +27,12 @@ const CourseSlides = ({ course }) => {
 										{q.link}
 									</a>
 								</div>
-
-								{/* <Chip color="purple" className="ml-3" value={q?.name} /> */}
 							</div>
 						);
 					})
 				) : (
-					<div>
-						<h1 className="text-center text-4xl uppercase mb-5">
+					<div className="w-full text-white">
+						<h1 className="w-full mb-5 text-3xl font-semibold text-center text-red-800">
 							There is no slides
 						</h1>
 					</div>

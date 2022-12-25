@@ -5,7 +5,9 @@ const Profile = () => {
 	const { user } = useContext(AuthContext);
 	return (
 		<div className="m-10">
-			<h1>{user?.email}</h1>
+			<h3 className="text-white">{user?.displayName}</h3>
+			<h1 className="text-white">{user?.email}</h1>
+			<img src={user?.displayImage} alt="" />
 		</div>
 	);
 };

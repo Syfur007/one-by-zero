@@ -1,9 +1,10 @@
 import React from "react";
-import CardBook from "./CardBook";
-const CourseBook = ({ course }) => {
+import CardClassNote from "./CardClassNote";
+
+const ClassNotes = ({ course }) => {
 	return (
 		<div className=" w-[90vw]">
-			<h1 className="mb-5 text-4xl text-center uppercase">Books</h1>
+			<h1 className="mb-5 text-4xl text-center uppercase">questions</h1>
 			<h2 className="mb-5 text-2xl text-center capitalize">
 				{course?.courseTitle}
 			</h2>
@@ -11,16 +12,16 @@ const CourseBook = ({ course }) => {
 				{course?.courseCode}
 			</h2>
 			<div>
-				{course?.books ? (
-					<div className="grid grid-cols-2">
-						{course.books.map((book, index) => {
-							return <CardBook book={book} key={index}></CardBook>;
-						})}
+				{course?.handNotes.length > 0 ? (
+					<div className="grid grid-cols-3 gap-5">
+						{course.handNotes.map((question, index) => (
+							<CardClassNote key={index} note={question}></CardClassNote>
+						))}
 					</div>
 				) : (
 					<div className="w-full text-white">
 						<h1 className="w-full mb-5 text-3xl font-semibold text-center text-red-800">
-							There is no questions
+							There is no Hand Notes
 						</h1>
 					</div>
 				)}
@@ -29,4 +30,4 @@ const CourseBook = ({ course }) => {
 	);
 };
 
-export default CourseBook;
+export default ClassNotes;

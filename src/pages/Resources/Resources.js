@@ -3,7 +3,7 @@ import FileInput from "../Shared/FileInput/FileInput";
 
 const Resources = () => {
 	return (
-		<div>
+		<div className="py-[]">
 			<FileInput showResources></FileInput>
 		</div>
 	);

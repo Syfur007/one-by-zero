@@ -8,8 +8,8 @@ const Course = () => {
 	const [elements, setElements] = useState([]);
 	const { courses } = useContext(CourseContext);
 	return (
-		<div>
-			<h1 className="bg-[#150E27] text-2xl capitalize pt-5 text-white text-center">
+		<div className="pt-[64px]">
+			<h1 className="bg-[#5D25E9] text-2xl capitalize pt-5 text-white text-center">
 				{courses && courses?.courseTitle}
 			</h1>
 			<CourseHeader setElements={setElements}></CourseHeader>
