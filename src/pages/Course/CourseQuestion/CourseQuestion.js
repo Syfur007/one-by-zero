@@ -19,7 +19,7 @@ const CourseQuestion = ({ course }) => {
 				{course?.courseCode}
 			</h2>
 			<div>
-				{course?.questions.length > 0 ? (
+				{course && course?.questions.length > 0 ? (
 					<div className="grid grid-cols-3 gap-5">
 						{course.questions.map((question, index) => (
 							<CardQuestion key={index} question={question}></CardQuestion>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
+import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import Loading from "../Loading/Loading";
@@ -18,10 +19,27 @@ const FIleModal = ({
 	bookName,
 }) => {
 	const [uploadFile, setUploadFile] = useState("");
-
+	const [sessions, setSessions] = useState([]);
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const { user } = useContext(AuthContext);
 	const selectedFileTypes = ["application/pdf"];
+
+	useEffect(() => {
+		fetch("http://localhost:8080/api/session")
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				setSessions(data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
+
+	// catch session value
+	const sessionChangeHandler = (e) => {
+		setSession(Number(e.target.value));
+	};
 
 	// submitButtonFuction
 	const uploadFileHandler = async () => {
@@ -69,6 +87,10 @@ const FIleModal = ({
 				setUploadLoading(false);
 			}
 		} else if (uploadFile && uploadFile.type !== "video/mp4") {
+			if (name === "books" || name === "slides" || name === "handnotes") {
+				toast.error("Please,add valid file");
+				return;
+			}
 			// upload image
 			const formData = new FormData();
 			formData.append("image", uploadFile);
@@ -144,6 +166,26 @@ const FIleModal = ({
 						/>
 					</div>
 
+					<div className="my-5">
+						<label htmlFor="" className="mb-2 text-base font-semibold">
+							Session
+						</label>
+						<select
+							onChange={sessionChangeHandler}
+							className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-primary"
+						>
+							<option value="" disabled selected>
+								select session
+							</option>
+							{sessions &&
+								sessions.map((session, index) => (
+									<option key={index} value={session.value}>
+										{session.name}
+									</option>
+								))}
+						</select>
+					</div>
+
 					{name === "questions" && (
 						<>
 							<div className="my-5">
@@ -162,17 +204,6 @@ const FIleModal = ({
 									<option value="final exam">final exam</option>
 								</select>
 							</div>
-
-							<div className="my-5">
-								<label htmlFor="" className="mb-2 text-base font-semibold">
-									Session
-								</label>
-								<input
-									type="text"
-									onChange={(e) => setSession(e.target.value)}
-									className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-primary"
-								/>
-							</div>
 						</>
 					)}
 
@@ -185,10 +216,10 @@ const FIleModal = ({
 								<input
 									type="text"
 									onChange={(e) => setBookName(e.target.value)}
+									placeholder={`${name} name...`}
 									className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-primary"
 								/>
 							</div>
-
 							<div className="my-5">
 								<label htmlFor="" className="mb-2 text-base font-semibold">
 									Author

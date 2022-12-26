@@ -1,6 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 import "react-tooltip/dist/react-tooltip.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import useRole from "../../../hooks/useRole";
 import { Tooltip as ReactTooltip } from "react-tooltip";
@@ -77,13 +77,17 @@ const Header = () => {
 						>
 							<>
 								<li>
-									<Link
+									<NavLink
+										className={(navData) =>
+											navData.isActive
+												? "bg-[#4d1fc0]"
+												: "hover:bg-[#4d1fc0] rounded-md"
+										}
 										onClick={handleClick}
-										className="hover:bg-[#4d1fc0] rounded-md "
 										to="/"
 									>
 										Home
-									</Link>
+									</NavLink>
 								</li>
 								{user && (
 									<li
@@ -96,11 +100,17 @@ const Header = () => {
 									</li>
 								)}
 
-								<li
-									onClick={handleClick}
-									className="hover:bg-[#4d1fc0] rounded-md "
-								>
-									<Link to="/resources">Resources</Link>
+								<li onClick={handleClick}>
+									<NavLink
+										className={({ isActive }) =>
+											isActive
+												? "bg-[#4d1fc0]"
+												: "hover:bg-[#4d1fc0] rounded-md "
+										}
+										to="/resources"
+									>
+										Resources
+									</NavLink>
 								</li>
 							</>
 						</ul>
@@ -147,16 +157,26 @@ const Header = () => {
 									tabIndex={1}
 									className="p-2 mt-3 z-50 shadow dropdown-content menu bg-[#25184E] rounded-box w-52"
 								>
-									<li onClick={handleClick}>
-										<Link to="/profile" className="hover:bg-[#4d1fc0] z-50">
+									<li className="mb-2" onClick={handleClick}>
+										<NavLink
+											className={({ isActive }) =>
+												isActive ? "bg-[#4d1fc0]" : "hover:bg-[#4d1fc0] z-50"
+											}
+											to="/profile"
+										>
 											Profile
-										</Link>
+										</NavLink>
 									</li>
 									{role === "admin" && (
 										<li onClick={handleClick}>
-											<Link to="/admin" className="hover:bg-[#4d1fc0]">
+											<NavLink
+												to="/admin"
+												className={({ isActive }) =>
+													isActive ? "bg-[#4d1fc0]" : "hover:bg-[#4d1fc0] z-50"
+												}
+											>
 												Admin
-											</Link>
+											</NavLink>
 										</li>
 									)}
 									<li onClick={handleClick}>

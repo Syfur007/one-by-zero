@@ -7,6 +7,7 @@ import CourseBook from "../CourseBook/CourseBook";
 import CourseSlides from "../CourseSlides/CourseSlides";
 import { useNavigate } from "react-router-dom";
 import ClassNotes from "../ClassNotes/ClassNotes";
+import { toast } from "react-hot-toast";
 
 const Resources = ({ course: fetchCourseData, setElements }) => {
 	const navigate = useNavigate();

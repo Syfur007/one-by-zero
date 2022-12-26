@@ -124,6 +124,7 @@ const FileInput = ({ name, showResources }) => {
 				link: file,
 				bookName,
 				author,
+				session,
 			},
 		};
 

@@ -11,7 +11,7 @@ const CourseBook = ({ course }) => {
 				{course?.courseCode}
 			</h2>
 			<div>
-				{course?.books ? (
+				{course?.books.length > 0 ? (
 					<div className="grid grid-cols-2">
 						{course.books.map((book, index) => {
 							return <CardBook book={book} key={index}></CardBook>;
@@ -20,7 +20,7 @@ const CourseBook = ({ course }) => {
 				) : (
 					<div className="w-full text-white">
 						<h1 className="w-full mb-5 text-3xl font-semibold text-center text-red-800">
-							There is no questions
+							There is no books
 						</h1>
 					</div>
 				)}
