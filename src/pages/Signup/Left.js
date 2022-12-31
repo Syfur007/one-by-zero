@@ -2,8 +2,6 @@ import React, { useContext, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
-import { isValidPhoneNumber } from "react-phone-number-input";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import Alert from "../Shared/Alert/Alert";
@@ -17,7 +15,7 @@ const Left = () => {
 		register,
 		handleSubmit,
 		watch,
-		control,
+
 		formState: { errors },
 	} = useForm();
 	const [signupLoading, setSignupLoading] = useState(false);
@@ -28,38 +26,13 @@ const Left = () => {
 		const email = watch("email");
 		const password = watch("password");
 		const name = watch("name");
-		const image = watch("image");
-		const phoneInputWithCountrySelect = watch("phoneInputWithCountrySelect");
-		const isValid = isValidPhoneNumber(phoneInputWithCountrySelect);
 
-		if (!isValid) {
-			setError("Phonenumber is not valid");
-			setSignupLoading(false);
-			return;
-		}
-
-		if (!image[0].type.includes("image")) {
-			setError("Enter valid image");
-			setSignupLoading(false);
-			return;
-		}
 		createUser(email, password)
 			.then((user) => {
-				const formData = new FormData();
-				formData.append("image", image[0]);
-				const imageHostKey = process.env.REACT_APP_imgbb_key;
-				// upload file in imgbb
-				const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
-				fetch(url, { method: "POST", body: formData })
-					.then((res) => res.json())
-					.then((imgData) => {
-						if (imgData.success) {
-							handleUpdateUserProfile(name, imgData?.data?.url);
-						}
-					})
-					.catch((err) => {
-						console.log(err);
-					});
+				handleUpdateUserProfile(
+					name,
+					"https://i.ibb.co/fp92Ldr/icons8-person-90.png"
+				);
 				// save data to mongodb
 				fetch("http://localhost:8080/api/user/", {
 					method: "POST",
@@ -68,7 +41,7 @@ const Left = () => {
 					},
 					body: JSON.stringify({
 						email: email,
-						phoneNumber: phoneInputWithCountrySelect,
+						name: name,
 					}),
 				})
 					.then((res) => res.json())
@@ -158,24 +131,6 @@ const Left = () => {
 				</div>
 
 				<div className="mt-6">
-					<label
-						htmlFor=""
-						className="block mb-2 ml-2 font-medium text-primary"
-					>
-						User Image
-					</label>
-					<input
-						type="file"
-						{...register("image", {
-							required: "Image should not be empty.",
-						})}
-						className="border-gray-300 file-input-primary file-input   w-full focus:border-[#5b24ea]  outline-none"
-					/>
-					<p className="mt-1 text-center text-red-800">
-						{errors?.image?.message}
-					</p>
-				</div>
-				<div className="mt-6">
 					<input
 						type="email"
 						placeholder="Email"
@@ -186,18 +141,6 @@ const Left = () => {
 					/>
 					<p className="mt-1 text-center text-red-800">
 						{errors?.email?.message}
-					</p>
-				</div>
-				<div className="w-full mt-6">
-					<PhoneInputWithCountry
-						name="phoneInputWithCountrySelect"
-						control={control}
-						rules={{ required: "Phone Number should not be empty" }}
-						defaultCountry="BD"
-						placeholder="PhoneNumber"
-					/>
-					<p className="mt-1 text-center text-red-800">
-						{errors?.phoneInputWithCountrySelect?.message}
 					</p>
 				</div>
 
