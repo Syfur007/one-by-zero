@@ -27,7 +27,10 @@ const AdminLeftSide = () => {
 
 				<AccordionBody>
 					<div className="mb-2">
-						<Link className="block px-3 py-2 font-semibold text-white rounded-sm hover:bg-[#20115c]">
+						<Link
+							to="/admin/users"
+							className="block px-3 py-2 font-semibold text-white rounded-sm hover:bg-[#20115c]"
+						>
 							Users
 						</Link>
 					</div>

@@ -16,6 +16,7 @@ import AdminLayout from "../../Layout/Admin/AdminLayout";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import CreateTemplate from "../../pages/Admin/CreateTemplate/CreateTemplate";
 import CourseBookDetails from "../../pages/Course/CourseBook/CourseBookDetails";
+import Users from "../../pages/Admin/Users/Users/Users";
 
 const router = createBrowserRouter([
 	{
@@ -91,6 +92,14 @@ const router = createBrowserRouter([
 			{
 				path: "/admin/createtemplate",
 				element: <CreateTemplate></CreateTemplate>,
+			},
+			{
+				path: "/admin/users",
+				element: (
+					<AdminRoute>
+						<Users></Users>
+					</AdminRoute>
+				),
 			},
 		],
 	},
