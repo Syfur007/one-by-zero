@@ -17,6 +17,7 @@ jobs:
         run: |
           npm install --legacy-peer-deps
           CI=false npm run build
+          npm run test
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
@@ -25,4 +26,5 @@ jobs:
           username: client@onebyzeroedu.com
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
+          dangerous-clean-slate: true
           local-dir: ./build/
