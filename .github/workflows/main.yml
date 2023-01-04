@@ -25,4 +25,4 @@ jobs:
           username: client@onebyzeroedu.com
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21,
-          public_dir: ./build/
+          local-dir: ./build/
