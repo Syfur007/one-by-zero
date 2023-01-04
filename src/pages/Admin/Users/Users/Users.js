@@ -12,7 +12,9 @@ const Users = () => {
 	} = useQuery({
 		queryKey: ["users"],
 		queryFn: async () => {
-			const { data } = await axios.get("http://localhost:8080/api/user/all");
+			const { data } = await axios.get(
+				"https://server.onebyzeroedu.com/api/user/all"
+			);
 			return data;
 		},
 	});

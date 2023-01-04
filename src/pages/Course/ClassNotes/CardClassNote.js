@@ -44,7 +44,7 @@ const CardClassNote = ({ note }) => {
 				</div>
 				<Link to={`/course/book/${bookNameFromLink}`} target="_blank">
 					<Document
-						file={`http://localhost:8080${link}`}
+						file={`https://server.onebyzeroedu.com${link}`}
 						onLoadSuccess={onDocumentLoadSuccess}
 					>
 						<Page pageNumber={pageNumber} />

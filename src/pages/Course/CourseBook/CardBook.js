@@ -44,34 +44,12 @@ const CardBook = ({ book }) => {
 						</strong>
 					</h3>
 				</div>
-				<Link to={`/course/book/${bookNameFromLink}`} target="_blank">
-					<Document
-						file={`http://localhost:8080${link}`}
-						onLoadSuccess={onDocumentLoadSuccess}
-					>
-						<Page pageNumber={pageNumber} />
-					</Document>
-				</Link>
-				<div className="flex items-center justify-between w-full mt-3">
-					<div className="flex justify-between w-full">
-						<div>
-							<button onClick={goToPrevPage} className="btn btn-primary btn-sm">
-								Prev
-							</button>
-						</div>
-						<p>
-							Page {pageNumber} of {numPages}
-						</p>
-						<div>
-							<button
-								onClick={goToNextPage}
-								className="ml-2 btn btn-primary btn-sm"
-							>
-								Next
-							</button>
-						</div>
-					</div>
-				</div>
+				<iframe
+					src={`https://server.onebyzeroedu.com${link}`}
+					frameborder="0"
+					className="w-[500px] h-[500px] rounded-md"
+				></iframe>
+				<div>full view</div>
 			</div>
 		</div>
 	);

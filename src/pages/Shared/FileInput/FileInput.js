@@ -48,7 +48,7 @@ const FileInput = ({ name, showResources }) => {
 	// fetch course data
 	useEffect(() => {
 		if (year && semester && varsity && department)
-			fetch("http://localhost:8080/courses", {
+			fetch("https://server.onebyzeroedu.com/courses", {
 				method: "POST",
 				headers: {
 					"content-type": "application/json",
@@ -131,7 +131,7 @@ const FileInput = ({ name, showResources }) => {
 		if (name === "questions") {
 			try {
 				const { data } = await axios.post(
-					`http://localhost:8080/api/contribute/${name}`,
+					`https://server.onebyzeroedu.com/api/contribute/${name}`,
 					createContributeQuestions
 				);
 				console.log(data);
@@ -145,7 +145,7 @@ const FileInput = ({ name, showResources }) => {
 		} else {
 			try {
 				const { data } = await axios.post(
-					`http://localhost:8080/api/contribute/${name}`,
+					`https://server.onebyzeroedu.com/api/contribute/${name}`,
 					createContributeBooks
 				);
 				if (data) {

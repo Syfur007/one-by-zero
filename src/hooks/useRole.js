@@ -5,7 +5,7 @@ const useRole = (email) => {
 	const [roleLoading, setRoleLoading] = useState(true);
 	useEffect(() => {
 		if (email) {
-			fetch(`http://localhost:8080/api/user?email=${email}`)
+			fetch(`https://server.onebyzeroedu.com/api/user?email=${email}`)
 				.then((res) => res.json())
 				.then((user) => {
 					console.log(user);

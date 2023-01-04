@@ -7,7 +7,7 @@ import Slides from "../../pages/Contribute/Slides";
 import Course from "../../pages/Course/Course/Course";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/Login/Login";
-import Profile from "../../pages/Profile/Profile";
+import Profile from "../../pages/Profile/Profile/Profile";
 import Resources from "../../pages/Resources/Resources";
 import Signup from "../../pages/Signup/Signup";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";

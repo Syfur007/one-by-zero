@@ -35,7 +35,7 @@ const CreateTemplate = ({ name, showResources }) => {
 	// fetch course data
 	useEffect(() => {
 		if (year && semester && varsity && department)
-			fetch("http://localhost:8080/courses", {
+			fetch("https://server.onebyzeroedu.com/courses", {
 				method: "POST",
 				headers: {
 					"content-type": "application/json",
@@ -105,7 +105,7 @@ const CreateTemplate = ({ name, showResources }) => {
 			setCreateLoading(true);
 			console.log("befor call", createCourseTemplate);
 			const { data } = await axios.post(
-				`http://localhost:8080/api/admin/createCourseTemplate`,
+				`https://server.onebyzeroedu.com/api/admin/createCourseTemplate`,
 				createCourseTemplate
 			);
 			if (data) {

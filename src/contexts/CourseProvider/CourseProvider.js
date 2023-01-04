@@ -21,21 +21,23 @@ const CourseProvider = ({ children }) => {
 	// form information
 	useEffect(() => {
 		const fetchUniversities = async () => {
-			const res = await fetch("http://localhost:8080/university");
+			const res = await fetch("https://server.onebyzeroedu.com/university");
 			const data = await res.json();
 			setUniversities(data);
 		};
 		fetchUniversities();
 
 		const fetchDepartment = async () => {
-			const res = await fetch("http://localhost:8080/department");
+			const res = await fetch("https://server.onebyzeroedu.com/department");
 			const data = await res.json();
 			setDepartments(data);
 		};
 		fetchDepartment();
 
 		const fetchYear = async () => {
-			const { data } = await axios.get("http://localhost:8080/api/year");
+			const { data } = await axios.get(
+				"https://server.onebyzeroedu.com/api/year"
+			);
 			// console.log("before", data);
 			if (courseInfoFromLocalStorage?.year) {
 				const filteredYears = data.filter(
@@ -50,7 +52,9 @@ const CourseProvider = ({ children }) => {
 		fetchYear();
 
 		const fetchSemester = async () => {
-			const { data } = await axios.get("http://localhost:8080/api/semester");
+			const { data } = await axios.get(
+				"https://server.onebyzeroedu.com/api/semester"
+			);
 			if (courseInfoFromLocalStorage?.semester) {
 				const filteredSemesters = data.filter(
 					(semester) => semester.value !== courseInfoFromLocalStorage.semester
@@ -75,7 +79,7 @@ const CourseProvider = ({ children }) => {
 			setCourseLoading(true);
 			try {
 				const { data } = await axios.post(
-					"http://localhost:8080/resources/course",
+					"https://server.onebyzeroedu.com/resources/course",
 					mycourseInfo
 				);
 				setCourseLoading(false);

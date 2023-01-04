@@ -34,7 +34,7 @@ const Left = () => {
 					"https://i.ibb.co/fp92Ldr/icons8-person-90.png"
 				);
 				// save data to mongodb
-				fetch("http://localhost:8080/api/user/", {
+				fetch("https://server.onebyzeroedu.com/api/user/", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
@@ -79,7 +79,7 @@ const Left = () => {
 		handleGoogleSignIn()
 			.then((user) => {
 				console.log(user);
-				fetch("http://localhost:8080/api/user/", {
+				fetch("https://server.onebyzeroedu.com/api/user/", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",

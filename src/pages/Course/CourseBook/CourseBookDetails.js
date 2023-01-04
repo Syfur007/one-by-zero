@@ -1,14 +1,33 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PdfViewerComponent from "../../Shared/PdfViewerComponent/PdfViewerComponent";
 import "./coursebook.css";
 const CourseBookDetails = () => {
 	const { bookName } = useParams();
+	const [pdf, setPdf] = useState("");
+	// useEffect(() => {
+	// 	fetch()
+	// 		.then((res) => res.json())
+	// 		.then((data) => {
+	// 			console.log(data);
+	// 			setPdf(data);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// }, [bookName]);
 	return (
 		<div className="pt-[64px]">
 			<div className="px-10 pb-10">
 				<PdfViewerComponent
-					document={`http://localhost:8080/uploads/pdf/${bookName}`}
+					document={
+						(`https://server.onebyzeroedu.com/uploads/pdf/${bookName}`,
+						{
+							mode: "no-cors",
+						})
+					}
 				/>
 			</div>
 		</div>

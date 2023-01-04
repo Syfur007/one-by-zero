@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import useRole from "../../../hooks/useRole";
 import { Tooltip as ReactTooltip } from "react-tooltip";
+import navbarLogo from "../../../images/navbar-logo.png";
 
 const Header = () => {
 	const [showModel, setShowModel] = useState(true);
@@ -53,7 +54,7 @@ const Header = () => {
 	return (
 		<>
 			<div className="fixed top-0 z-50 w-full mx-auto max-w-screen-2xl navbar bg-info text-base-100">
-				<div className="navbar-start w-[20%]">
+				<div className="navbar-start">
 					<div className="dropdown">
 						<label tabIndex={0} className="btn btn-ghost lg:hidden">
 							<svg
@@ -115,12 +116,14 @@ const Header = () => {
 							</>
 						</ul>
 					</div>
-					<Link href="/" className="px-2 py-1 text-xl ">
-						OneByZero
+					<Link href="/" className=" block ">
+						<img src={navbarLogo} className="h-[70px] min-w-[250px] " alt="" />
 					</Link>
 				</div>
-				<div className="hidden w-full navbar-start lg:flex">
-					<ul className="p-0 menu menu-horizontal">{menuItems}</ul>
+				<div className="hidden  navbar-center lg:flex">
+					<ul className="w-full flex items-center  menu menu-horizontal">
+						{menuItems}
+					</ul>
 				</div>
 				<div className="w-full navbar-end">
 					{!user?.uid ? (
