@@ -21,6 +21,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        server: ftp.23.106.66.224
-        username: clientonebyzero
+        server: ftp.onebyzeroedu.com
+        username: clientonebyzero@onebyzeroedu.com
         password: ${{ secrets.FTP_PASSWORD }}
+        port: 21
