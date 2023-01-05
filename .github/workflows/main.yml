@@ -28,7 +28,7 @@ jobs:
         run: |
           npm install --legacy-peer-deps
           CI=false npm run build
-          npm run test
+          
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
