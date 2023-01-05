@@ -4,17 +4,18 @@ jobs:
   web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
+    env:
+      REACT_APP_apiKey: ${{ secrets.REACT_APP_APIKEY }}
+      REACT_APP_authDomain: ${{ secrets.REACT_APP_AUTHDOMAIN }}
+      REACT_APP_projectId: ${{ secrets.REACT_APP_PROJECTID }}
+      REACT_APP_storageBucket: ${{ secrets.REACT_APP_STORAGEBUCKET }}
+      REACT_APP_messagingSenderId: ${{ secrets.REACT_APP_MESSAGINGSENDERID }}
+      REACT_APP_appId: ${{ secrets.REACT_APP_APPID }}
+      REACT_APP_IMGBB_KEY: ${{ secrets.REACT_APP_IMGBB_KEY }}
     steps:
       - name: environment variable
         run: echo Hello world $REACT_APP_IMGBB_KEY
-        env:
-          REACT_APP_apiKey: ${{ secrets.REACT_APP_APIKEY }}
-          REACT_APP_authDomain: ${{ secrets.REACT_APP_AUTHDOMAIN }}
-          REACT_APP_projectId: ${{ secrets.REACT_APP_PROJECTID }}
-          REACT_APP_storageBucket: ${{ secrets.REACT_APP_STORAGEBUCKET }}
-          REACT_APP_messagingSenderId: ${{ secrets.REACT_APP_MESSAGINGSENDERID }}
-          REACT_APP_appId: ${{ secrets.REACT_APP_APPID }}
-          REACT_APP_IMGBB_KEY: ${{ secrets.REACT_APP_IMGBB_KEY }}
+
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
         
