@@ -3,7 +3,6 @@ import "react-tooltip/dist/react-tooltip.css";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import useRole from "../../../hooks/useRole";
-import { Tooltip as ReactTooltip } from "react-tooltip";
 import navbarLogo from "../../../images/navbar-logo.png";
 
 const Header = () => {
@@ -116,12 +115,12 @@ const Header = () => {
 							</>
 						</ul>
 					</div>
-					<Link href="/" className=" block ">
+					<Link href="/" className="block ">
 						<img src={navbarLogo} className="h-[70px] min-w-[250px] " alt="" />
 					</Link>
 				</div>
-				<div className="hidden  navbar-center lg:flex">
-					<ul className="w-full flex items-center  menu menu-horizontal">
+				<div className="hidden navbar-center lg:flex">
+					<ul className="flex items-center w-full menu menu-horizontal">
 						{menuItems}
 					</ul>
 				</div>
