@@ -8,7 +8,6 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
       - name: environment variable
-        run: echo Hello world $FIRST_NAME $middle_name $Last_Name!
         env:
           REACT_APP_apiKey: ${{ secrets.REACT_APP_apiKey }}
           REACT_APP_authDomain: ${{ secrets.REACT_APP_authDomain }}
@@ -17,6 +16,7 @@ jobs:
           REACT_APP_messagingSenderId: ${{ secrets.REACT_APP_messagingSenderId }}
           REACT_APP_appId: ${{ secrets.REACT_APP_appId }}
           REACT_APP_IMGBB_KEY: ${{ secrets.REACT_APP_IMGBB_KEY }}
+        run: echo Hello world $REACT_APP_IMGBB_KEY
 
       - name: Use Node.js 16
         uses: actions/setup-node@v2
