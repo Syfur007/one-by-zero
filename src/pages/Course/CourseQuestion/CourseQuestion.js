@@ -2,13 +2,8 @@ import React, { useState } from "react";
 
 import CardQuestion from "./CardQuestion.js";
 const CourseQuestion = ({ course }) => {
-	const [numPages, setNumPages] = useState(null);
-	const [pageNumber, setPageNumber] = useState(1);
-	function onDocumentLoadSuccess({ numPages }) {
-		setNumPages(numPages);
-	}
 	return (
-		<div className=" w-[90vw]">
+		<div className="w-full mx-auto ">
 			<h1 className="mb-5 text-4xl text-center uppercase">questions</h1>
 			<h2 className="mb-5 text-2xl text-center capitalize">
 				{course?.courseTitle}
@@ -18,7 +13,7 @@ const CourseQuestion = ({ course }) => {
 			</h2>
 			<div>
 				{course && course?.questions.length > 0 ? (
-					<div className="grid grid-cols-3 gap-5">
+					<div className="grid content-center grid-cols-1 gap-5 p-5 lg:grid-cols-2">
 						{course.questions.map((question, index) => (
 							<CardQuestion key={index} question={question}></CardQuestion>
 						))}
