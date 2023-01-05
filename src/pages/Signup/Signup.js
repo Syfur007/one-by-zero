@@ -10,7 +10,7 @@ const Signup = () => {
 		setTitle("Signup | OneByZero");
 	}, [setTitle]);
 	return (
-		<div className="flex items-center pt-[40px] bg-[#5b24ea]">
+		<div className="flex lg:flex-row flex-col bg-[#5b24ea] pt-[60px] items-center">
 			<Left></Left>
 			<Right></Right>
 		</div>

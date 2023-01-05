@@ -10,7 +10,7 @@ const Resources = () => {
 		setTitle("Resources | OneByZero");
 	}, [setTitle]);
 	return (
-		<div className="pt-[50px]">
+		<div className="">
 			<FileInput showResources></FileInput>
 		</div>
 	);

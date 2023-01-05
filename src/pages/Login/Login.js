@@ -11,7 +11,7 @@ const Login = () => {
 		setTitle("Login | OneByZero");
 	}, []);
 	return (
-		<div className="flex bg-[#5b24ea] pt-[40px] items-center">
+		<div className="flex lg:flex-row flex-col bg-[#5b24ea] pt-[60px] items-center">
 			<Left></Left>
 			<Right></Right>
 		</div>

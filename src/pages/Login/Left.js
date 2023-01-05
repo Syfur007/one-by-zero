@@ -73,10 +73,10 @@ const Left = () => {
 	};
 
 	return (
-		<div className="flex-1 w-[50%]">
+		<div className="flex-1 md:w-[50%] w-[90%] mx-auto">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className=" bg-[#ffff] mx-auto login-form-height  rounded-2xl min-h-[60vh] p-10 w-[65%] m-10"
+				className=" bg-[#ffff] mx-auto login-form-height  rounded-2xl min-h-[60vh] p-10 lg:w-[65%] w-full m-10"
 			>
 				{error && <Alert>{error}</Alert>}
 
