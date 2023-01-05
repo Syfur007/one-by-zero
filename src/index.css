@@ -37,3 +37,6 @@ code {
 	height: 450px !important;
 	border-radius: 10px;
 }
+.antialiased.p-10 {
+	padding: 1px !important;
+}
