@@ -5,9 +5,8 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v2
       - name: environment variable
+        run: echo Hello world $REACT_APP_IMGBB_KEY
         env:
           REACT_APP_apiKey: ${{ secrets.REACT_APP_APIKEY }}
           REACT_APP_authDomain: ${{ secrets.REACT_APP_AUTHDOMAIN }}
@@ -16,8 +15,9 @@ jobs:
           REACT_APP_messagingSenderId: ${{ secrets.REACT_APP_MESSAGINGSENDERID }}
           REACT_APP_appId: ${{ secrets.REACT_APP_APPID }}
           REACT_APP_IMGBB_KEY: ${{ secrets.REACT_APP_IMGBB_KEY }}
-        run: echo Hello world $REACT_APP_IMGBB_KEY
-
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+        
       - name: Use Node.js 16
         uses: actions/setup-node@v2
         with:
