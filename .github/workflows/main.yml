@@ -11,7 +11,7 @@ jobs:
       REACT_APP_storageBucket: ${{ secrets.REACT_APP_STORAGEBUCKET }}
       REACT_APP_messagingSenderId: ${{ secrets.REACT_APP_MESSAGINGSENDERID }}
       REACT_APP_appId: ${{ secrets.REACT_APP_APPID }}
-      REACT_APP_IMGBB_KEY: ${{ secrets.REACT_APP_IMGBB_KEY }}
+      REACT_APP_imgbb_key: ${{ secrets.REACT_APP_IMGBB_KEY }}
     steps:
       - name: environment variable
         run: echo Hello world $REACT_APP_IMGBB_KEY
