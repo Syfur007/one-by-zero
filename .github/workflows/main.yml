@@ -9,12 +9,12 @@ jobs:
         uses: actions/checkout@v2
       - name: environment variable
         env:
-          REACT_APP_apiKey: ${{ secrets.REACT_APP_apiKey }}
-          REACT_APP_authDomain: ${{ secrets.REACT_APP_authDomain }}
-          REACT_APP_projectId: ${{ secrets.REACT_APP_projectId }}
-          REACT_APP_storageBucket: ${{ secrets.REACT_APP_storageBucket }}
-          REACT_APP_messagingSenderId: ${{ secrets.REACT_APP_messagingSenderId }}
-          REACT_APP_appId: ${{ secrets.REACT_APP_appId }}
+          REACT_APP_apiKey: ${{ secrets.REACT_APP_APIKEY }}
+          REACT_APP_authDomain: ${{ secrets.REACT_APP_AUTHDOMAIN }}
+          REACT_APP_projectId: ${{ secrets.REACT_APP_PROJECTID }}
+          REACT_APP_storageBucket: ${{ secrets.REACT_APP_STORAGEBUCKET }}
+          REACT_APP_messagingSenderId: ${{ secrets.REACT_APP_MESSAGINGSENDERID }}
+          REACT_APP_appId: ${{ secrets.REACT_APP_APPID }}
           REACT_APP_IMGBB_KEY: ${{ secrets.REACT_APP_IMGBB_KEY }}
         run: echo Hello world $REACT_APP_IMGBB_KEY
 
