@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { createContext, useState } from "react";
 import { useEffect } from "react";
-import Loading from "../../pages/Shared/Loading/Loading";
+import Loading from "../../pages/Shared/Loading/Loading.js";
 export const CourseContext = createContext();
 
 const CourseProvider = ({ children }) => {

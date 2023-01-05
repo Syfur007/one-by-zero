@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
-import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
-import Loading from "../Loading/Loading";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
+import Loading from "../Loading/Loading.js";
 
 const FIleModal = ({
 	setShowFileModal,

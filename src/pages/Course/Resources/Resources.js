@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Resources.css";
-import CourseModal from "../CourseModal/CourseModal";
-import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
-import CourseQuestion from "../CourseQuestion/CourseQuestion";
-import CourseBook from "../CourseBook/CourseBook";
-import CourseSlides from "../CourseSlides/CourseSlides";
+import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
+import CourseQuestion from "../CourseQuestion/CourseQuestion.js";
+import CourseBook from "../CourseBook/CourseBook.js";
+import CourseSlides from "../CourseSlides/CourseSlides.js";
 import { useNavigate } from "react-router-dom";
-import ClassNotes from "../ClassNotes/ClassNotes";
-import { toast } from "react-hot-toast";
+import ClassNotes from "../ClassNotes/ClassNotes.js";
 
 const Resources = ({ course: fetchCourseData, setElements }) => {
 	const navigate = useNavigate();

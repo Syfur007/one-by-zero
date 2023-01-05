@@ -1,5 +1,5 @@
 import React from "react";
-import Left from "../Left/Left";
+import Left from "../Left/Left.js";
 
 const Profile = () => {
 	return (

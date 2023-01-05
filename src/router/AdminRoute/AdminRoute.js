@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import useRole from "../../hooks/useRole";
-import Loading from "../../pages/Shared/Loading/Loading";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider.js";
+import useRole from "../../hooks/useRole.js";
+import Loading from "../../pages/Shared/Loading/Loading.js";
 
 const AdminRoute = ({ children }) => {
 	const { user, loading } = useContext(AuthContext);

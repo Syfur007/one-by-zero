@@ -2,9 +2,9 @@ import React from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { Outlet } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import AdminLeftSide from "../../pages/Admin/AdminLeftSide/AdminLeftSide";
-import Header from "../../pages/Shared/Header/Header";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider.js";
+import AdminLeftSide from "../../pages/Admin/AdminLeftSide/AdminLeftSide.js";
+import Header from "../../pages/Shared/Header/Header.js";
 
 const AdminLayout = () => {
 	const { setTitle } = useContext(AuthContext);

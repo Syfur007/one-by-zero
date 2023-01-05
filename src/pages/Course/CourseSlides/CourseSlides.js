@@ -1,5 +1,4 @@
 import React from "react";
-import { Chip } from "@material-tailwind/react";
 const CourseSlides = ({ course }) => {
 	console.log(course.slides);
 	return (

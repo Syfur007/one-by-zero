@@ -1,8 +1,8 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 import "react-tooltip/dist/react-tooltip.css";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
-import useRole from "../../../hooks/useRole";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
+import useRole from "../../../hooks/useRole.js";
 import navbarLogo from "../../../images/navbar-logo.png";
 
 const Header = () => {

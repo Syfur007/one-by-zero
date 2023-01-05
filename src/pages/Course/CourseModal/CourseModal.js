@@ -6,7 +6,7 @@ import {
 	DialogFooter,
 } from "@material-tailwind/react";
 import "../course.config.css";
-import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
+import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
 const CourseModal = ({ elements }) => {
 	const { open, handleOpen } = useContext(CourseContext);
 

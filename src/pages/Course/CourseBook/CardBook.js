@@ -1,10 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import { Link } from "react-router-dom";
-import CourseBookDetails from "./CourseBookDetails";
 
 const CardBook = ({ book }) => {
 	const [numPages, setNumPages] = useState(0);

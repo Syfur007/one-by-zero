@@ -2,9 +2,8 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
-import Loading from "../../Shared/Loading/Loading";
+import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
+import Loading from "../../Shared/Loading/Loading.js";
 
 const CreateTemplate = ({ name, showResources }) => {
 	const [createLoading, setCreateLoading] = useState(false);

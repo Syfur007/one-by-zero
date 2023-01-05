@@ -1,5 +1,5 @@
 import React from "react";
-import CardBook from "./CardBook";
+import CardBook from "./CardBook.js";
 const CourseBook = ({ course }) => {
 	return (
 		<div className=" w-[90vw]">

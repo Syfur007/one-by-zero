@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
-import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
 
 const Home = () => {
 	const { setTitle } = useContext(AuthContext);

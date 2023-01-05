@@ -1,15 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
-import Loading from "../../../Shared/Loading/Loading";
-import CardUser from "../CardUser/CardUser";
+import Loading from "../../../Shared/Loading/Loading.js";
 
 const Users = () => {
-	const {
-		data: users = [],
-		isLoading,
-		refetch,
-	} = useQuery({
+	const { data: users = [], isLoading } = useQuery({
 		queryKey: ["users"],
 		queryFn: async () => {
 			const { data } = await axios.get(
@@ -21,7 +16,7 @@ const Users = () => {
 	console.log(users);
 	return (
 		<div>
-			<h1 className="text-center text-white text-2xl">users</h1>
+			<h1 className="text-2xl text-center text-white">users</h1>
 			<div className="p-10">
 				{isLoading && <Loading></Loading>}
 				<table className="w-full">

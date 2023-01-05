@@ -1,8 +1,7 @@
-import { button } from "@material-tailwind/react";
 import React from "react";
 
 const CardUser = ({ user }) => {
-	const { image, email, isVarified } = user;
+	const { email, isVarified } = user;
 	return (
 		<div className="flex text-white p-3 rounded-lg bg-[#301b83] m-3">
 			<div>
@@ -11,7 +10,7 @@ const CardUser = ({ user }) => {
 			<h1>{email}</h1>
 			<div className="ml-3">
 				{isVarified ? (
-					<span className="bg-green-900 px-2 py-1 rounded-lg text-white">
+					<span className="px-2 py-1 text-white bg-green-900 rounded-lg">
 						varified
 					</span>
 				) : (

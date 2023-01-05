@@ -1,12 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import PdfViewerComponent from "../../Shared/PdfViewerComponent/PdfViewerComponent";
+import PdfViewerComponent from "../../Shared/PdfViewerComponent/PdfViewerComponent.js";
 import "./coursebook.css";
 const CourseBookDetails = () => {
 	const { bookName } = useParams();
-	const [pdf, setPdf] = useState("");
 	// useEffect(() => {
 	// 	fetch()
 	// 		.then((res) => res.json())

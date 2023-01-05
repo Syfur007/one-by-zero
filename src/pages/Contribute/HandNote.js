@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import FileInput from "../Shared/FileInput/FileInput";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider.js";
+import FileInput from "../Shared/FileInput/FileInput.js";
 
 const HandNote = () => {
 	const { setTitle } = useContext(AuthContext);

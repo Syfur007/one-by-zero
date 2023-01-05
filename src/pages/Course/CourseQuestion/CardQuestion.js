@@ -6,9 +6,7 @@ import {
 	Typography,
 } from "@material-tailwind/react";
 import "react-photo-view/dist/react-photo-view.css";
-import { PhotoProvider, PhotoView } from "react-photo-view";
 import React from "react";
-import { Link } from "react-router-dom";
 
 const CardQuestion = ({ question }) => {
 	const { link, examName, session, name } = question;

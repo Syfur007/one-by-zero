@@ -1,8 +1,8 @@
 import { RouterProvider } from "react-router-dom";
-import "./App.css";
-import router from "./router/Route/Routes";
+import router from "./router/Route/Routes.js";
 import "reactjs-popup/dist/index.css";
 import { Toaster } from "react-hot-toast";
+import "./App.css";
 
 function App() {
 	return (

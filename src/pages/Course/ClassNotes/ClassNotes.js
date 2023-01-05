@@ -1,5 +1,5 @@
 import React from "react";
-import CardClassNote from "./CardClassNote";
+import CardClassNote from "./CardClassNote.js";
 
 const ClassNotes = ({ course }) => {
 	return (

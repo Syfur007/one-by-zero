@@ -3,9 +3,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
-import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
-import FIleModal from "../FileModal/FIleModal";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
+import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
+import FIleModal from "../FileModal/FIleModal.js";
 
 const FileInput = ({ name, showResources }) => {
 	const [showFileModal, setShowFileModal] = useState(false);

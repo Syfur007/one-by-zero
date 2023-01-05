@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import FileInput from "../Shared/FileInput/FileInput";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider.js";
+import FileInput from "../Shared/FileInput/FileInput.js";
 
 const Books = () => {
 	const { setTitle } = useContext(AuthContext);

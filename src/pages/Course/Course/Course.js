@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useState } from "react";
-import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
-import CourseHeader from "../CourseHeader/CourseHeader";
-import CourseModal from "../CourseModal/CourseModal";
+import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
+import CourseHeader from "../CourseHeader/CourseHeader.js";
+import CourseModal from "../CourseModal/CourseModal.js";
 
 const Course = () => {
 	const [elements, setElements] = useState([]);

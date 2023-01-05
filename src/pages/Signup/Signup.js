@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import Right from "./Right";
-import Left from "./Left";
-import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import Right from "./Right.js";
+import Left from "./Left.js";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider.js";
 
 const Signup = () => {
 	const { setTitle } = useContext(AuthContext);

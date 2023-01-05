@@ -1,4 +1,3 @@
-import React, { useContext, useEffect, useState } from "react";
 import {
 	Tabs,
 	TabsHeader,
@@ -6,12 +5,7 @@ import {
 	Tab,
 	TabPanel,
 } from "@material-tailwind/react";
-import Resources from "../Resources/Resources";
-import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import Loading from "../../Shared/Loading/Loading";
-import CourseModal from "../CourseModal/CourseModal";
+import Resources from "../Resources/Resources.js";
 
 const CourseHeader = ({ setElements }) => {
 	return (

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Chip } from "@material-tailwind/react";
-import { Document, Page } from "react-pdf";
-import reactQuestion from "../../../pdf/react-question.pdf";
-import CardQuestion from "./CardQuestion";
+
+import CardQuestion from "./CardQuestion.js";
 const CourseQuestion = ({ course }) => {
 	const [numPages, setNumPages] = useState(null);
 	const [pageNumber, setPageNumber] = useState(1);

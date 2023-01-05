@@ -4,9 +4,9 @@ import { toast } from "react-hot-toast";
 import { FaArrowRight } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import Alert from "../Shared/Alert/Alert";
-import SigninLoader from "../Shared/Loading/SigninLoader";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider.js";
+import Alert from "../Shared/Alert/Alert.js";
+import SigninLoader from "../Shared/Loading/SigninLoader.js";
 
 const Left = () => {
 	const navigate = useNavigate();
@@ -51,6 +51,7 @@ const Left = () => {
 					body: JSON.stringify({
 						email: user?.user?.email,
 						phoneNumber: user?.user?.phoneNumber,
+						name: user?.user?.displayName,
 					}),
 				})
 					.then((res) => res.json())

@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import AuthProvider from "./contexts/AuthProvider/AuthProvider";
+import App from "./App.js";
+import reportWebVitals from "./reportWebVitals.js";
+import AuthProvider from "./contexts/AuthProvider/AuthProvider.js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import CourseProvider from "./contexts/CourseProvider/CourseProvider";
+import CourseProvider from "./contexts/CourseProvider/CourseProvider.js";
 
 const queryClient = new QueryClient();
 
