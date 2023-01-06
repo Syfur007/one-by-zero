@@ -9,17 +9,7 @@ const CardQuestion = ({ question }) => {
 		<div className="">
 			{link && link.includes(".pdf") ? (
 				<div className="relative p-2 mx-auto ">
-					<iframe
-						src={`https://server.onebyzeroedu.com${link}`}
-						title="pdf file"
-						frameborder="0"
-						className="w-full min-h-[520px] rounded-md"
-					></iframe>
-
-					{/* <PdfViewerComponent
-						file={`https://server.onebyzeroedu.com${link}`}
-						type="pdf"
-					></PdfViewerComponent> */}
+					<PdfViewerComponent file={`.${link}`} type="pdf"></PdfViewerComponent>
 					<div className="absolute bottom-[20px] left-[50%] translate-x-[-50%] text-red-700 font-bold cursor-pointer hover:text-red-900 z-10">
 						<a
 							href={`https://server.onebyzeroedu.com${link}`}

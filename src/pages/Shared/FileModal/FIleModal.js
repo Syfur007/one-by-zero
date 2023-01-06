@@ -259,7 +259,7 @@ const FIleModal = ({
 						<input
 							type="file"
 							onChange={handleFileChange}
-							className="w-full  border-[1px] border-gray-400 file-input file-input-primary "
+							className="w-full  border-[0.1px] border-gray-400 file-input file-input-primary "
 						/>
 					</div>
 

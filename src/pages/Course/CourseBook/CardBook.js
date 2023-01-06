@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import PdfViewerComponent from "../../Shared/PdfViewerComponent/PdfViewerComponent";
 
 const CardBook = ({ book }) => {
 	const [numPages, setNumPages] = useState(0);
@@ -41,11 +42,7 @@ const CardBook = ({ book }) => {
 						</strong>
 					</h3>
 				</div>
-				<iframe
-					src={`https://server.onebyzeroedu.com${link}`}
-					frameborder="0"
-					className="w-[500px] h-[500px] rounded-md"
-				></iframe>
+				<PdfViewerComponent file={`.${link}`}></PdfViewerComponent>
 				<div>full view</div>
 			</div>
 		</div>

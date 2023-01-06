@@ -5,28 +5,10 @@ import PdfViewerComponent from "../../Shared/PdfViewerComponent/PdfViewerCompone
 import "./coursebook.css";
 const CourseBookDetails = () => {
 	const { bookName } = useParams();
-	// useEffect(() => {
-	// 	fetch()
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			console.log(data);
-	// 			setPdf(data);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// }, [bookName]);
 	return (
 		<div className="pt-[64px]">
 			<div className="px-10 pb-10">
-				<PdfViewerComponent
-					document={
-						(`https://server.onebyzeroedu.com/uploads/pdf/${bookName}`,
-						{
-							mode: "no-cors",
-						})
-					}
-				/>
+				<PdfViewerComponent />
 			</div>
 		</div>
 	);
