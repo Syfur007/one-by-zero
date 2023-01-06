@@ -1,3 +1,5 @@
+#dangerous-clean-slate: true
+
 on: push
 name: 🚀 Deploy one-by-zero website on push
 jobs:
@@ -36,5 +38,4 @@ jobs:
           username: client@onebyzeroedu.com
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
-          dangerous-clean-slate: true
           local-dir: ./build/

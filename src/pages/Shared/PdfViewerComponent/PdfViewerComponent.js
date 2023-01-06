@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Document, Page, pdfjs } from "react-pdf";
 import axios from "axios";
-import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
-pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
-
+import { Document, Page, pdfjs } from "react-pdf/dist/esm/entry.webpack";
+// import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
+// pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const PdfViewerComponent = ({ type, file }) => {
 	const [pdfString, setPdfString] = useState("");
 	const [numPages, setNumPages] = useState(null);
@@ -36,7 +36,7 @@ const PdfViewerComponent = ({ type, file }) => {
 	const onDocumentLoadSuccess = ({ numPages }) => {
 		setNumPages(numPages);
 	};
-
+	console.log(`data:application/pdf;base64,${pdfString}`);
 	return (
 		<div>
 			<div>
