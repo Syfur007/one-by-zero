@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
 import Loading from "../Loading/Loading.js";
+import "./FileModal.css";
 
 const FIleModal = ({
 	setShowFileModal,
@@ -146,13 +147,11 @@ const FIleModal = ({
 				<div className="relative modal-box">
 					<label
 						htmlFor="file-input-modal-3"
-						className="absolute btn btn-sm btn-circle right-2 top-2"
+						className="absolute btn hover:bg-[#25184e] border-2 hover:border-[#25184e] btn-sm btn-circle right-2 top-2"
 					>
 						✕
 					</label>
-					<h3 className="text-lg font-bold">Add File </h3>
-
-					<div className="my-5">
+					<div className="pt-3">
 						<label htmlFor="" className="mb-2 text-base font-semibold">
 							Username
 						</label>
@@ -164,7 +163,7 @@ const FIleModal = ({
 							className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-primary"
 						/>
 					</div>
-					<div className="my-5">
+					<div className="pt-2">
 						<label htmlFor="" className="mb-2 text-base font-semibold">
 							Email
 						</label>
@@ -177,13 +176,13 @@ const FIleModal = ({
 						/>
 					</div>
 
-					<div className="my-5">
+					<div className="pt-2">
 						<label htmlFor="" className="mb-2 text-base font-semibold">
 							Session
 						</label>
 						<select
 							onChange={sessionChangeHandler}
-							className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-primary"
+							className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
 						>
 							<option value="" disabled selected>
 								select session
@@ -199,7 +198,7 @@ const FIleModal = ({
 
 					{name === "questions" && (
 						<>
-							<div className="my-5">
+							<div className="pt-2">
 								<label htmlFor="" className="mb-2 text-base font-semibold">
 									Exam Name
 								</label>
@@ -208,14 +207,18 @@ const FIleModal = ({
 								) : (
 									<select
 										onChange={(e) => setExamName(e.target.value)}
-										className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-primary"
+										className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
 									>
 										<option value="" disabled selected>
 											select examName
 										</option>
 										{examNames &&
 											examNames.map((exam, index) => (
-												<option key={index} value={exam?.name}>
+												<option
+													key={index}
+													className="font-bold uppercase"
+													value={exam?.name}
+												>
 													{exam?.name}
 												</option>
 											))}
@@ -227,7 +230,7 @@ const FIleModal = ({
 
 					{(name === "books" || name === "slides" || name === "handnotes") && (
 						<>
-							<div className="my-5">
+							<div className="pt-2">
 								<label htmlFor="" className="mb-2 text-base font-semibold">
 									{name} Name
 								</label>
@@ -235,10 +238,10 @@ const FIleModal = ({
 									type="text"
 									onChange={(e) => setBookName(e.target.value)}
 									placeholder={`${name} name...`}
-									className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-primary"
+									className="w-full rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
 								/>
 							</div>
-							<div className="my-5">
+							<div className="pt-2">
 								<label htmlFor="" className="mb-2 text-base font-semibold">
 									Author
 								</label>
@@ -246,30 +249,30 @@ const FIleModal = ({
 									type="text"
 									onChange={(e) => setAuthor(e.target.value)}
 									placeholder="author1,author2,author3....."
-									className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-primary"
+									className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
 								/>
 							</div>
 						</>
 					)}
 
-					<div>
+					<div className="pt-2">
 						<input
 							type="file"
 							onChange={handleFileChange}
-							className="w-full file-input file-input-bordered file-input-primary "
+							className="w-full  border-[1px] border-gray-400 file-input file-input-primary "
 						/>
 					</div>
 
-					<div className="flex justify-between mt-10">
+					<div className="flex justify-between pt-5">
 						<button
 							onClick={uploadFileHandler}
 							type="button"
-							className="btn btn-primary"
+							className="capitalize btn btn-sm btn-primary"
 						>
 							submit
 						</button>
 						<button
-							className="btn btn-error"
+							className="capitalize btn btn-sm btn-error"
 							onClick={() => setShowFileModal(false)}
 						>
 							Cancel
