@@ -1,12 +1,6 @@
-import {
-	Card,
-	CardBody,
-	CardHeader,
-	Chip,
-	Typography,
-} from "@material-tailwind/react";
 import "react-photo-view/dist/react-photo-view.css";
 import React from "react";
+import PdfViewerComponent from "../../Shared/PdfViewerComponent/PdfViewerComponent";
 
 const CardQuestion = ({ question }) => {
 	const { link, examName, session, name } = question;
@@ -21,6 +15,11 @@ const CardQuestion = ({ question }) => {
 						frameborder="0"
 						className="w-full min-h-[520px] rounded-md"
 					></iframe>
+
+					{/* <PdfViewerComponent
+						file={`https://server.onebyzeroedu.com${link}`}
+						type="pdf"
+					></PdfViewerComponent> */}
 					<div className="absolute bottom-[20px] left-[50%] translate-x-[-50%] text-red-700 font-bold cursor-pointer hover:text-red-900 z-10">
 						<a
 							href={`https://server.onebyzeroedu.com${link}`}

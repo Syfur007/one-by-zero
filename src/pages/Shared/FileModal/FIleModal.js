@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useEffect } from "react";
@@ -35,6 +36,16 @@ const FIleModal = ({
 				console.log(err);
 			});
 	}, []);
+
+	const { data: examNames = [], isLoading: examNamesLoading } = useQuery({
+		queryKey: ["examName"],
+		queryFn: async () => {
+			const { data } = await axios.get(
+				"https://server.onebyzeroedu.com/api/examname"
+			);
+			return data;
+		},
+	});
 
 	// catch session value
 	const sessionChangeHandler = (e) => {
@@ -192,17 +203,24 @@ const FIleModal = ({
 								<label htmlFor="" className="mb-2 text-base font-semibold">
 									Exam Name
 								</label>
-								<select
-									onChange={(e) => setExamName(e.target.value)}
-									className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-primary"
-								>
-									<option value="" disabled selected>
-										select examName
-									</option>
-									<option value="1st mid">1st mid</option>
-									<option value="2nd mid">2nd mid</option>
-									<option value="final exam">final exam</option>
-								</select>
+								{examNamesLoading ? (
+									<Loading></Loading>
+								) : (
+									<select
+										onChange={(e) => setExamName(e.target.value)}
+										className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-primary"
+									>
+										<option value="" disabled selected>
+											select examName
+										</option>
+										{examNames &&
+											examNames.map((exam, index) => (
+												<option key={index} value={exam?.name}>
+													{exam?.name}
+												</option>
+											))}
+									</select>
+								)}
 							</div>
 						</>
 					)}
