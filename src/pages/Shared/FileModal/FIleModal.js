@@ -25,6 +25,7 @@ const FIleModal = ({
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const { user } = useContext(AuthContext);
 	const selectedFileTypes = ["application/pdf"];
+	const [viewImage, setViewImage] = React.useState();
 
 	useEffect(() => {
 		fetch("https://server.onebyzeroedu.com/api/session")
@@ -82,7 +83,7 @@ const FIleModal = ({
 			try {
 				setUploadLoading(true);
 				const { data } = await axios.post(
-					"https://server.onebyzeroedu.com/upload/pdf",
+					"https://server.onebyzeroedu.com/api/upload/pdf",
 					formData,
 					config
 				);
