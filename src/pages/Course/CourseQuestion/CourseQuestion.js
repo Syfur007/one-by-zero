@@ -4,7 +4,7 @@ import CardQuestion from "./CardQuestion.js";
 const CourseQuestion = ({ course }) => {
 	return (
 		<div className="w-full mx-auto ">
-			<h1 className="mb-5 text-4xl text-center uppercase">questions</h1>
+			<h1 className="text-4xl py-5 text-center uppercase">questions</h1>
 			<h2 className="mb-5 text-2xl text-center capitalize">
 				{course?.courseTitle}
 			</h2>

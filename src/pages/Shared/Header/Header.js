@@ -2,13 +2,13 @@ import { Fragment, useContext, useEffect, useState } from "react";
 import "react-tooltip/dist/react-tooltip.css";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
-import useRole from "../../../hooks/useRole.js";
+import useUser from "../../../hooks/useUser.js";
 import navbarLogo from "../../../images/navbar-logo.png";
 
 const Header = () => {
 	const [showModel, setShowModel] = useState(true);
 	const { user, logOut } = useContext(AuthContext);
-	const [role] = useRole(user?.email);
+	const [role] = useUser(user?.email);
 
 	useEffect(() => {
 		setShowModel(true);

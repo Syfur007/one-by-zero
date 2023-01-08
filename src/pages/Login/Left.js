@@ -52,6 +52,7 @@ const Left = () => {
 						email: user?.user?.email,
 						phoneNumber: user?.user?.phoneNumber,
 						name: user?.user?.displayName,
+						image: user?.user?.photoURL,
 					}),
 				})
 					.then((res) => res.json())
@@ -63,6 +64,7 @@ const Left = () => {
 					})
 					.catch((err) => {
 						setSignInLoading(false);
+						console.log(err);
 					});
 			})
 			.catch((err) => {

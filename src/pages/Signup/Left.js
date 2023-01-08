@@ -89,6 +89,7 @@ const Left = () => {
 						email: user?.user?.email,
 						name: user?.user?.displayName,
 						phoneNumber: user?.user?.phoneNumber,
+						image: user?.user?.photoURL,
 					}),
 				})
 					.then((res) => res.json())

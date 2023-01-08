@@ -19,7 +19,7 @@ const Resources = ({ course: fetchCourseData, setElements }) => {
 		let temp;
 		if (name === "questions") {
 			temp = (
-				<div>
+				<div className="w-[100vw]">
 					<CourseQuestion course={courses}></CourseQuestion>
 				</div>
 			);
