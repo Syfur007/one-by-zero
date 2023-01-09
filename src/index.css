@@ -32,12 +32,43 @@ code {
 	z-index: 10000 !important;
 }
 
-.react-pdf__Page__canvas {
-	width: 480px !important;
-	height: 500px !important;
-	border-radius: 10px;
+.react-pdf__Page__canvas,
+.react-pdf__Page__annotations {
+	width: 100% !important;
+	height: 100% !important;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 	margin: 0 auto !important;
+	padding: 0px 0px !important;
 }
 .antialiased.p-10 {
 	padding: 1px !important;
 }
+
+/* @media only screen and (max-width: 500px) {
+	.react-pdf__Page__canvas,
+	.react-pdf__Page,
+	.react-pdf__Document,
+	.react-pdf__Page__annotations {
+		width: 400px !important;
+		height: 500px !important;
+		margin: 0 !important;
+		overflow: hidden;
+	}
+	.pdf-contribute-info {
+		width: 400px !important;
+		margin-right: 5px;
+	}
+} */
+
+/* @media only screen and (max-width: 400px) {
+	.react-pdf__Page__canvas,
+	.react-pdf__Page__annotations {
+		width: 350px !important;
+		height: 500px !important;
+		margin: 0 !important;
+	}
+	.pdf-contribute-info {
+		width: 350px !important;
+	}
+} */

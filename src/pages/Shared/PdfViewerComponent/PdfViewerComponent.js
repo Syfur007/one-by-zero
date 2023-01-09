@@ -37,10 +37,7 @@ const PdfViewerComponent = ({ type, file }) => {
 	};
 
 	return (
-		<div className="w-[500px]">
-			<p>
-				Page {pageNumber} of {numPages}
-			</p>
+		<div className="w-full pdf__viewer">
 			<div>
 				<Document
 					file={`data:application/pdf;base64,${pdfString}`}
@@ -49,6 +46,9 @@ const PdfViewerComponent = ({ type, file }) => {
 					<Page pageNumber={pageNumber} />
 				</Document>
 			</div>
+			<p>
+				Page {pageNumber} of {numPages}
+			</p>
 		</div>
 	);
 };
