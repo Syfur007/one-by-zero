@@ -10,11 +10,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { FaEllipsisH } from "react-icons/fa";
 import "./CardQuestion.css";
+import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
 
-const CardQuestion = ({ question, setQuestions }) => {
+const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 	const { link, examName, session, name, email, createdAt } = question;
+
 	const [, , userDetails] = useUser(email);
 	const { user } = useContext(AuthContext);
+	const { courses } = useContext(CourseContext);
 	const [sessionDetails] = useSession(session);
 	const [role, setRole] = useState("");
 	useEffect(() => {
@@ -39,11 +42,7 @@ const CardQuestion = ({ question, setQuestions }) => {
 						{role === "admin" && (
 							<div className="absolute cursor-pointer threedot-edit top-2 right-3">
 								<div className="dropdown dropdown-bottom dropdown-end">
-									<label
-										onClick={() => setQuestions(question)}
-										tabIndex={0}
-										className="cursor-pointer "
-									>
+									<label tabIndex={0} className="cursor-pointer ">
 										<FaEllipsisH></FaEllipsisH>
 									</label>
 									<ul
@@ -51,12 +50,24 @@ const CardQuestion = ({ question, setQuestions }) => {
 										className="p-2 shadow dropdown-content menu bg-[#190941] rounded-box w-52"
 									>
 										<li>
-											<label htmlFor="my-modal-4">
+											<label
+												onClick={() => setQuestions(question)}
+												htmlFor="my-update-modal"
+											>
 												<a>Edit</a>
 											</label>
 										</li>
 										<li>
-											<label htmlFor="my-modal-4">
+											<label
+												htmlFor="my-delete-modal"
+												onClick={() =>
+													setDeleteQuestion({
+														courseId: courses?._id,
+														questionId: question?._id,
+														link,
+													})
+												}
+											>
 												<a>delete</a>
 											</label>
 										</li>
@@ -111,11 +122,7 @@ const CardQuestion = ({ question, setQuestions }) => {
 							{role === "admin" && (
 								<div className="absolute cursor-pointer threedot-edit top-2 right-3">
 									<div className="dropdown dropdown-bottom dropdown-end">
-										<label
-											onClick={() => setQuestions(question)}
-											tabIndex={0}
-											className="cursor-pointer "
-										>
+										<label tabIndex={0} className="cursor-pointer ">
 											<FaEllipsisH></FaEllipsisH>
 										</label>
 										<ul
@@ -123,12 +130,24 @@ const CardQuestion = ({ question, setQuestions }) => {
 											className="p-2 shadow dropdown-content menu bg-[#190941] rounded-box w-52"
 										>
 											<li>
-												<label htmlFor="my-modal-4">
+												<label
+													onClick={() => setQuestions(question)}
+													htmlFor="my-update-modal"
+												>
 													<a>Edit</a>
 												</label>
 											</li>
 											<li>
-												<label htmlFor="my-modal-4">
+												<label
+													htmlFor="my-delete-modal"
+													onClick={() =>
+														setDeleteQuestion({
+															courseId: courses?._id,
+															questionId: question?._id,
+															link: link,
+														})
+													}
+												>
 													<a>delete</a>
 												</label>
 											</li>

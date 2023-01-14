@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import CardQuestion from "./CardQuestion.js";
+import DeleteQuestion from "./DeleteQuestion.js";
 import UpdateQuestion from "./UpdateQuestion.js";
 const CourseQuestion = ({ course }) => {
 	const [questions, setQuestions] = useState("");
+	const [deleteQuestion, setDeleteQuestion] = useState("");
 
 	return (
 		<div className="w-full">
@@ -22,6 +24,7 @@ const CourseQuestion = ({ course }) => {
 									key={index}
 									setQuestions={setQuestions}
 									question={question}
+									setDeleteQuestion={setDeleteQuestion}
 								></CardQuestion>
 							))}
 						</div>
@@ -33,6 +36,12 @@ const CourseQuestion = ({ course }) => {
 								}}
 								setQuestions={setQuestions}
 							></UpdateQuestion>
+						)}
+						{deleteQuestion && (
+							<DeleteQuestion
+								deleteQuestion={deleteQuestion}
+								setDeleteQuestion={setDeleteQuestion}
+							></DeleteQuestion>
 						)}
 					</>
 				) : (

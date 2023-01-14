@@ -138,6 +138,7 @@ const CourseProvider = ({ children }) => {
 		setCourseInfoFromLocalStorage,
 		years,
 		semesters,
+		setCourses,
 		courses,
 		sessions,
 		examNames,

@@ -115,11 +115,11 @@ const UpdateQuestion = ({ questions, setQuestions }) => {
 		<div>
 			<div className="modal-wrapper">
 				{uploadLoading && <Loading></Loading>}
-				<input type="checkbox" id="my-modal-4" className="modal-toggle" />
+				<input type="checkbox" id="my-update-modal" className="modal-toggle" />
 				<div className="modal">
 					<div className="relative bg-[#190941] modal-box">
 						<label
-							htmlFor="my-modal-4"
+							htmlFor="my-update-modal"
 							className="absolute btn btn-sm btn-circle right-2 top-2"
 						>
 							✕

@@ -1,24 +1,26 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const useUser = (email) => {
-	const [userDetails, setUserDetails] = useState("");
-	const [userLoading, setUserLoading] = useState(true);
+	const { data: userDetails, isLoading } = useQuery({
+		queryKey: ["user", `${email}`],
+		queryFn: async () => {
+			if (email) {
+				try {
+					const { data } = await axios.get(
+						`https://server.onebyzeroedu.com/api/user?email=${email}`
+					);
+					return data;
+				} catch (error) {
+					console.log(error);
+				}
+			} else {
+				return null;
+			}
+		},
+	});
 
-	useEffect(() => {
-		if (email) {
-			fetch(`https://server.onebyzeroedu.com/api/user?email=${email}`)
-				.then((res) => res.json())
-				.then((user) => {
-					setUserDetails(user);
-					setUserLoading(false);
-				})
-				.catch((err) => {
-					setUserLoading(false);
-					console.log(err);
-				});
-		}
-	}, [email]);
-	return [userDetails?.userRole, userLoading, userDetails];
+	return [userDetails?.userRole, isLoading, userDetails];
 };
 
 export default useUser;
