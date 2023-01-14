@@ -15,6 +15,8 @@ const CourseProvider = ({ children }) => {
 	const [years, setYears] = useState([]);
 	const [semesters, setSemesters] = useState([]);
 	const [courses, setCourses] = useState([]);
+	const [sessions, setSessions] = useState([]);
+	const [examNames, setExamNames] = useState([]);
 	const [courseInfoFromLocalStorage, setCourseInfoFromLocalStorage] =
 		useState(null);
 	const handleOpen = () => setOpen(!open);
@@ -73,6 +75,34 @@ const CourseProvider = ({ children }) => {
 		);
 		setCourseInfoFromLocalStorage(getMyCourseInfoFromLocalstorage);
 	}, [courseInfoFromLocalStorage?.semester, courseInfoFromLocalStorage?.year]);
+
+	// fetch session
+	useEffect(() => {
+		fetch("https://server.onebyzeroedu.com/api/session")
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				setSessions(data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
+
+	// fetch examNames
+	useEffect(() => {
+		fetch("https://server.onebyzeroedu.com/api/examname")
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				setExamNames(data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
+
+	// fetch course information
 	useEffect(() => {
 		// course information
 		const fetchCourseData = async () => {
@@ -109,6 +139,8 @@ const CourseProvider = ({ children }) => {
 		years,
 		semesters,
 		courses,
+		sessions,
+		examNames,
 	};
 	return (
 		<CourseContext.Provider value={courseInfo}>

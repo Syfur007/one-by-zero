@@ -4,6 +4,7 @@ import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
+import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
 import Loading from "../Loading/Loading.js";
 import "./FileModal.css";
 
@@ -21,33 +22,10 @@ const FIleModal = ({
 	bookName,
 }) => {
 	const [uploadFile, setUploadFile] = useState("");
-	const [sessions, setSessions] = useState([]);
+	const { sessions, examNames } = useContext(CourseContext);
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const { user } = useContext(AuthContext);
 	const selectedFileTypes = ["application/pdf"];
-	const [viewImage, setViewImage] = React.useState();
-
-	useEffect(() => {
-		fetch("https://server.onebyzeroedu.com/api/session")
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
-				setSessions(data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}, []);
-
-	const { data: examNames = [], isLoading: examNamesLoading } = useQuery({
-		queryKey: ["examName"],
-		queryFn: async () => {
-			const { data } = await axios.get(
-				"https://server.onebyzeroedu.com/api/examname"
-			);
-			return data;
-		},
-	});
 
 	// catch session value
 	const sessionChangeHandler = (e) => {
@@ -203,28 +181,24 @@ const FIleModal = ({
 								<label htmlFor="" className="mb-2 text-base font-semibold">
 									Exam Name
 								</label>
-								{examNamesLoading ? (
-									<Loading></Loading>
-								) : (
-									<select
-										onChange={(e) => setExamName(e.target.value)}
-										className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
-									>
-										<option value="" disabled selected>
-											select examName
-										</option>
-										{examNames &&
-											examNames.map((exam, index) => (
-												<option
-													key={index}
-													className="font-bold uppercase"
-													value={exam?.name}
-												>
-													{exam?.name}
-												</option>
-											))}
-									</select>
-								)}
+								<select
+									onChange={(e) => setExamName(e.target.value)}
+									className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
+								>
+									<option value="" disabled selected>
+										select examName
+									</option>
+									{examNames &&
+										examNames.map((exam, index) => (
+											<option
+												key={index}
+												className="font-bold uppercase"
+												value={exam?.name}
+											>
+												{exam?.name}
+											</option>
+										))}
+								</select>
 							</div>
 						</>
 					)}

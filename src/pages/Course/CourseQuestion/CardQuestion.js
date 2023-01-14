@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { FaEllipsisH } from "react-icons/fa";
 import "./CardQuestion.css";
 
-const CardQuestion = ({ question }) => {
+const CardQuestion = ({ question, setQuestions }) => {
 	const { link, examName, session, name, email, createdAt } = question;
 	const [, , userDetails] = useUser(email);
 	const { user } = useContext(AuthContext);
@@ -30,11 +30,6 @@ const CardQuestion = ({ question }) => {
 		}
 	}, [user?.email]);
 
-	const submitHandler = (e) => {
-		e.preventDefault();
-		console.log(e);
-	};
-
 	return (
 		<div className="py-2 mb-5">
 			{link && link.includes(".pdf") ? (
@@ -44,7 +39,11 @@ const CardQuestion = ({ question }) => {
 						{role === "admin" && (
 							<div className="absolute cursor-pointer threedot-edit top-2 right-3">
 								<div className="dropdown dropdown-bottom dropdown-end">
-									<label tabIndex={0} className="cursor-pointer ">
+									<label
+										onClick={() => setQuestions(question)}
+										tabIndex={0}
+										className="cursor-pointer "
+									>
 										<FaEllipsisH></FaEllipsisH>
 									</label>
 									<ul
@@ -52,12 +51,17 @@ const CardQuestion = ({ question }) => {
 										className="p-2 shadow dropdown-content menu bg-[#190941] rounded-box w-52"
 									>
 										<li>
-											<label htmlFor="my-modal-4" className="btn">
-												<a>Item 1</a>
+											<label htmlFor="my-modal-4">
+												<a>Edit</a>
 											</label>
 										</li>
 										<li>
-											<a>Item 2</a>
+											<label htmlFor="my-modal-4">
+												<a>delete</a>
+											</label>
+										</li>
+										<li>
+											<a>Details</a>
 										</li>
 									</ul>
 								</div>
@@ -100,22 +104,6 @@ const CardQuestion = ({ question }) => {
 			) : (
 				<>
 					{/* edit modal  of questions*/}
-					<div className="modal-wrapper">
-						<input type="checkbox" id="my-modal-4" className="modal-toggle" />
-						<div className="modal">
-							<div className="relative bg-[#190941] modal-box">
-								<label
-									htmlFor="my-modal-4"
-									className="absolute btn btn-sm btn-circle right-2 top-2"
-								>
-									✕
-								</label>
-								<form action="" onSubmit={submitHandler}>
-									<input type="submit" value="submit" />
-								</form>
-							</div>
-						</div>
-					</div>
 					<div className="shadow-xl bg-[#5D25E9]  rounded-md card">
 						{/* question information without image */}
 						<div className="relative flex justify-between border-b-[1px] border-b-gray-500">
@@ -123,7 +111,11 @@ const CardQuestion = ({ question }) => {
 							{role === "admin" && (
 								<div className="absolute cursor-pointer threedot-edit top-2 right-3">
 									<div className="dropdown dropdown-bottom dropdown-end">
-										<label tabIndex={0} className="cursor-pointer ">
+										<label
+											onClick={() => setQuestions(question)}
+											tabIndex={0}
+											className="cursor-pointer "
+										>
 											<FaEllipsisH></FaEllipsisH>
 										</label>
 										<ul
@@ -131,12 +123,17 @@ const CardQuestion = ({ question }) => {
 											className="p-2 shadow dropdown-content menu bg-[#190941] rounded-box w-52"
 										>
 											<li>
-												<label htmlFor="my-modal-4" className="btn">
-													<a>Item 1</a>
+												<label htmlFor="my-modal-4">
+													<a>Edit</a>
 												</label>
 											</li>
 											<li>
-												<a>Item 2</a>
+												<label htmlFor="my-modal-4">
+													<a>delete</a>
+												</label>
+											</li>
+											<li>
+												<a>Details</a>
 											</li>
 										</ul>
 									</div>
