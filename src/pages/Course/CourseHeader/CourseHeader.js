@@ -5,6 +5,7 @@ import {
 	Tab,
 	TabPanel,
 } from "@material-tailwind/react";
+import CourseBasicInfo from "../CourseBasicInfo/CourseBasicInfo.js";
 import Resources from "../Resources/Resources.js";
 
 const CourseHeader = ({ setElements }) => {
@@ -12,7 +13,7 @@ const CourseHeader = ({ setElements }) => {
 		<>
 			<div className="text-white py-10 bg-[#5D25E9] ">
 				<div className=" sm:w-[80%] w-[95%] mx-auto z-10">
-					<Tabs id="custom-animation" style={{ zIndex: 1 }} value="1">
+					<Tabs id="custom-animation" value="1">
 						<TabsHeader className="z-10">
 							<Tab key="1" value="1" className="z-10">
 								Resources
@@ -37,7 +38,7 @@ const CourseHeader = ({ setElements }) => {
 								<Resources setElements={setElements}></Resources>
 							</TabPanel>
 							<TabPanel key="2" value="2">
-								CSss
+								<CourseBasicInfo></CourseBasicInfo>
 							</TabPanel>
 						</TabsBody>
 					</Tabs>

@@ -3,10 +3,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
+import TextEditor from "../../Shared/Editor/TextEditor.js";
 import Loading from "../../Shared/Loading/Loading.js";
 
 const CreateTemplate = ({ name, showResources }) => {
 	const [createLoading, setCreateLoading] = useState(false);
+	const [convertedContent, setConvertedContent] = useState(null);
+
 	const {
 		universities,
 		departments,
@@ -86,7 +89,7 @@ const CreateTemplate = ({ name, showResources }) => {
 			},
 			courseCode,
 			creditHours,
-			syllabus,
+			syllabus: convertedContent,
 		};
 
 		if (teacherName || teacherEmail || session || link) {
@@ -102,7 +105,7 @@ const CreateTemplate = ({ name, showResources }) => {
 		}
 		try {
 			setCreateLoading(true);
-			console.log("befor call", createCourseTemplate);
+			console.log("before call", createCourseTemplate);
 			const { data } = await axios.post(
 				`https://server.onebyzeroedu.com/api/admin/createCourseTemplate`,
 				createCourseTemplate
@@ -171,6 +174,15 @@ const CreateTemplate = ({ name, showResources }) => {
 							</option>
 						))}
 					</select>
+				</div>
+				<div>
+					<label htmlFor="" className="block mt-2 font-bold text-white">
+						syllabus
+					</label>
+					<TextEditor
+						convertedContent={convertedContent}
+						setConvertedContent={setConvertedContent}
+					></TextEditor>
 				</div>
 				<div className="mt-5 w-4/3">
 					<label htmlFor="" className="block mb-1 font-bold text-white">
