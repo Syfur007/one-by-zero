@@ -20,8 +20,11 @@ const FIleModal = ({
 	setBookName,
 	author,
 	bookName,
+	thumbnail,
+	setThumbnail,
 }) => {
 	const [uploadFile, setUploadFile] = useState("");
+	const [uploadThumbnail, setUploadThumbnail] = useState("");
 	const { sessions, examNames } = useContext(CourseContext);
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const { user } = useContext(AuthContext);
@@ -58,6 +61,10 @@ const FIleModal = ({
 					"Content-Type": "multipart/form-data",
 				},
 			};
+
+			const thumbnailFormData = new FormData();
+			thumbnailFormData.append("file", uploadThumbnail);
+
 			try {
 				setUploadLoading(true);
 				const { data } = await axios.post(
@@ -65,14 +72,26 @@ const FIleModal = ({
 					formData,
 					config
 				);
-				if (data) {
+
+				const thumbnailData = (
+					await axios.post(
+						"https://server.onebyzeroedu.com/api/upload/thumbnail",
+						thumbnailFormData,
+						config
+					)
+				).data;
+
+				if (data && thumbnailData) {
 					console.log(data);
 					setFile(data);
+					setThumbnail(thumbnailData);
 					toast.success("file Upload successfully \n click the upload button");
 					setUploadLoading(false);
 				}
 			} catch (error) {
-				toast.error("File should be less than 30mb");
+				toast.error(
+					"Pdf File should be less than 30mb\n Thumbnail image should be less than 2mb"
+				);
 				console.log(error);
 
 				setUploadLoading(false);
@@ -113,6 +132,10 @@ const FIleModal = ({
 	const handleFileChange = (e) => {
 		setUploadFile(e.target.files[0]);
 	};
+	// take thumbnail
+	const handleThumbnailChange = (e) => {
+		setUploadThumbnail(e.target.files[0]);
+	};
 
 	if (uploadLoading) {
 		return <Loading></Loading>;
@@ -130,7 +153,7 @@ const FIleModal = ({
 					>
 						✕
 					</label>
-					<div className="pt-3">
+					{/* <div className="pt-3">
 						<label htmlFor="" className="mb-2 text-base font-semibold">
 							Username
 						</label>
@@ -153,27 +176,29 @@ const FIleModal = ({
 							value={user?.email}
 							className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-primary"
 						/>
-					</div>
+					</div> */}
 
-					<div className="pt-2">
-						<label htmlFor="" className="mb-2 text-base font-semibold">
-							Session
-						</label>
-						<select
-							onChange={sessionChangeHandler}
-							className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
-						>
-							<option value="" disabled selected>
-								select session
-							</option>
-							{sessions &&
-								sessions.map((session, index) => (
-									<option key={index} value={session.value}>
-										{session.name}
-									</option>
-								))}
-						</select>
-					</div>
+					{name !== "books" && (
+						<div className="pt-2">
+							<label htmlFor="" className="mb-2 text-base font-semibold">
+								Session
+							</label>
+							<select
+								onChange={sessionChangeHandler}
+								className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
+							>
+								<option value="" disabled selected>
+									select session
+								</option>
+								{sessions &&
+									sessions.map((session, index) => (
+										<option key={index} value={session.value}>
+											{session.name}
+										</option>
+									))}
+							</select>
+						</div>
+					)}
 
 					{name === "questions" && (
 						<>
@@ -205,6 +230,7 @@ const FIleModal = ({
 
 					{(name === "books" || name === "slides" || name === "handnotes") && (
 						<>
+							{/* name */}
 							<div className="pt-2">
 								<label htmlFor="" className="mb-2 text-base font-semibold">
 									{name} Name
@@ -216,6 +242,7 @@ const FIleModal = ({
 									className="w-full rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
 								/>
 							</div>
+							{/* Author name */}
 							<div className="pt-2">
 								<label htmlFor="" className="mb-2 text-base font-semibold">
 									Author
@@ -227,10 +254,25 @@ const FIleModal = ({
 									className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
 								/>
 							</div>
+							{/* thumbnails */}
+
+							<div className="pt-2">
+								<label htmlFor="" className="mb-2 text-base font-semibold">
+									thumbnail
+								</label>
+								<input
+									type="file"
+									onChange={handleThumbnailChange}
+									className="w-full  border-[0.1px] border-gray-400 file-input file-input-primary "
+								/>
+							</div>
 						</>
 					)}
 
 					<div className="pt-2">
+						<label htmlFor="" className="mb-2 text-base font-semibold">
+							file
+						</label>
 						<input
 							type="file"
 							onChange={handleFileChange}

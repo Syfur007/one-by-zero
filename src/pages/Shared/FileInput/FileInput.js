@@ -14,6 +14,8 @@ const FileInput = ({ name, showResources }) => {
 	const [session, setSession] = useState("");
 	const [bookName, setBookName] = useState("");
 	const [author, setAuthor] = useState("");
+	const [thumbnail, setThumbnail] = useState("");
+
 	const navigate = useNavigate();
 
 	const {
@@ -99,7 +101,12 @@ const FileInput = ({ name, showResources }) => {
 		}
 
 		if (!file) {
-			toast.error("please,add file");
+			toast.error("Please,add file");
+			return;
+		}
+
+		if (!thumbnail) {
+			toast.error("Please,add Thumbnail");
 			return;
 		}
 
@@ -123,6 +130,7 @@ const FileInput = ({ name, showResources }) => {
 				email: user?.email,
 				link: file,
 				bookName,
+				thumbnail: thumbnail,
 				author,
 				session,
 			},
@@ -168,6 +176,7 @@ const FileInput = ({ name, showResources }) => {
 					{" "}
 					{showResources ? "Show my Resources" : `give ${name}`}
 				</h1>
+				{/* university */}
 				<div className="w-4/3">
 					<label htmlFor="" className="block mb-1 font-bold text-white">
 						university
@@ -188,6 +197,7 @@ const FileInput = ({ name, showResources }) => {
 							))}
 					</select>
 				</div>
+				{/* department */}
 				<div className="mt-5 w-4/3">
 					<label htmlFor="" className="block mb-1 font-bold text-white">
 						department
@@ -206,6 +216,7 @@ const FileInput = ({ name, showResources }) => {
 						))}
 					</select>
 				</div>
+				{/* year */}
 				<div className="mt-5 w-4/3">
 					<label htmlFor="" className="block mb-1 font-bold text-white">
 						year
@@ -242,6 +253,7 @@ const FileInput = ({ name, showResources }) => {
 							))}
 					</select>
 				</div>
+				{/* semester */}
 				<div className="mt-5 w-4/3">
 					<label htmlFor="" className="block mb-1 font-bold text-white">
 						semester
@@ -272,6 +284,7 @@ const FileInput = ({ name, showResources }) => {
 							))}
 					</select>
 				</div>
+				{/* course title */}
 				<div className="mt-5 w-4/3">
 					<label htmlFor="" className="block mb-1 font-bold text-white">
 						courseTitle
@@ -323,6 +336,8 @@ const FileInput = ({ name, showResources }) => {
 								bookName={bookName}
 								examName={examName}
 								name={name}
+								thumbnail={thumbnail}
+								setThumbnail={setThumbnail}
 							></FIleModal>
 						)}
 					</div>

@@ -9,9 +9,9 @@ const Course = () => {
 	const { courses } = useContext(CourseContext);
 	if (!courses) {
 		return (
-			<div className="pt-[64px]">
-				<h1 className="py-5 font-semibold text-center text-red-600">
-					There is no resources for this course
+			<div className="pt-[80px]">
+				<h1 className="py-5 uppercase font-semibold max-w-[400px] my-5 mx-auto rounded-md text-center bg-red-200 text-red-900">
+					There is no resources for this course 👎🏽👎🏽
 				</h1>
 			</div>
 		);
