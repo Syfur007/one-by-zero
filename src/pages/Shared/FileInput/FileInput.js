@@ -105,7 +105,7 @@ const FileInput = ({ name, showResources }) => {
 			return;
 		}
 
-		if (!thumbnail) {
+		if (!thumbnail && name !== "questions") {
 			toast.error("Please,add Thumbnail");
 			return;
 		}

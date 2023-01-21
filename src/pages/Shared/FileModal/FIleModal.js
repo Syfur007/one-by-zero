@@ -81,7 +81,7 @@ const FIleModal = ({
 					)
 				).data;
 
-				if (data && thumbnailData) {
+				if ((data && thumbnailData) || name === "questions") {
 					console.log(data);
 					setFile(data);
 					setThumbnail(thumbnailData);
