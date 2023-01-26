@@ -2,12 +2,10 @@ import React, { useContext, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
-import { isValidPhoneNumber } from "react-phone-number-input";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import Loading from "../Shared/Loading/Loading";
-import Alert from "../Shared/Alert/Alert";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider.js";
+import Alert from "../Shared/Alert/Alert.js";
+import SigninLoader from "../Shared/Loading/SigninLoader.js";
 
 const Left = () => {
 	const navigate = useNavigate();
@@ -17,7 +15,7 @@ const Left = () => {
 		register,
 		handleSubmit,
 		watch,
-		control,
+
 		formState: { errors },
 	} = useForm();
 	const [signupLoading, setSignupLoading] = useState(false);
@@ -28,22 +26,33 @@ const Left = () => {
 		const email = watch("email");
 		const password = watch("password");
 		const name = watch("name");
-		const phoneInputWithCountrySelect = watch("phoneInputWithCountrySelect");
-		const isValid = isValidPhoneNumber(phoneInputWithCountrySelect);
-
-		if (!isValid) {
-			setError("Phonenumber is not valid");
-			return;
-		}
 
 		createUser(email, password)
 			.then((user) => {
-				console.log(user);
-				handleUpdateUserProfile(name);
-				localStorage.setItem(
-					"onbyzero-user-phonenumber",
-					phoneInputWithCountrySelect
+				handleUpdateUserProfile(
+					name,
+					"https://i.ibb.co/fp92Ldr/icons8-person-90.png"
 				);
+				// save data to mongodb
+				fetch("https://server.onebyzeroedu.com/api/user/", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						email: email,
+						name: name,
+					}),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						console.log(data);
+						setSignupLoading(false);
+						navigate("/");
+					})
+					.catch((err) => {
+						setSignupLoading(false);
+					});
 			})
 			.catch((err) => {
 				console.log(err.message);
@@ -51,31 +60,47 @@ const Left = () => {
 				setError(message);
 				setSignupLoading(false);
 			});
-		// console.log(email, password, name, phoneInputWithCountrySelect);
-		// console.log(isValid);
 	};
 
-	const handleUpdateUserProfile = (name) => {
+	const handleUpdateUserProfile = (name, image) => {
 		const profile = {
-			name,
+			displayName: name,
+			photoURL: image,
 		};
-
 		updateUserProfile(profile)
 			.then(() => {})
 			.catch((err) => {
 				let message = err.message.split(":")[1];
 				setError(message);
-				setSignupLoading(false);
 			});
-		setSignupLoading(false);
-		navigate("/");
 	};
 
 	const signInWithGoogle = () => {
 		handleGoogleSignIn()
 			.then((user) => {
 				console.log(user);
-				navigate("/");
+				console.log(user?.user?.email, user?.user?.phoneNumber);
+				fetch("https://server.onebyzeroedu.com/api/user/", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						email: user?.user?.email,
+						name: user?.user?.displayName,
+						phoneNumber: user?.user?.phoneNumber,
+						image: user?.user?.photoURL,
+					}),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						console.log(data);
+						setSignupLoading(false);
+						navigate("/");
+					})
+					.catch((err) => {
+						setSignupLoading(false);
+					});
 			})
 			.catch((err) => {
 				let message = err.message.split(":")[1];
@@ -85,10 +110,10 @@ const Left = () => {
 	};
 
 	return (
-		<div className="flex-1 w-[50%]">
+		<div className="flex-1 md:w-[50%] w-[90%] mx-auto">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className=" bg-[#ffff] mx-auto login-form-height  rounded-2xl  p-10 w-[70%] m-10"
+				className=" bg-[#ffff] mx-auto login-form-height  rounded-2xl  p-10 lg:w-[70%] w-full m-10"
 			>
 				{error && <Alert>{error}</Alert>}
 				<h1 className="mx-auto text-2xl text-[#5b24ea] font-semibold py-5">
@@ -103,10 +128,11 @@ const Left = () => {
 						})}
 						className=" border-gray-300 input placeholder:text-gray-600 w-full pl-5 py-2 focus:border-[#5b24ea]  outline-none"
 					/>
-					<p className="text-red-800 text-center mt-1">
+					<p className="mt-1 text-center text-red-800">
 						{errors?.name?.message}
 					</p>
 				</div>
+
 				<div className="mt-6">
 					<input
 						type="email"
@@ -116,20 +142,8 @@ const Left = () => {
 						})}
 						className=" border-gray-300 input placeholder:text-gray-600 w-full pl-5 py-2 focus:border-[#5b24ea]  outline-none"
 					/>
-					<p className="text-red-800 text-center mt-1">
+					<p className="mt-1 text-center text-red-800">
 						{errors?.email?.message}
-					</p>
-				</div>
-				<div className="mt-6 w-full">
-					<PhoneInputWithCountry
-						name="phoneInputWithCountrySelect"
-						control={control}
-						rules={{ required: "Phone Number should not be empty" }}
-						defaultCountry="BD"
-						placeholder="PhoneNumber"
-					/>
-					<p className="text-red-800 text-center mt-1">
-						{errors?.phoneInputWithCountrySelect?.message}
 					</p>
 				</div>
 
@@ -146,19 +160,21 @@ const Left = () => {
 						})}
 						className=" border-gray-300 input placeholder:text-gray-600 w-full pl-5 py-2 focus:border-[#5b24ea]  outline-none"
 					/>
-					<p className="text-red-800 text-center mt-1">
+					<p className="mt-1 text-center text-red-800">
 						{errors?.password?.message}
 					</p>
 				</div>
+
 				<div className="w-full mt-8 ">
 					<button
 						type="submit"
 						className="w-full button bg-[#5b24ea] py-2 rounded-full items-center justify-between text-xl flex text-white"
 					>
-						<p className="text-center flex-1">
+						<p className="flex-1 text-center">
 							{signupLoading ? (
 								<div className="flex items-center justify-center">
-									<Loading></Loading> <span>Loading.....</span>
+									<SigninLoader></SigninLoader>
+									<span>Loading.....</span>
 								</div>
 							) : (
 								"Register"
@@ -169,16 +185,16 @@ const Left = () => {
 						</p>
 					</button>
 				</div>
-				<div className="text-center flex  my-3 sm:w-3/4 w-full mx-auto items-center">
+				<div className="flex items-center w-full mx-auto my-3 text-center sm:w-3/4">
 					<span className="w-full block h-[1px] mr-2 bg-[#5b24ea]"></span>
 					<h4 className="text-2xl text-[#5b24ea] ">OR</h4>
 					<span className="w-full block h-[1px] ml-2 bg-[#5b24ea]"></span>
 				</div>
 
-				<div className="text-center w-full mx-auto">
+				<div className="w-full mx-auto text-center">
 					<button
 						onClick={signInWithGoogle}
-						className="w-full flex items-center button text-white  rounded-full py-3 justify-center"
+						className="flex items-center justify-center w-full py-3 text-white rounded-full button"
 						type="button"
 					>
 						<FcGoogle className="w-6 h-6 mr-2"></FcGoogle>

@@ -1,0 +1,16 @@
+@media only screen and (max-width: 500px) {
+	div.question-info {
+		display: flex;
+		flex-direction: column;
+		justify-items: center;
+		align-items: center;
+	}
+	div.question-info .mr-5 {
+		margin-right: 0;
+		margin-top: 10px;
+		margin-bottom: 5px;
+	}
+	.threedot-edit {
+		top: 1px;
+	}
+}

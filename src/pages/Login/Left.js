@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { FaArrowRight } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import Alert from "../Shared/Alert/Alert";
-import Loading from "../Shared/Loading/Loading";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider.js";
+import Alert from "../Shared/Alert/Alert.js";
+import SigninLoader from "../Shared/Loading/SigninLoader.js";
 
 const Left = () => {
 	const navigate = useNavigate();
@@ -26,6 +27,7 @@ const Left = () => {
 			.then((user) => {
 				console.log(user);
 				setSignInLoading(false);
+				toast.success("login success");
 				navigate("/");
 			})
 			.catch((err) => {
@@ -41,7 +43,29 @@ const Left = () => {
 		handleGoogleSignIn()
 			.then((user) => {
 				console.log(user);
-				navigate("/");
+				fetch("https://server.onebyzeroedu.com/api/user/", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						email: user?.user?.email,
+						phoneNumber: user?.user?.phoneNumber,
+						name: user?.user?.displayName,
+						image: user?.user?.photoURL,
+					}),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						console.log(data);
+						setSignInLoading(false);
+						toast.success("login success");
+						navigate("/");
+					})
+					.catch((err) => {
+						setSignInLoading(false);
+						console.log(err);
+					});
 			})
 			.catch((err) => {
 				let message = err.message.split(":")[1];
@@ -49,11 +73,12 @@ const Left = () => {
 				console.log(err);
 			});
 	};
+
 	return (
-		<div className="flex-1 w-[50%]">
+		<div className="flex-1 md:w-[50%] w-[90%] mx-auto">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className=" bg-[#ffff] mx-auto login-form-height  rounded-2xl h-[60vh] p-10 w-[65%] m-10"
+				className=" bg-[#ffff] mx-auto login-form-height  rounded-2xl min-h-[60vh] p-10 lg:w-[65%] w-full m-10"
 			>
 				{error && <Alert>{error}</Alert>}
 
@@ -69,7 +94,7 @@ const Left = () => {
 						})}
 						className=" border-gray-300 input placeholder:text-gray-600 w-full pl-5 py-2 focus:border-[#5b24ea]  outline-none"
 					/>
-					<p className="text-red-800 text-center mt-1">
+					<p className="mt-1 text-center text-red-800">
 						{errors?.email?.message}
 					</p>
 				</div>
@@ -86,7 +111,7 @@ const Left = () => {
 						})}
 						className=" border-gray-300 input placeholder:text-gray-600 w-full pl-5 py-2 focus:border-[#5b24ea]  outline-none"
 					/>
-					<p className="text-red-800 text-center mt-1">
+					<p className="mt-1 text-center text-red-800">
 						{errors?.password?.message}
 					</p>
 				</div>
@@ -95,10 +120,10 @@ const Left = () => {
 						type="submit"
 						className="w-full button bg-[#5b24ea] py-2 rounded-full items-center justify-between text-xl flex text-white"
 					>
-						<p className="text-center flex-1">
+						<p className="flex-1 text-center">
 							{signInLoading ? (
 								<div className="flex items-center justify-center">
-									<Loading></Loading> <span>Loading.....</span>
+									<SigninLoader></SigninLoader> <span>Loading.....</span>
 								</div>
 							) : (
 								"Login"
@@ -109,16 +134,16 @@ const Left = () => {
 						</p>
 					</button>
 				</div>
-				<div className="text-center flex  my-3 sm:w-3/4 w-full mx-auto items-center">
+				<div className="flex items-center w-full mx-auto my-3 text-center sm:w-3/4">
 					<span className="w-full block h-[1px] mr-2 bg-[#5b24ea]"></span>
 					<h4 className="text-2xl text-[#5b24ea] ">OR</h4>
 					<span className="w-full block h-[1px] ml-2 bg-[#5b24ea]"></span>
 				</div>
 
-				<div className="text-center w-full mx-auto">
+				<div className="w-full mx-auto text-center">
 					<button
 						onClick={signInWithGoogle}
-						className="w-full flex items-center button text-white  rounded-full py-3 justify-center"
+						className="flex items-center justify-center w-full py-3 text-white rounded-full button"
 						type="button"
 					>
 						<FcGoogle className="w-6 h-6 mr-2"></FcGoogle>

@@ -1,19 +1,18 @@
 import React from "react";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
 
 const Home = () => {
-<<<<<<< HEAD
+	const { setTitle } = useContext(AuthContext);
+	useEffect(() => {
+		setTitle("Home | OneByZero");
+	}, [setTitle]);
 	return (
-		<div className="">
+		<div className="h-[80vh] pt-[64px]">
 			<h1>Home</h1>
 		</div>
 	);
-=======
-  return (
-    <div className="min-h-[80vh]">
-      <h1>Home</h1>
-    </div>
-  );
->>>>>>> 03b990db2f0e5b79476f7149f39f216c553b91ed
 };
 
 export default Home;

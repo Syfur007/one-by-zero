@@ -1,10 +1,10 @@
 import React from "react";
 const Loading = () => {
 	return (
-		<div>
+		<div className="flex items-center justify-center w-full mt-16">
 			<div role="status">
 				<svg
-					class="inline mr-2 w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+					className="inline w-6 h-6 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
 					viewBox="0 0 100 101"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +18,7 @@ const Loading = () => {
 						fill="currentFill"
 					/>
 				</svg>
-				<span class="sr-only">Loading...</span>
+				<span className="sr-only">Loading...</span>
 			</div>
 		</div>
 	);

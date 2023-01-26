@@ -10,16 +10,16 @@ import {
 	GoogleAuthProvider,
 	signInWithPopup,
 } from "firebase/auth";
+import app from "../../firebase/firebase.config.js";
 import { useState } from "react";
 import { useEffect } from "react";
-import app from "../../firebase/firebase.config";
 export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
-	const [title, setTitle] = useState("default | KitchenFood");
+	const [title, setTitle] = useState("Home | OneByZero");
 
 	const googleProvider = new GoogleAuthProvider();
 
@@ -59,8 +59,8 @@ const AuthProvider = ({ children }) => {
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
 			setLoading(false);
+			// console.log(currentUser);
 			setUser(currentUser);
-			console.log(currentUser);
 		});
 
 		return () => {

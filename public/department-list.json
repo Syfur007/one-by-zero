@@ -1,94 +1,71 @@
 [
-    {
-        "id": 1,
-        "name": "Mathematics"
-    },
-    {
-        "id": 2,
-        "name": "Chemistry"
-    },
-    {
-        "id": 3,
-        "name": "Physics"
-    },
-    {
-        "id": 4,
-        "name": "Geology and Mining"
-    },
-    {
-        "id": 5,
-        "name": "Statistics"
-    },
-    {
-        "id": 6,
-        "name": "Soil and Environmental Science"
-    },
-    {
-        "id": 7,
-        "name": "Botany"
-    },
-    {
-        "id": 8,
-        "name": "Costal Studies and Disaster Management"
-    },
-    {
-        "id": 9,
-        "name": "Biochemistry and Biotechnology"
-    },
-    {
-        "id": 10,
-        "name": "Management Studies"
-    },
-    {
-        "id": 11,
-        "name": "Accounting and Information Systems"
-    },
-    {
-        "id": 12,
-        "name": "Marketing"
-    },
-    {
-        "id": 13,
-        "name": "Finance and Banking"
-    },
-    {
-        "id": 14,
-        "name": "Economics"
-    },
-    {
-        "id": 15,
-        "name": "Political Science"
-    },
-    {
-        "id": 16,
-        "name": "Sociology"
-    },
-    {
-        "id": 17,
-        "name": "Public Adminstration"
-    },
-    {
-        "id": 18,
-        "name": "Mass Communication and Journalism"
-    },
-    {
-        "id": 19,
-        "name": "Bangla"
-    },
-    {
-        "id": 20,
-        "name": "English"
-    },
-    {
-        "id": 21,
-        "name": "Philosophy"
-    },
-    {
-        "id": 22,
-        "name": "History"
-    },
-    {
-        "id": 23,
-        "name": "Law"
-    }
+	{
+		"name": "Mathematics"
+	},
+	{
+		"name": "Chemistry"
+	},
+	{
+		"name": "Physics"
+	},
+	{
+		"name": "Geology and Mining"
+	},
+	{
+		"name": "Statistics"
+	},
+	{
+		"name": "Soil and Environmental Science"
+	},
+	{
+		"name": "Botany"
+	},
+	{
+		"name": "Costal Studies and Disaster Management"
+	},
+	{
+		"name": "Biochemistry and Biotechnology"
+	},
+	{
+		"name": "Management Studies"
+	},
+	{
+		"name": "Accounting and Information Systems"
+	},
+	{
+		"name": "Marketing"
+	},
+	{
+		"name": "Finance and Banking"
+	},
+	{
+		"name": "Economics"
+	},
+	{
+		"name": "Political Science"
+	},
+	{
+		"name": "Sociology"
+	},
+	{
+		"name": "Public Adminstration"
+	},
+	{
+		"name": "Mass Communication and Journalism"
+	},
+	{
+		"name": "Bangla"
+	},
+	{
+		"name": "English"
+	},
+	{
+		"name": "Philosophy"
+	},
+	{
+		"name": "History"
+	},
+	{
+		"name": "Law"
+	}
 ]

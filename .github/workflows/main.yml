@@ -1,0 +1,44 @@
+#dangerous-clean-slate: true
+
+name: 🚀 Deploy one-by-zero website on push
+on:
+  push:
+    branches:
+      - main
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    env:
+      REACT_APP_apiKey: ${{ secrets.REACT_APP_APIKEY }}
+      REACT_APP_authDomain: ${{ secrets.REACT_APP_AUTHDOMAIN }}
+      REACT_APP_projectId: ${{ secrets.REACT_APP_PROJECTID }}
+      REACT_APP_storageBucket: ${{ secrets.REACT_APP_STORAGEBUCKET }}
+      REACT_APP_messagingSenderId: ${{ secrets.REACT_APP_MESSAGINGSENDERID }}
+      REACT_APP_appId: ${{ secrets.REACT_APP_APPID }}
+      REACT_APP_imgbb_key: ${{ secrets.REACT_APP_IMGBB_KEY }}
+    steps:
+      - name: environment variable
+        run: echo Hello world $REACT_APP_IMGBB_KEY
+
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - name: 🔨 Build Project
+        run: |
+          npm install --legacy-peer-deps
+          CI=false npm run build
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ftp.onebyzeroedu.com
+          username: client@onebyzeroedu.com
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          local-dir: ./build/

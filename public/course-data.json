@@ -1,10 +1,10 @@
 [
 	{
 		"id": 1,
-		"varsity": "Barishal",
-		"year": null,
+		"varsity": "University of Barishal",
+		"year": 1,
 		"semester": 1,
-		"department": "cse",
+		"department": "Computer Science & Engineering",
 		"courses": [
 			{
 				"id": 1,
@@ -89,10 +89,10 @@
 
 	{
 		"id": 2,
-		"varsity": "Barishal",
-		"year": null,
+		"varsity": "University of Barishal",
+		"year": 1,
 		"semester": 2,
-		"department": "cse",
+		"department": "Computer Science & Engineering",
 		"courses": [
 			{
 				"id": 1,
@@ -178,10 +178,10 @@
 
 	{
 		"id": 3,
-		"varsity": "Barishal",
-		"year": null,
-		"semester": 3,
-		"department": "cse",
+		"varsity": "University of Barishal",
+		"year": 2,
+		"semester": 1,
+		"department": "Computer Science & Engineering",
 		"courses": [
 			{
 				"id": 1,
@@ -259,10 +259,10 @@
 
 	{
 		"id": 4,
-		"varsity": "Barishal",
-		"year": null,
-		"semester": 4,
-		"department": "cse",
+		"varsity": "University of Barishal",
+		"year": 2,
+		"semester": 2,
+		"department": "Computer Science & Engineering",
 		"courses": [
 			{
 				"id": 1,
@@ -332,10 +332,10 @@
 
 	{
 		"id": 5,
-		"varsity": "Barishal",
-		"year": null,
-		"semester": 5,
-		"department": "cse",
+		"varsity": "University of Barishal",
+		"year": 3,
+		"semester": 1,
+		"department": "Computer Science & Engineering",
 		"courses": [
 			{
 				"id": 1,
@@ -421,10 +421,10 @@
 
 	{
 		"id": 6,
-		"varsity": "Barishal",
-		"year": null,
-		"semester": 6,
-		"department": "cse",
+		"varsity": "University of Barishal",
+		"year": 3,
+		"semester": 2,
+		"department": "Computer Science & Engineering",
 		"courses": [
 			{
 				"id": 1,
@@ -502,10 +502,10 @@
 
 	{
 		"id": 7,
-		"varsity": "Barishal",
-		"year": null,
-		"semester": 7,
-		"department": "cse",
+		"varsity": "University of Barishal",
+		"year": 4,
+		"semester": 1,
+		"department": "Computer Science & Engineering",
 		"courses": [
 			{
 				"id": 1,
