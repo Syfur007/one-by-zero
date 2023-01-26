@@ -39,6 +39,7 @@ jobs:
         with:
           server: ftp.onebyzeroedu.com
           username: client@onebyzeroedu.com
+          dangerous-clean-slate: true
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           local-dir: ./build/
