@@ -25,19 +25,19 @@ const Resources = ({ course: fetchCourseData, setElements }) => {
 			);
 		} else if (name === "books") {
 			temp = (
-				<div>
+				<div className="w-[100vw]">
 					<CourseBook course={courses}></CourseBook>
 				</div>
 			);
 		} else if (name === "slides") {
 			temp = (
-				<div>
+				<div className="w-[100vw]">
 					<CourseSlides course={courses}></CourseSlides>
 				</div>
 			);
 		} else if (name === "notes") {
 			temp = (
-				<div>
+				<div className="w-[100vw]">
 					<ClassNotes course={courses}></ClassNotes>
 				</div>
 			);

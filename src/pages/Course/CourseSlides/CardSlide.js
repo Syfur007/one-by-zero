@@ -2,8 +2,8 @@ import React from "react";
 import CardProfileTemplate from "../../Shared/CardProfileTemplate/CardProfileTemplate";
 import ThumbnailViewer from "../../Shared/ThumbnailViewer/ThumbnailViewer";
 
-function CardBook({ card }) {
-	console.log(card);
+function CardSlide({ card }) {
+	// console.log(card);
 	const { email, createdAt, session, thumbnail } = card;
 	return (
 		<div>
@@ -17,4 +17,4 @@ function CardBook({ card }) {
 	);
 }
 
-export default CardBook;
+export default CardSlide;

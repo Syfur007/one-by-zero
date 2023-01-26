@@ -1,8 +1,8 @@
 import React from "react";
+import CardSlide from "./CardSlide";
 const CourseSlides = ({ course }) => {
-	console.log(course.slides);
 	return (
-		<div className=" w-[90vw]">
+		<div className="w-full ">
 			<h1 className="mb-5 text-4xl text-center uppercase">Slides</h1>
 			<h2 className="mb-5 text-2xl text-center capitalize">
 				{course?.courseTitle}
@@ -10,25 +10,14 @@ const CourseSlides = ({ course }) => {
 			<h2 className="mb-5 text-2xl text-center capitalize">
 				{course?.courseCode}
 			</h2>
-			<div>
+			<div className="w-full px-5">
+				<></>
 				{course?.slides.length > 0 ? (
-					course.slides.map((q, index) => {
-						return (
-							<div key={index}>
-								<div className="mt-5 ">
-									<span className="mr-2">slides-link:</span>
-									<a
-										className="underline text-light-blue-900"
-										target="_blank"
-										href={q.link}
-										rel="noreferrer"
-									>
-										{q.link}
-									</a>
-								</div>
-							</div>
-						);
-					})
+					<div className="grid  content-center grid-cols-1 gap-5 p-2 sm:p-10 lg:grid-cols-2">
+						{course.slides.map((slide, index) => {
+							return <CardSlide card={slide} key={index} />;
+						})}
+					</div>
 				) : (
 					<div className="w-full text-white">
 						<h1 className="w-full mb-5 text-3xl font-semibold text-center text-red-800">
