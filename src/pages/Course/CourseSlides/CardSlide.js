@@ -3,7 +3,6 @@ import CardProfileTemplate from "../../Shared/CardProfileTemplate/CardProfileTem
 import ThumbnailViewer from "../../Shared/ThumbnailViewer/ThumbnailViewer";
 
 function CardSlide({ card }) {
-	// console.log(card);
 	const { email, createdAt, session, thumbnail } = card;
 	return (
 		<div>

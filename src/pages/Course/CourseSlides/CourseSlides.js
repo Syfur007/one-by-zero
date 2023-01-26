@@ -10,7 +10,7 @@ const CourseSlides = ({ course }) => {
 			<h2 className="mb-5 text-2xl text-center capitalize">
 				{course?.courseCode}
 			</h2>
-			<div className="w-full px-5">
+			<div className="w-full">
 				<></>
 				{course?.slides.length > 0 ? (
 					<div className="grid  content-center grid-cols-1 gap-5 p-2 sm:p-10 lg:grid-cols-2">
