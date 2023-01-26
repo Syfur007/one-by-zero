@@ -6,10 +6,8 @@ import Time from "../Time/Time";
 function CardProfileTemplate({ email, createdAt, session }) {
 	const [, , userDetails] = useUser(email);
 	const [sessionDetails] = useSession(session);
-	console.log(userDetails);
-	console.log(sessionDetails);
 	return (
-		<div className="w-full flex justify-between items-center bg-purple-600 p-5 rounded-sm">
+		<div className="w-[632px] flex justify-between items-center bg-purple-600 p-5 rounded-sm">
 			<div className="flex items-center">
 				<div className="border-2 border-blue-900 rounded-full p-3">
 					<img src={userDetails?.image} className="w-16 h-16" alt="" />
