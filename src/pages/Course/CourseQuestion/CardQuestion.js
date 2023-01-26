@@ -19,6 +19,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 	const { user } = useContext(AuthContext);
 	const { courses } = useContext(CourseContext);
 	const [sessionDetails] = useSession(session);
+
 	const [role, setRole] = useState("");
 	useEffect(() => {
 		if (user?.email) {
