@@ -4,7 +4,7 @@ import ThumbnailViewer from "../../Shared/ThumbnailViewer/ThumbnailViewer";
 
 function CardBook({ card }) {
 	console.log(card);
-	const { email, createdAt, session, thumbnail, bookName, author } = card;
+	const { email, createdAt, session, thumbnail, bookName, author, link } = card;
 	return (
 		<div>
 			<CardProfileTemplate
@@ -16,6 +16,7 @@ function CardBook({ card }) {
 				bookName={bookName}
 				author={author}
 				thumbnail={thumbnail}
+				link={link}
 			/>
 		</div>
 	);

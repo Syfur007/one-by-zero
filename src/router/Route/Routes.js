@@ -17,6 +17,7 @@ import AdminRoute from "../AdminRoute/AdminRoute.js";
 import CreateTemplate from "../../pages/Admin/CreateTemplate/CreateTemplate.js";
 import CourseBookDetails from "../../pages/Course/CourseBook/CourseBookDetails.js";
 import Users from "../../pages/Admin/Users/Users/Users.js";
+import PdfDetails from "../../pages/Shared/PdfDetails/PdfDetails.js";
 
 const router = createBrowserRouter([
 	{
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
 			{
 				path: "/course/book/:bookName",
 				element: <CourseBookDetails></CourseBookDetails>,
+			},
+			{
+				path: "/pdf/view",
+				element: <PdfDetails />,
 			},
 		],
 	},

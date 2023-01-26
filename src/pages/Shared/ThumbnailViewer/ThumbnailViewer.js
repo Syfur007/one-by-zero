@@ -1,8 +1,12 @@
 import { Button } from "@material-tailwind/react";
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import default_image from "../../../images/default_image.png";
 import "./thumbnail.css";
-function ThumbnailViewer({ thumbnail, bookName, author }) {
+function ThumbnailViewer({ thumbnail, bookName, author, link }) {
+	console.log(link);
+	const queryLink = link?.substring(13, link.length - 4);
+
 	return (
 		<div className="w-[632px] relative h-[420px]">
 			{thumbnail ? (
@@ -20,7 +24,9 @@ function ThumbnailViewer({ thumbnail, bookName, author }) {
 					<h4 className="text-black font-bold">- {author}</h4>
 				</div>
 				<div>
-					<Button className="">view details</Button>
+					<Link to={`/pdf/view?q=${queryLink}`} target="_blank" className="">
+						view details
+					</Link>
 				</div>
 			</div>
 		</div>

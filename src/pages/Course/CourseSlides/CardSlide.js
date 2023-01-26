@@ -3,7 +3,7 @@ import CardProfileTemplate from "../../Shared/CardProfileTemplate/CardProfileTem
 import ThumbnailViewer from "../../Shared/ThumbnailViewer/ThumbnailViewer";
 
 function CardSlide({ card }) {
-	const { email, createdAt, session, thumbnail, author, bookName } = card;
+	const { email, createdAt, session, thumbnail, author, bookName, link } = card;
 
 	return (
 		<div>
@@ -16,6 +16,7 @@ function CardSlide({ card }) {
 				thumbnail={thumbnail}
 				author={author}
 				bookName={bookName}
+				link={link}
 			/>
 		</div>
 	);
