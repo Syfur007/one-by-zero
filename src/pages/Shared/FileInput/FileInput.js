@@ -170,7 +170,7 @@ const FileInput = ({ name, showResources }) => {
 		<div className="w-full pt-[70px] pb-10 mt-5 ">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="md:w-1/2 w-[90%] p-10 mx-auto bg-[#25184e] shadow-2xl rounded-2xl"
+				className="md:w-1/2 w-[90%] p-10 mx-auto bg-[#373737] shadow-2xl rounded-2xl"
 			>
 				<h1 className="mb-10 text-4xl text-center text-white uppercase">
 					{" "}

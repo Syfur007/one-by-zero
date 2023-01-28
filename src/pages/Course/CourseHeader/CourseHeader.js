@@ -11,7 +11,7 @@ import Resources from "../Resources/Resources.js";
 const CourseHeader = ({ setElements }) => {
 	return (
 		<>
-			<div className="text-white py-10 bg-[#5D25E9] ">
+			<div className="text-white py-10 bg-[#1a1a1a] ">
 				<div className=" sm:w-[80%] w-[95%] mx-auto z-10">
 					<Tabs id="custom-animation" value="1">
 						<TabsHeader className="z-10">

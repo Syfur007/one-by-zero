@@ -15,16 +15,16 @@ const CourseModal = ({ elements }) => {
 		<div>
 			<Fragment>
 				<Dialog open={open} size={"xxl"} className="" handler={handleOpen}>
-					<DialogBody divider className="bg-[#150a31] p-10 relative text-white">
+					<DialogBody divider className="bg-[#1a1a1a] p-10 relative text-white">
 						<p
-							className="text-white fixed cursor-pointer top-2 left-2"
+							className="fixed text-white cursor-pointer top-2 left-2"
 							onClick={() => handleOpen(false)}
 						>
 							<FaBackward className="w-6 h-6" />
 						</p>
 						{elements}
 					</DialogBody>
-					<DialogFooter className="bg-[#150E27]">
+					<DialogFooter className="bg-[#282828]">
 						<Button
 							variant="text"
 							color="red"

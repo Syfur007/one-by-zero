@@ -51,29 +51,29 @@ const Resources = ({ course: fetchCourseData, setElements }) => {
 				<div className="grid gap-4 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2">
 					<div
 						onClick={() => resourceTypesHandler("questions")}
-						className="max-w-[56] max-auto bg-[#150a31] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#150a31] rounded-lg"
+						className="max-w-[56] max-auto bg-[#373737] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
 					>
 						<h3 className="text-xl font-semibold">Questions</h3>
 					</div>
 					<div
 						onClick={() => resourceTypesHandler("books")}
-						className="max-w-[56] max-auto bg-[#150a31] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#150a31] rounded-lg"
+						className="max-w-[56] max-auto bg-[#373737] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
 					>
 						<h3 className="text-xl font-semibold">Books</h3>
 					</div>
 					<div
 						onClick={() => resourceTypesHandler("notes")}
-						className="max-w-[56] max-auto bg-[#150a31] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#150a31] rounded-lg"
+						className="max-w-[56] max-auto bg-[#373737] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
 					>
 						<h3 className="text-xl font-semibold">Class Notes</h3>
 					</div>
 					<div
 						onClick={() => resourceTypesHandler("slides")}
-						className="max-w-[56] max-auto bg-[#150a31] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#150a31] rounded-lg"
+						className="max-w-[56] max-auto bg-[#373737] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
 					>
 						<h3 className="text-xl font-semibold">Lecture Slide</h3>
 					</div>
-					<div className="max-w-[56] max-auto bg-[#150a31] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#150a31] rounded-lg">
+					<div className="max-w-[56] max-auto bg-[#373737] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg">
 						<h3 className="text-xl font-semibold">Suggestions</h3>
 					</div>
 				</div>

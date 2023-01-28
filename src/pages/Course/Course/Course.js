@@ -18,7 +18,7 @@ const Course = () => {
 	}
 	return (
 		<div className="pt-[64px]">
-			<h1 className="bg-[#5D25E9] text-2xl capitalize pt-10 text-white text-center">
+			<h1 className="bg-[#1a1a1a] text-2xl capitalize pt-10 text-white text-center">
 				{courses && courses?.courseTitle}
 			</h1>
 			<CourseHeader setElements={setElements}></CourseHeader>
