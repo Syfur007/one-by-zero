@@ -3,8 +3,8 @@ import CardClassNote from "./CardClassNote.js";
 
 const ClassNotes = ({ course }) => {
 	return (
-		<div className=" w-[90vw]">
-			<h1 className="mb-5 text-4xl text-center uppercase">questions</h1>
+		<div className="w-full ">
+			<h1 className="my-5 text-4xl text-center uppercase">Notes</h1>
 			<h2 className="mb-5 text-2xl text-center capitalize">
 				{course?.courseTitle}
 			</h2>
@@ -13,7 +13,7 @@ const ClassNotes = ({ course }) => {
 			</h2>
 			<div>
 				{course?.handNotes.length > 0 ? (
-					<div className="grid grid-cols-3 gap-5">
+					<div className="grid content-center grid-cols-1 gap-5 p-2 sm:p-10 lg:grid-cols-2">
 						{course.handNotes.map((question, index) => (
 							<CardClassNote key={index} note={question}></CardClassNote>
 						))}

@@ -73,9 +73,6 @@ const Resources = ({ course: fetchCourseData, setElements }) => {
 					>
 						<h3 className="text-xl font-semibold">Lecture Slide</h3>
 					</div>
-					<div className="max-w-[56] max-auto bg-[#373737] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg">
-						<h3 className="text-xl font-semibold">Suggestions</h3>
-					</div>
 				</div>
 			</div>
 		</>

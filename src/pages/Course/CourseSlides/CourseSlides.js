@@ -3,7 +3,7 @@ import CardSlide from "./CardSlide";
 const CourseSlides = ({ course }) => {
 	return (
 		<div className="w-full ">
-			<h1 className="mb-5 text-4xl text-center uppercase">Slides</h1>
+			<h1 className="my-5 text-4xl text-center uppercase">Slides</h1>
 			<h2 className="mb-5 text-2xl text-center capitalize">
 				{course?.courseTitle}
 			</h2>
@@ -13,7 +13,7 @@ const CourseSlides = ({ course }) => {
 			<div className="w-full">
 				<></>
 				{course?.slides.length > 0 ? (
-					<div className="grid  content-center grid-cols-1 gap-5 p-2 sm:p-10 lg:grid-cols-2">
+					<div className="grid content-center grid-cols-1 gap-5 p-2 sm:p-10 lg:grid-cols-2">
 						{course.slides.map((slide, index) => {
 							return <CardSlide card={slide} key={index} />;
 						})}
