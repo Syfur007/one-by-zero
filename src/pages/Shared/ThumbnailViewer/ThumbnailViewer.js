@@ -20,11 +20,11 @@ function ThumbnailViewer({ thumbnail, bookName, author, link }) {
 			)}
 			<div className="absolute w-full bottom-[.5px] flex justify-between items-center p-3 thumbnail__footer">
 				<div>
-					<h2 className="text-black font-semibold">{bookName}</h2>
-					<h4 className="text-black font-bold">- {author}</h4>
+					<h2 className="font-semibold text-black">{bookName}</h2>
+					<h4 className="font-bold text-black">- {author}</h4>
 				</div>
 				<div>
-					<Link to={`/pdf/view?q=${queryLink}`} target="_blank" className="">
+					<Link to={`/pdf/view`} target="_blank" className="">
 						view details
 					</Link>
 				</div>
