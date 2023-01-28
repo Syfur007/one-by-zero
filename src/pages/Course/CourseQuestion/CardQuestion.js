@@ -38,7 +38,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 		<div className="py-2 mb-5">
 			{link && link.includes(".pdf") ? (
 				<div className="relative p-2 mx-auto ">
-					<div className="relative flex justify-between rounded-t-md bg-[#5D25E9] border-b-[1px] border-b-gray-500">
+					<div className="relative flex justify-between rounded-t-md bg-[#282828] border-b-[1px] border-b-gray-500">
 						{/* edit button */}
 						{role === "admin" && (
 							<div className="absolute cursor-pointer threedot-edit top-2 right-3">
@@ -48,7 +48,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 									</label>
 									<ul
 										tabIndex={0}
-										className="p-2 shadow dropdown-content menu bg-[#190941] rounded-box w-52"
+										className="p-2 shadow dropdown-content menu bg-[#282828] rounded-box w-52"
 									>
 										<li>
 											<label
@@ -116,7 +116,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 			) : (
 				<>
 					{/* edit modal  of questions*/}
-					<div className="shadow-xl bg-[#5D25E9]  rounded-md card">
+					<div className="shadow-xl bg-[#282828]  rounded-md card">
 						{/* question information without image */}
 						<div className="relative flex justify-between border-b-[1px] border-b-gray-500">
 							{/* edit button */}
@@ -128,7 +128,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 										</label>
 										<ul
 											tabIndex={0}
-											className="p-2 shadow dropdown-content menu bg-[#190941] rounded-box w-52"
+											className="p-2 shadow dropdown-content menu bg-[#282828] rounded-box w-52"
 										>
 											<li>
 												<label

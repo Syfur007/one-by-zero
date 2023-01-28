@@ -13,18 +13,19 @@ const CourseBasicInfo = () => {
 	}
 
 	return (
-		<div className="bg-[#1A103D] rounded-md shadow-md p-10">
+		<div className="bg-[#282828] rounded-md shadow-md p-10">
 			<div>
-				<strong className="text-white font-semibold">Course Code: </strong>
+				<strong className="font-semibold text-white">Course Code: </strong>
 				<span className="font-semibold">{courses?.courseCode}</span>
 			</div>
 			<div>
-				<strong className="text-white font-semibold">Credit Hours: </strong>
+				<strong className="font-semibold text-white">Credit Hours: </strong>
 				<span>{courses?.creditHours}</span>
 			</div>
 			<div>
-				<strong className="text-white font-semibold">Syllabus: </strong>
+				<strong className="font-semibold text-white">Syllabus: </strong>
 				<div
+					className="text-white"
 					dangerouslySetInnerHTML={createMarkup(`${courses?.syllabus}`)}
 				></div>
 			</div>

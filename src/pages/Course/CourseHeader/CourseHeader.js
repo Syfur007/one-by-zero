@@ -15,7 +15,7 @@ const CourseHeader = ({ setElements }) => {
 				<div className=" sm:w-[80%] w-[95%] mx-auto z-10">
 					<Tabs id="custom-animation" value="1">
 						<TabsHeader className="z-10">
-							<Tab key="1" value="1" className="z-10">
+							<Tab key="1" className="resources" value="1">
 								Resources
 							</Tab>
 							<Tab key="2" value="2">

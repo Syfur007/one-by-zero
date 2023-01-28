@@ -145,8 +145,8 @@ const FIleModal = ({
 		<div>
 			{/* Put this part before </body> tag */}
 			<input type="checkbox" id="file-input-modal-3" className="modal-toggle" />
-			<div className="modal">
-				<div className="relative modal-box">
+			<div className="modal bg-[#282828]">
+				<div className="relative bg-[#282828] modal-box">
 					<label
 						htmlFor="file-input-modal-3"
 						className="absolute btn hover:bg-[#25184e] border-2 hover:border-[#25184e] btn-sm btn-circle right-2 top-2"
