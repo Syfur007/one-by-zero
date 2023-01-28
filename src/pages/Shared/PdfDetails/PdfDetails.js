@@ -9,8 +9,6 @@ function PdfDetails() {
 	console.log(file);
 	return (
 		<div className="pt-[90px]">
-			<h1>anis molla</h1>
-
 			<PDfDetailsViewer file={file} />
 		</div>
 	);
