@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./pdfDetailsViewer.css";
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
+import axios from "axios";
 import { Document, Page, pdfjs } from "react-pdf/dist/esm/entry.webpack";
 import Loading from "../Loading/Loading";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -57,7 +57,7 @@ const PDfDetailsViewer = ({ type, file }) => {
 	};
 
 	return (
-		<div className="pdf__details__viewer relative mb-6 mx-auto">
+		<div className="relative mx-auto mb-6 pdf__details__viewer">
 			{pdfLoading && <Loading />}
 			<Document
 				file={`data:application/pdf;base64,${pdfString}`}
@@ -73,7 +73,7 @@ const PDfDetailsViewer = ({ type, file }) => {
 				onClick={nextHandlerPage}
 				className="w-6 h-6 z-30 p-1  cursor-pointer hover:bg-red-500 rounded-full absolute top-[50%] right-0 translate-y-[-50%] "
 			/>
-			<p className="absolute my-0 py-0 text-xl font-bold  bottom-0 left-1">
+			<p className="absolute bottom-0 py-0 my-0 text-xl font-bold left-1">
 				Page <span className="text-purple-700">{pageNumber}</span> of{" "}
 				<span className="text-purple-700">{numPages}</span>
 			</p>

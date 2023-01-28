@@ -24,7 +24,7 @@ function ThumbnailViewer({ thumbnail, bookName, author, link }) {
 					<h4 className="font-bold text-black">- {author}</h4>
 				</div>
 				<div>
-					<Link to={`/pdf/view`} target="_blank" className="">
+					<Link to="/pdf" target="_blank" className="">
 						view details
 					</Link>
 				</div>

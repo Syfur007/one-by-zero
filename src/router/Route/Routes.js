@@ -80,6 +80,10 @@ const router = createBrowserRouter([
 				path: "/pdf/view",
 				element: <PdfDetails />,
 			},
+			{
+				path: "/pdf",
+				element: <PdfDetails />,
+			},
 		],
 	},
 	{
