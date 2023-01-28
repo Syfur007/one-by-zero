@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import default_image from "../../../images/default_image.png";
 import "./thumbnail.css";
 function ThumbnailViewer({ thumbnail, bookName, author, link }) {
-	// console.log(link);
-	// const queryLink = link?.substring(13, link.length - 4);
+	console.log(link);
+	const queryLink = link?.substring(13, link.length - 4);
 
 	return (
 		<div className="w-[632px] relative h-[420px]">
@@ -24,7 +24,7 @@ function ThumbnailViewer({ thumbnail, bookName, author, link }) {
 					<h4 className="font-bold text-black">- {author}</h4>
 				</div>
 				<div>
-					<Link to="/pdf" target="_blank" className="">
+					<Link to={`/pdf?q=${queryLink}`} target="_blank" className="">
 						view details
 					</Link>
 				</div>
