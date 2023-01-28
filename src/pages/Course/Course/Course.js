@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
+import Loading from "../../Shared/Loading/Loading.js";
 import CourseHeader from "../CourseHeader/CourseHeader.js";
 import CourseModal from "../CourseModal/CourseModal.js";
 
 const Course = () => {
 	const [elements, setElements] = useState([]);
-	const { courses } = useContext(CourseContext);
+	const { courses, courseLoading } = useContext(CourseContext);
+
 	if (!courses) {
 		return (
 			<div className="pt-[80px]">
@@ -18,6 +20,7 @@ const Course = () => {
 	}
 	return (
 		<div className="pt-[64px]">
+			{courseLoading && <Loading />}
 			<h1 className="bg-[#1a1a1a] text-2xl capitalize pt-10 text-white text-center">
 				{courses && courses?.courseTitle}
 			</h1>

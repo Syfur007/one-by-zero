@@ -19,7 +19,7 @@ const Left = () => {
 
 	return (
 		<div className="pt-24 pb-4 w-[30%] my-5 pl-5">
-			<div className="w-full p-5 rounded-lg  bg-[#1A103D]">
+			<div className="w-full p-5 rounded-lg  bg-[#282828]">
 				<div className="w-full mb-2 text-center">
 					<img
 						className="w-[100px] h-[100px] mx-auto border-[1px] border-[#5D25E9] rounded-md"

@@ -122,10 +122,6 @@ const CourseProvider = ({ children }) => {
 		fetchCourseData();
 	}, [mycourseInfo]);
 
-	if (courseLoading) {
-		return <Loading></Loading>;
-	}
-
 	const courseInfo = {
 		open,
 		setOpen,
@@ -142,6 +138,7 @@ const CourseProvider = ({ children }) => {
 		courses,
 		sessions,
 		examNames,
+		courseLoading,
 	};
 	return (
 		<CourseContext.Provider value={courseInfo}>

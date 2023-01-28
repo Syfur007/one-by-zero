@@ -115,7 +115,7 @@ const Header = () => {
 							</>
 						</ul>
 					</div>
-					<Link href="/" className="block ">
+					<Link href="/" className="block outline-none ">
 						<img src={navbarLogo} className="h-[70px] min-w-[250px] " alt="" />
 					</Link>
 				</div>
@@ -157,7 +157,7 @@ const Header = () => {
 								)}
 								<ul
 									tabIndex={1}
-									className="p-2 mt-3 z-50 shadow dropdown-content menu bg-[#25184E] rounded-box w-52"
+									className="p-2 mt-3 z-50 shadow dropdown-content menu bg-[#282828] rounded-box w-52"
 								>
 									<li className="mb-2" onClick={handleClick}>
 										<NavLink
