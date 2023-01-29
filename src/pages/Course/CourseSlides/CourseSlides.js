@@ -13,7 +13,7 @@ const CourseSlides = ({ course }) => {
 			<div className="w-full">
 				<></>
 				{course?.slides.length > 0 ? (
-					<div className="grid content-center grid-cols-1 gap-5 p-2 sm:p-10 lg:grid-cols-2">
+					<div className="grid content-center grid-cols-1  gap-y-5 gap-x-10 p-2 sm:p-10 lg:grid-cols-2">
 						{course.slides.map((slide, index) => {
 							return <CardSlide card={slide} key={index} />;
 						})}

@@ -1,9 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useContext, useState } from "react";
-import { useEffect } from "react";
 import { toast } from "react-hot-toast";
-import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
 import Loading from "../Loading/Loading.js";
 import "./FileModal.css";
@@ -27,7 +24,6 @@ const FIleModal = ({
 	const [uploadThumbnail, setUploadThumbnail] = useState("");
 	const { sessions, examNames } = useContext(CourseContext);
 	const [uploadLoading, setUploadLoading] = useState(false);
-	const { user } = useContext(AuthContext);
 	const selectedFileTypes = ["application/pdf"];
 
 	// catch session value

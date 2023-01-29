@@ -12,7 +12,7 @@ const CourseBook = ({ course }) => {
 			</h2>
 			<div>
 				{course?.books.length > 0 ? (
-					<div className="grid content-center grid-cols-1 gap-5 p-2 sm:p-10 lg:grid-cols-2">
+					<div className="grid content-center grid-cols-1  gap-y-5 gap-x-10 p-2 sm:p-10 lg:grid-cols-2">
 						{course.books.map((book, index) => {
 							return <CardBook card={book} key={index}></CardBook>;
 						})}

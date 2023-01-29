@@ -7,7 +7,7 @@ function CardProfileTemplate({ email, createdAt, session }) {
 	const [, , userDetails] = useUser(email);
 	const [sessionDetails] = useSession(session);
 	return (
-		<div className="w-[632px] h-[80px] flex justify-between items-center bg-[#282828] py-5 px-2 rounded-sm">
+		<div className=" h-[80px] w-full flex justify-between items-center bg-[#282828] py-5 px-2 rounded-sm">
 			<div className="flex items-center">
 				<div className="p-3 border-2 border-blue-900 rounded-full">
 					<img src={userDetails?.image} className="w-10 h-10" alt="" />

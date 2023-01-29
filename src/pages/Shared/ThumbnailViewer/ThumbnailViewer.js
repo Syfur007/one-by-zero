@@ -8,7 +8,7 @@ function ThumbnailViewer({ thumbnail, bookName, author, link }) {
 	const queryLink = link?.substring(13, link.length - 4);
 
 	return (
-		<div className="w-[632px] relative h-[420px]">
+		<div className="w-full relative h-[420px]">
 			{thumbnail ? (
 				<img
 					src={`https://server.onebyzeroedu.com/${thumbnail}`}
