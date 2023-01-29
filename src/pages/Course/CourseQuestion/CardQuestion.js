@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { FaEllipsisH } from "react-icons/fa";
 import "./CardQuestion.css";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
+import CardProfileTemplate from "../../Shared/CardProfileTemplate/CardProfileTemplate";
 
 const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 	const { link, examName, session, name, email, createdAt } = question;
@@ -38,7 +39,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 		<div className="py-2 mb-5">
 			{link && link.includes(".pdf") ? (
 				<div className="relative p-2 mx-auto ">
-					<div className="relative flex justify-between rounded-t-md bg-[#282828] border-b-[1px] border-b-gray-500">
+					<div className="relative flex justify-between items-center rounded-t-md bg-[#282828] border-b-[1px] border-b-gray-500">
 						{/* edit button */}
 						{role === "admin" && (
 							<div className="absolute cursor-pointer threedot-edit top-2 right-3">
@@ -80,7 +81,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 							</div>
 						)}
 						{/* user information */}
-						<div className="flex items-center">
+						<div className="flex w-full items-center">
 							<img
 								src={userDetails?.image}
 								className="w-[60px] h-[60px] rounded-full border-2 m-2 p-1 border-blue-gray-900"
@@ -91,12 +92,15 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 								<Time time={createdAt} />
 							</div>
 						</div>
+
 						{/* questions information */}
 
-						<div className="flex items-center p-2 question-info">
-							<h3 className="p-2 mr-5 badge-success badge">{examName}</h3>
+						<div className="fle w-full justify-end p-2 question-info">
+							<h3 className="p-2 mr-5 text-right badge-success badge">
+								{examName}
+							</h3>
 							{sessionDetails?.name && (
-								<h3 className="p-2 badge-success badge">
+								<h3 className="p-2 badge-success badge text-right">
 									{sessionDetails?.name}
 								</h3>
 							)}
@@ -118,7 +122,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 					{/* edit modal  of questions*/}
 					<div className="shadow-xl bg-[#282828]  rounded-md card">
 						{/* question information without image */}
-						<div className="relative flex justify-between border-b-[1px] border-b-gray-500">
+						<div className="relative flex justify-between items-center border-b-[1px] border-b-gray-500">
 							{/* edit button */}
 							{role === "admin" && (
 								<div className="absolute cursor-pointer threedot-edit top-2 right-3">
@@ -160,7 +164,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 								</div>
 							)}
 							{/* user information */}
-							<div className="flex items-center">
+							<div className="flex w-full items-center">
 								<img
 									src={userDetails?.image}
 									className="w-[60px] h-[60px] rounded-full border-2 m-2 p-1 border-blue-gray-900"
@@ -173,7 +177,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 							</div>
 							{/* questions information */}
 
-							<div className="flex items-center p-2 question-info">
+							<div className="flex w-full items-center justify-end p-2 question-info">
 								<h3 className="p-2 mr-5 badge-success badge">{examName}</h3>
 								{sessionDetails?.name && (
 									<h3 className="p-2 badge-success badge">

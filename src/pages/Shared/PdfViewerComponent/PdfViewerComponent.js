@@ -36,7 +36,7 @@ const PdfViewerComponent = ({ type, file }) => {
 	};
 
 	return (
-		<div className="w-full pdf__viewer">
+		<div className="w-full ">
 			<div>
 				<Document
 					file={`data:application/pdf;base64,${pdfString}`}

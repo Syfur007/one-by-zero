@@ -32,7 +32,7 @@ const CourseQuestion = ({ course }) => {
 			<div className="">
 				{course && course?.questions.length > 0 ? (
 					<>
-						<div className="w-full p-5 mx-auto z-10">
+						<div className="w-full sm:px-5 px-2 mx-auto z-10">
 							<Tabs value="all">
 								<TabsHeader>
 									<Tab key="all" value="all">
@@ -45,8 +45,8 @@ const CourseQuestion = ({ course }) => {
 									))}
 								</TabsHeader>
 								<TabsBody>
-									<TabPanel key="all" value="all">
-										<div className="grid content-center grid-cols-1 gap-y-5 gap-x-10 p-2  lg:grid-cols-2">
+									<TabPanel className="p-0" key="all" value="all">
+										<div className="grid content-center grid-cols-1 gap-y-5 gap-x-10  lg:grid-cols-2">
 											{course.questions.map((question, index) => (
 												<CardQuestion
 													key={index}
@@ -58,7 +58,11 @@ const CourseQuestion = ({ course }) => {
 										</div>
 									</TabPanel>
 									{examNames.map((examName) => (
-										<TabPanel key={examName.name} value={examName.name}>
+										<TabPanel
+											key={examName.name}
+											className="p-0"
+											value={examName.name}
+										>
 											<div className="grid content-center grid-cols-1 gap-5 p-2 sm:p-10 lg:grid-cols-2">
 												{course.questions.map((question, index) => (
 													<>
