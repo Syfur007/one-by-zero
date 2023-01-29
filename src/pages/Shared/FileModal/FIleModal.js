@@ -153,31 +153,8 @@ const FIleModal = ({
 					>
 						✕
 					</label>
-					{/* <div className="pt-3">
-						<label htmlFor="" className="mb-2 text-base font-semibold">
-							Username
-						</label>
-						<input
-							type="text"
-							placeholder="Type here"
-							disabled
-							value={user?.displayName}
-							className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-primary"
-						/>
-					</div>
-					<div className="pt-2">
-						<label htmlFor="" className="mb-2 text-base font-semibold">
-							Email
-						</label>
-						<input
-							type="text"
-							placeholder="Type here"
-							disabled
-							value={user?.email}
-							className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-primary"
-						/>
-					</div> */}
 
+					{/* session */}
 					{name !== "books" && (
 						<div className="pt-2">
 							<label htmlFor="" className="mb-2 text-base font-semibold">
@@ -185,9 +162,14 @@ const FIleModal = ({
 							</label>
 							<select
 								onChange={sessionChangeHandler}
-								className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
+								className="w-full text-black border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
 							>
-								<option value="" disabled selected>
+								<option
+									value=""
+									className="text-black capitalize"
+									disabled
+									selected
+								>
 									select session
 								</option>
 								{sessions &&
@@ -203,7 +185,7 @@ const FIleModal = ({
 							</select>
 						</div>
 					)}
-
+					{/* exam name */}
 					{name === "questions" && (
 						<>
 							<div className="pt-2">
@@ -212,9 +194,14 @@ const FIleModal = ({
 								</label>
 								<select
 									onChange={(e) => setExamName(e.target.value)}
-									className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
+									className="w-full border-2 text-black rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
 								>
-									<option value="" disabled selected>
+									<option
+										className="capitalize text-black"
+										value=""
+										disabled
+										selected
+									>
 										select examName
 									</option>
 									{examNames &&
