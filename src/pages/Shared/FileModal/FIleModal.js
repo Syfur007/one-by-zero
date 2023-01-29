@@ -192,7 +192,11 @@ const FIleModal = ({
 								</option>
 								{sessions &&
 									sessions.map((session, index) => (
-										<option key={index} value={session.value}>
+										<option
+											key={index}
+											className="text-black capitalize"
+											value={session.value}
+										>
 											{session.name}
 										</option>
 									))}
@@ -217,7 +221,7 @@ const FIleModal = ({
 										examNames.map((exam, index) => (
 											<option
 												key={index}
-												className="font-bold uppercase"
+												className="capitalize text-black"
 												value={exam?.name}
 											>
 												{exam?.name}
