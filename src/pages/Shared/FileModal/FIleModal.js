@@ -239,7 +239,7 @@ const FIleModal = ({
 									type="text"
 									onChange={(e) => setBookName(e.target.value)}
 									placeholder={`${name} name...`}
-									className="w-full rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
+									className="w-full text-black rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
 								/>
 							</div>
 							{/* Author name */}
@@ -251,7 +251,7 @@ const FIleModal = ({
 									type="text"
 									onChange={(e) => setAuthor(e.target.value)}
 									placeholder="author1,author2,author3....."
-									className="w-full border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
+									className="w-full text-black border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
 								/>
 							</div>
 							{/* thumbnails */}
