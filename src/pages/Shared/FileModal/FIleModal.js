@@ -250,7 +250,7 @@ const FIleModal = ({
 								<input
 									type="file"
 									onChange={handleThumbnailChange}
-									className="w-full  border-[0.1px] border-gray-400 file-input file-input-primary "
+									className="w-full  text-black border-[0.1px] border-gray-400 file-input file-input-primary "
 								/>
 							</div>
 						</>
@@ -263,7 +263,7 @@ const FIleModal = ({
 						<input
 							type="file"
 							onChange={handleFileChange}
-							className="w-full  border-[0.1px] border-gray-400 file-input file-input-primary "
+							className="w-full text-black  border-[0.1px] border-gray-400 file-input file-input-primary "
 						/>
 					</div>
 
