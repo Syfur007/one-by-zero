@@ -1,17 +1,25 @@
-.pdf__details__viewer {
-	width: 650px !important;
-	height: 500px !important;
-
-	z-index: 50;
+.react-pdf__Page__canvas {
+	margin: 10px auto;
+	width: 80% !important;
+	height: 100vh !important;
 }
 
 .react-pdf__Page__canvas {
 	border-radius: 0 !important;
 }
 
-@media only screen and (max-width: 800px) {
-	.pdf__details__viewer {
-		width: 500px !important;
-		height: 500px !important;
+.details_view {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 100 !important;
+}
+
+@media only screen and (max-width: 600px) {
+	.react-pdf__Page__canvas {
+		margin: 10px auto;
+		width: 100% !important;
+		height: 100vh !important;
 	}
 }

@@ -3,6 +3,8 @@ import "./pdfDetailsViewer.css";
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 import axios from "axios";
 import { Document, Page, pdfjs } from "react-pdf/dist/esm/entry.webpack";
+import { TfiFullscreen } from "react-icons/tfi";
+import { GrClose } from "react-icons/gr";
 import Loading from "../Loading/Loading";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const PDfDetailsViewer = ({ type, file }) => {
@@ -10,6 +12,7 @@ const PDfDetailsViewer = ({ type, file }) => {
 	const [numPages, setNumPages] = useState(null);
 	const [pageNumber, setPageNumber] = useState(1);
 	const [pdfLoading, setLoading] = useState(true);
+	const [viewDetails, setViewDetails] = useState(false);
 
 	useEffect(() => {
 		axios(`https://server.onebyzeroedu.com/api/pdf/`, {
@@ -41,7 +44,7 @@ const PDfDetailsViewer = ({ type, file }) => {
 	};
 
 	const prevHandler = () => {
-		if (pageNumber > 0) {
+		if (pageNumber > 1) {
 			setPageNumber((prev) => prev - 1);
 		} else {
 			setPageNumber(numPages);
@@ -57,26 +60,47 @@ const PDfDetailsViewer = ({ type, file }) => {
 	};
 
 	return (
-		<div className="relative mx-auto mb-6 pdf__details__viewer">
-			{pdfLoading && <Loading />}
-			<Document
-				file={`data:application/pdf;base64,${pdfString}`}
-				onLoadSuccess={onDocumentLoadSuccess}
+		<div
+			className={`${
+				viewDetails &&
+				" absolute top-0 left-0 right-0 bottom-0 bg-gray-800 z-[50]"
+			}`}
+		>
+			<div
+				className={`relative mx-auto${
+					viewDetails ? "details_view" : "pdf__details__viewer"
+				}`}
 			>
-				<Page pageNumber={pageNumber} />
-			</Document>
-			<FaAngleDoubleLeft
-				onClick={prevHandler}
-				className="w-6 top-[50%] z-30 p-1 hover:bg-red-500 rounded-full cursor-pointer left-0 tran-x-[-50%] absolute h-6"
-			/>
-			<FaAngleDoubleRight
-				onClick={nextHandlerPage}
-				className="w-6 h-6 z-30 p-1  cursor-pointer hover:bg-red-500 rounded-full absolute top-[50%] right-0 translate-y-[-50%] "
-			/>
-			<p className="absolute bottom-0 py-0 my-0 text-xl font-bold left-1">
-				Page <span className="text-purple-700">{pageNumber}</span> of{" "}
-				<span className="text-purple-700">{numPages}</span>
-			</p>
+				{pdfLoading && <Loading />}
+				<Document
+					file={`data:application/pdf;base64,${pdfString}`}
+					onLoadSuccess={onDocumentLoadSuccess}
+				>
+					<Page pageNumber={pageNumber} />
+				</Document>
+				<FaAngleDoubleLeft
+					onClick={prevHandler}
+					className="w-6 h-6 top-[50%] z-30 p-1 bg-red-500 text-white rounded-full cursor-pointer left-[10%] translate-y-[-50%] absolute"
+				/>
+				<FaAngleDoubleRight
+					onClick={nextHandlerPage}
+					className="w-6 h-6 z-30 p-1  cursor-pointer text-white bg-red-500 rounded-full absolute top-[50%] right-[10%] translate-y-[-50%]"
+				/>
+				<p className=" top-2 left-[10%] absolute text-xl font-bold">
+					Page <span className="text-purple-700">{pageNumber}</span> of{" "}
+					<span className="text-purple-700">{numPages}</span>
+				</p>
+				<div
+					onClick={() => setViewDetails((prev) => !prev)}
+					className="bg-red-400 right-[10%] cursor-pointer absolute top-2"
+				>
+					{viewDetails ? (
+						<GrClose className="w-10 h-10 text-white p-1" />
+					) : (
+						<TfiFullscreen className="w-10 h-10 text-white p-1" />
+					)}
+				</div>
+			</div>
 		</div>
 	);
 };
