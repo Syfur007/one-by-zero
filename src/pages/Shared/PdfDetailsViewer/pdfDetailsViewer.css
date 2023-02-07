@@ -1,11 +1,7 @@
 .react-pdf__Page__canvas {
 	margin: 10px auto;
-	width: 80% !important;
+	width: 60% !important;
 	height: 100vh !important;
-}
-
-.react-pdf__Page__canvas {
-	border-radius: 0 !important;
 }
 
 .details_view {
