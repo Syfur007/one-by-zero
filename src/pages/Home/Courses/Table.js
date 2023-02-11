@@ -29,7 +29,6 @@ const Table = ({ course }) => {
 							<th className="border border-slate-600 px-2 py-1">CourseCode</th>
 							<th className="border border-slate-600 px-2 py-1">Credit</th>
 							<th className="border border-slate-600 px-2 py-1">Hours</th>
-							<th className="border border-slate-600 px-2 py-1">action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -37,12 +36,8 @@ const Table = ({ course }) => {
 							courses.map(({ title, code, credit, hours }, index) => {
 								return (
 									<tr key={index}>
-										<th className="border border-slate-600">{index}</th>
-										<td className="border border-slate-600">{title}</td>
-										<td className="border border-slate-600">{code}</td>
-										<td className="border border-slate-600">{credit}</td>
-										<td className="border border-slate-600">{hours}</td>
-										<td className="border border-slate-600 px-2">
+										<th className="border border-slate-600">{index + 1}</th>
+										<td className="border border-slate-600">
 											<p
 												onClick={() =>
 													showResource({
@@ -53,11 +48,14 @@ const Table = ({ course }) => {
 														year: year,
 													})
 												}
-												className="text-purple-900 cursor-pointer hover:underline hover:text-purple-700"
+												className="text-white text-left pl-5 cursor-pointer hover:underline hover:text-purple-700"
 											>
-												resource
+												{title}
 											</p>
 										</td>
+										<td className="border border-slate-600">{code}</td>
+										<td className="border border-slate-600">{credit}</td>
+										<td className="border border-slate-600">{hours}</td>
 									</tr>
 								);
 							})}
