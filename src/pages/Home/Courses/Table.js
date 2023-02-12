@@ -1,19 +1,42 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
+import { BsPin, BsPinFill } from "react-icons/bs";
 import SubTotal from "./SubTotal";
+import { setPinCourseInLocalStorage } from "../../../utils/courseFunctions";
 
-const Table = ({ course }) => {
+const Table = ({ course, setCoursePin, coursePin, pin }) => {
 	const { courses, semester, year, varsity } = course;
 	const navigate = useNavigate();
 	const { setMycourseInfo } = useContext(CourseContext);
+
 	const showResource = async (courseInfo) => {
 		setMycourseInfo(courseInfo);
 		navigate("/course");
 	};
+
+	const pinHandler = () => {
+		setPinCourseInLocalStorage(course);
+		setCoursePin(course);
+	};
+
 	const getYear = ["1st", "2nd", "3rd", "4th"];
 	return (
-		<>
+		<div className="relative w-[60%] mx-auto">
+			{coursePin?._id === course?._id
+				? !pin && (
+						<BsPinFill
+							className="w-6 h-6 absolute top-2 left-2 text-purple-700 cursor-pointer"
+							onClick={pinHandler}
+						/>
+				  )
+				: !pin && (
+						<BsPin
+							className="w-6 h-6 absolute top-2 left-2 text-purple-700 cursor-pointer"
+							onClick={pinHandler}
+						/>
+				  )}
+
 			<div className="mt-5">
 				<h1 className="font-semibold capitalize text-center text-2xl text-purple-700">{`${
 					getYear[Number(year) - 1]
@@ -21,7 +44,7 @@ const Table = ({ course }) => {
 			</div>
 			<SubTotal courses={courses} />
 			<div className="overflow-x-auto my-5 text-white text-center bg-[#1a1a1a]">
-				<table className="border-collapse table-auto border border-red-200 bg-[#1a1a1a] w-[60%] mx-auto">
+				<table className="border-collapse table-auto border border-red-200 bg-[#1a1a1a] w-full mx-auto">
 					<thead>
 						<tr>
 							<th className="border border-slate-600 px-2 py-1">#</th>
@@ -62,7 +85,7 @@ const Table = ({ course }) => {
 					</tbody>
 				</table>
 			</div>
-		</>
+		</div>
 	);
 };
 

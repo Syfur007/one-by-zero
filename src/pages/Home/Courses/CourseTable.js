@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import { getPinCourseFromLocalStorage } from "../../../utils/courseFunctions";
 import Table from "./Table";
 
-const CourseTable = ({ course }) => {
-	return <Table course={course} />;
+const CourseTable = ({ course, setCoursePin, coursePin }) => {
+	return (
+		<>
+			<Table
+				course={course}
+				setCoursePin={setCoursePin}
+				coursePin={coursePin}
+			/>
+		</>
+	);
 };
 
 export default CourseTable;

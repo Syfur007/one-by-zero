@@ -18,9 +18,15 @@ const Course = () => {
 			</div>
 		);
 	}
+	if (courseLoading) {
+		return (
+			<div className="pt-[70px] pb-10 ">
+				<Loading />
+			</div>
+		);
+	}
 	return (
 		<div className="pt-[64px]">
-			{courseLoading && <Loading />}
 			<h1 className="bg-[#1a1a1a] text-2xl capitalize pt-10 text-white text-center">
 				{courses && courses?.courseTitle}
 			</h1>
