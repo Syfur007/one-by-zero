@@ -4,6 +4,7 @@ import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
 import { BsPin, BsPinFill } from "react-icons/bs";
 import SubTotal from "./SubTotal";
 import { setPinCourseInLocalStorage } from "../../../utils/courseFunctions";
+import { toast } from "react-hot-toast";
 
 const Table = ({ course, setCoursePin, coursePin, pin }) => {
 	const { courses, semester, year, varsity } = course;
@@ -18,12 +19,13 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 	const pinHandler = () => {
 		setPinCourseInLocalStorage(course);
 		setCoursePin(course);
+		toast.success("successfully added to pin");
 	};
 
 	const getYear = ["1st", "2nd", "3rd", "4th"];
 	return (
 		<div
-			className={`relative w-[60%] mx-auto ${
+			className={`relative lg:w-[60%]  sm:w-[70%] w-full mx-auto ${
 				pin && "bg-[#282828] p-5 rounded-md "
 			} `}
 		>
