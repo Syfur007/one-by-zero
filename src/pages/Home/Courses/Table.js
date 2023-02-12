@@ -22,7 +22,11 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 
 	const getYear = ["1st", "2nd", "3rd", "4th"];
 	return (
-		<div className="relative w-[60%] mx-auto">
+		<div
+			className={`relative w-[60%] mx-auto ${
+				pin && "bg-[#282828] p-5 rounded-md "
+			} `}
+		>
 			{coursePin?._id === course?._id
 				? !pin && (
 						<BsPinFill
