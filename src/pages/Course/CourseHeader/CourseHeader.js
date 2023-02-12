@@ -6,6 +6,7 @@ import {
 	TabPanel,
 } from "@material-tailwind/react";
 import CourseBasicInfo from "../CourseBasicInfo/CourseBasicInfo.js";
+import CourseTeacher from "../CourseTeacher/CourseTeacher.js";
 import Resources from "../Resources/Resources.js";
 
 const CourseHeader = ({ setElements }) => {
@@ -39,6 +40,9 @@ const CourseHeader = ({ setElements }) => {
 						</TabPanel>
 						<TabPanel key="2" value="2">
 							<CourseBasicInfo></CourseBasicInfo>
+						</TabPanel>
+						<TabPanel key="3" value="3">
+							<CourseTeacher></CourseTeacher>
 						</TabPanel>
 					</TabsBody>
 				</Tabs>

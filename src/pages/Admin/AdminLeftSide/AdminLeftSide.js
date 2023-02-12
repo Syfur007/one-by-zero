@@ -14,7 +14,7 @@ const AdminLeftSide = () => {
 		setOpen(open === value ? 0 : value);
 	};
 	return (
-		<aside className="w-[250px] fixed top-18 bg-[#1A103D] min-h-[90vh] p-3 text-white">
+		<aside className="w-[250px] fixed top-20 bg-[#1A103D] min-h-[90vh] p-3 text-white">
 			<Accordion open={open === 1}>
 				<AccordionHeader
 					className={`text-white px-3 rounded-sm ${

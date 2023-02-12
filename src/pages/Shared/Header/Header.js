@@ -21,7 +21,7 @@ const Header = () => {
 					Home
 				</Link>
 			</li>
-			{user && role === "admin" && (
+			{user && (role === "admin" || role === "moderator") && (
 				<li className="hover:bg-[#4d1fc0] rounded-md ">
 					<label htmlFor="my-modal-3" className="">
 						Contribute
