@@ -38,7 +38,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 	return (
 		<div className="py-2 mb-5">
 			{link && link.includes(".pdf") ? (
-				<div className="relative p-2 mx-auto ">
+				<div className="relative mx-auto ">
 					<div className="relative flex justify-between items-center rounded-t-md bg-[#282828] border-b-[1px] border-b-gray-500">
 						{/* edit button */}
 						{role === "admin" && (
@@ -81,7 +81,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 							</div>
 						)}
 						{/* user information */}
-						<div className="flex w-full items-center">
+						<div className="flex items-center w-full">
 							<img
 								src={userDetails?.image}
 								className="w-[60px] h-[60px] rounded-full border-2 m-2 p-1 border-blue-gray-900"
@@ -95,27 +95,22 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 
 						{/* questions information */}
 
-						<div className="fle w-full justify-end p-2 question-info">
+						{/* <div className="justify-end w-full p-2 fle question-info">
 							<h3 className="p-2 mr-5 text-right badge-success badge">
 								{examName}
 							</h3>
 							{sessionDetails?.name && (
-								<h3 className="p-2 badge-success badge text-right">
+								<h3 className="p-2 text-right badge-success badge">
 									{sessionDetails?.name}
 								</h3>
 							)}
-						</div>
+						</div> */}
 					</div>
-					<PdfViewerComponent file={`.${link}`} type="pdf"></PdfViewerComponent>
-					<div className="absolute bottom-[20px] left-[50%] translate-x-[-50%] text-red-700 font-bold cursor-pointer hover:text-red-900 z-10">
-						<a
-							href={`https://server.onebyzeroedu.com${link}`}
-							rel="noreferrer"
-							target="_blank"
-						>
-							full view
-						</a>
-					</div>
+					<PdfViewerComponent
+						file={`.${link}`}
+						link={link}
+						type="pdf"
+					></PdfViewerComponent>
 				</div>
 			) : (
 				<>
@@ -164,7 +159,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 								</div>
 							)}
 							{/* user information */}
-							<div className="flex w-full items-center">
+							<div className="flex items-center w-full">
 								<img
 									src={userDetails?.image}
 									className="w-[60px] h-[60px] rounded-full border-2 m-2 p-1 border-blue-gray-900"
@@ -177,20 +172,20 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 							</div>
 							{/* questions information */}
 
-							<div className="flex w-full items-center justify-end p-2 question-info">
+							{/* <div className="flex items-center justify-end w-full p-2 question-info">
 								<h3 className="p-2 mr-5 badge-success badge">{examName}</h3>
 								{sessionDetails?.name && (
 									<h3 className="p-2 badge-success badge">
 										{sessionDetails?.name}
 									</h3>
 								)}
-							</div>
+							</div> */}
 						</div>
 						{/* questions */}
 						<div className="p-0 card-body">
 							<a
 								href={question.link}
-								className="block w-full sm:h-[550px] h-[400px]"
+								className="block w-full  h-[400px]"
 								target="_blank"
 								rel="noreferrer"
 							>

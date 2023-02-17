@@ -21,8 +21,8 @@ const CourseQuestion = ({ course }) => {
 		<div className="w-full">
 			<h1 className="py-5 text-4xl text-center uppercase">questions</h1>
 			{/* titte of question */}
-			<div className="flex sm:flex-row flex-col px-5 justify-center">
-				<h2 className="mb-5 sm:mr-5 mr-0 text-2xl text-center capitalize">
+			<div className="flex flex-col justify-center px-5 sm:flex-row">
+				<h2 className="mb-5 mr-0 text-2xl text-center capitalize sm:mr-5">
 					{course?.courseTitle}
 				</h2>
 				<h2 className="mb-5 text-2xl text-center capitalize">
@@ -32,7 +32,7 @@ const CourseQuestion = ({ course }) => {
 			<div className="">
 				{course && course?.questions.length > 0 ? (
 					<>
-						<div className="w-full sm:px-5 px-2 mx-auto z-10">
+						<div className="z-10 w-full px-2 mx-auto sm:px-5">
 							<Tabs value="all">
 								<TabsHeader>
 									<Tab key="all" value="all">
@@ -46,7 +46,7 @@ const CourseQuestion = ({ course }) => {
 								</TabsHeader>
 								<TabsBody>
 									<TabPanel className="p-0" key="all" value="all">
-										<div className="grid content-center grid-cols-1 gap-y-5 gap-x-10  lg:grid-cols-2">
+										<div className="grid content-center grid-cols-1 gap-y-5 gap-x-10 lg:grid-cols-3">
 											{course.questions.map((question, index) => (
 												<CardQuestion
 													key={index}
@@ -63,7 +63,7 @@ const CourseQuestion = ({ course }) => {
 											className="p-0"
 											value={examName.name}
 										>
-											<div className="grid content-center grid-cols-1 gap-5 p-2 sm:p-10 lg:grid-cols-2">
+											<div className="grid content-center grid-cols-1 gap-5 p-2 sm:p-10 lg:grid-cols-3">
 												{course.questions.map((question, index) => (
 													<>
 														{question &&

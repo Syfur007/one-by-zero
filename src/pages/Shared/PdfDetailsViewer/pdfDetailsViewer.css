@@ -1,21 +1,7 @@
-.react-pdf__Page__canvas {
-	margin: 10px auto;
-	width: 60% !important;
-	height: 100vh !important;
-}
-
 .details_view {
 	position: absolute;
 	top: 0;
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: 100 !important;
-}
-
-@media only screen and (max-width: 600px) {
-	.react-pdf__Page__canvas {
-		margin: 10px auto;
-		width: 100% !important;
-		height: 100vh !important;
-	}
 }

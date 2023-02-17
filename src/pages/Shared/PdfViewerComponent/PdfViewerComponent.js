@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Document, Page, pdfjs } from "react-pdf/dist/esm/entry.webpack";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-const PdfViewerComponent = ({ type, file }) => {
+
+const PdfViewerComponent = ({ type, file, link }) => {
 	const [pdfString, setPdfString] = useState("");
 	const [numPages, setNumPages] = useState(null);
 	const [pageNumber, setPageNumber] = useState(1);
@@ -36,18 +37,28 @@ const PdfViewerComponent = ({ type, file }) => {
 	};
 
 	return (
-		<div className="w-full ">
-			<div>
-				<Document
-					file={`data:application/pdf;base64,${pdfString}`}
-					onLoadSuccess={onDocumentLoadSuccess}
-				>
-					<Page pageNumber={pageNumber} />
-				</Document>
+		<div className="w-full relative max-h-[400px] bg-red-400">
+			<Document
+				file={`data:application/pdf;base64,${pdfString}`}
+				onLoadSuccess={onDocumentLoadSuccess}
+			>
+				<Page pageNumber={pageNumber} />
+			</Document>
+
+			<div className="absolute bottom-0 left-0 flex items-center justify-between w-full h-16 px-4  bg-[rgba(0,0,0,0.4)]">
+				<p className="text-xl font-semibold text-white ">
+					Page {pageNumber} of {numPages}
+				</p>
+				<div className="z-10 text-xl font-bold text-white cursor-pointer right-2 ">
+					<a
+						href={`https://server.onebyzeroedu.com${link}`}
+						rel="noreferrer"
+						target="_blank"
+					>
+						full view
+					</a>
+				</div>
 			</div>
-			<p>
-				Page {pageNumber} of {numPages}
-			</p>
 		</div>
 	);
 };

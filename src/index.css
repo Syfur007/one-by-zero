@@ -32,15 +32,6 @@ code {
 	z-index: 10000 !important;
 }
 
-.react-pdf__Page__canvas,
-.react-pdf__Page__annotations {
-	width: 100% !important;
-	height: 85vh !important;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
-	margin: 0 auto !important;
-	padding: 0px 0px !important;
-}
 .antialiased.p-10 {
 	padding: 1px !important;
 }
