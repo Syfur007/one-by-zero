@@ -46,7 +46,7 @@ const CourseQuestion = ({ course }) => {
 								</TabsHeader>
 								<TabsBody>
 									<TabPanel className="p-0" key="all" value="all">
-										<div className="grid content-center grid-cols-1 gap-y-5 gap-x-10 lg:grid-cols-3">
+										<div className="grid content-center grid-cols-1 p-2 overflow-hidden gap-y-5 gap-x-10 md:grid-cols-2 lg:grid-cols-3">
 											{course.questions.map((question, index) => (
 												<CardQuestion
 													key={index}
@@ -63,7 +63,7 @@ const CourseQuestion = ({ course }) => {
 											className="p-0"
 											value={examName.name}
 										>
-											<div className="grid content-center grid-cols-1 gap-5 p-2 sm:p-10 lg:grid-cols-3">
+											<div className="grid content-center grid-cols-1 gap-5 p-2 sm:p-10 md:grid-cols-2 lg:grid-cols-3">
 												{course.questions.map((question, index) => (
 													<>
 														{question &&
