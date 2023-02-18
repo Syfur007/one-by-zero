@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Document, Page, pdfjs } from "react-pdf/dist/esm/entry.webpack";
+import { DEFAULT_URL_SERVER } from "../../../constants/url";
+import { primary, secondary } from "../../../constants/colors";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const PdfViewerComponent = ({ type, file, link }) => {
@@ -49,9 +51,11 @@ const PdfViewerComponent = ({ type, file, link }) => {
 				<p className="text-xl font-semibold text-white ">
 					Page {pageNumber} of {numPages}
 				</p>
-				<div className="z-10 text-xl font-bold text-white cursor-pointer right-2 ">
+				<div
+					className={`z-10 text-sm font-medium text-white cursor-pointer right-2 bg-[${primary}] px-4 py-2 rounded-md hover:bg-[${secondary}] `}
+				>
 					<a
-						href={`https://server.onebyzeroedu.com${link}`}
+						href={`${DEFAULT_URL_SERVER}${link}`}
 						rel="noreferrer"
 						target="_blank"
 					>
