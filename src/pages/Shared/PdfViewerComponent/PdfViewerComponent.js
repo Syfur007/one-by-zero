@@ -3,12 +3,20 @@ import axios from "axios";
 import { Document, Page, pdfjs } from "react-pdf/dist/esm/entry.webpack";
 import { DEFAULT_URL_SERVER } from "../../../constants/url";
 import { primary, secondary } from "../../../constants/colors";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const PdfViewerComponent = ({ type, file, link }) => {
 	const [pdfString, setPdfString] = useState("");
 	const [numPages, setNumPages] = useState(null);
 	const [pageNumber, setPageNumber] = useState(1);
+
+	const { user } = useContext(AuthContext);
+	const fullViewHandler = () => {
+		alert("Please,Login to see full view");
+		return;
+	};
 
 	useEffect(() => {
 		axios(`https://server.onebyzeroedu.com/api/pdf/`, {
@@ -54,13 +62,17 @@ const PdfViewerComponent = ({ type, file, link }) => {
 				<div
 					className={`z-10 text-sm font-medium text-white cursor-pointer right-2 bg-[${primary}] px-4 py-2 rounded-md hover:bg-[${secondary}] `}
 				>
-					<a
-						href={`${DEFAULT_URL_SERVER}${link}`}
-						rel="noreferrer"
-						target="_blank"
-					>
-						full view
-					</a>
+					{user?.uid ? (
+						<a
+							href={`${DEFAULT_URL_SERVER}${link}`}
+							rel="noopener noreferrer"
+							target="_blank"
+						>
+							full view
+						</a>
+					) : (
+						<button onClick={fullViewHandler}>full view</button>
+					)}
 				</div>
 			</div>
 		</div>
