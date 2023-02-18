@@ -18,7 +18,7 @@ const Left = () => {
 	console.log(userDetails);
 
 	return (
-		<div className="pt-24 pb-4 w-[30%] my-5 pl-5">
+		<div className="w-1/2 pt-24 pb-4 pl-5 my-5">
 			<div className="w-full p-5 rounded-lg  bg-[#282828]">
 				<div className="w-full mb-2 text-center">
 					<img

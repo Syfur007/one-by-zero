@@ -6,7 +6,10 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider.js";
 import Alert from "../Shared/Alert/Alert.js";
+import Cookies from "js-cookie";
+import { DEFAULT_URL_SERVER } from "../../constants/url";
 import SigninLoader from "../Shared/Loading/SigninLoader.js";
+import axios from "axios";
 
 const Left = () => {
 	const navigate = useNavigate();
@@ -19,59 +22,80 @@ const Left = () => {
 		watch,
 		formState: { errors },
 	} = useForm();
-	const onSubmit = (data) => {
+	const onSubmit = async (data) => {
 		setSignInLoading(true);
 		const email = watch("email");
 		const password = watch("password");
-		signIn(email, password)
-			.then((user) => {
-				console.log(user);
-				setSignInLoading(false);
+
+		try {
+			//TODO:sign with email and password
+			const { user } = await signIn(email, password);
+			if (!user) {
+				setError("Signin is failed");
+				return;
+			}
+			//TODO: generate token for user
+
+			const { data } = await axios.get(
+				`${DEFAULT_URL_SERVER}/api/user/jwt?email=${user?.email}`
+			);
+
+			//TODO: set token to cookie
+			if (data?.token) {
+				Cookies.set("one-by-zero-user-token", data?.token, {
+					expires: 30,
+					path: "/",
+				});
 				toast.success("login success");
-				navigate("/");
-			})
-			.catch((err) => {
-				console.log(err);
 				setSignInLoading(false);
-				let message = err.message.split(":")[1];
-				setError(message);
-			});
-		console.log(email, password);
+				navigate("/");
+			}
+
+			setError("something wen wrong");
+		} catch (error) {
+			setSignInLoading(false);
+			let message = error.message.split(":")[1];
+			setError(message);
+		}
 	};
 
-	const signInWithGoogle = () => {
-		handleGoogleSignIn()
-			.then((user) => {
-				console.log(user);
-				fetch("https://server.onebyzeroedu.com/api/user/", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						email: user?.user?.email,
-						phoneNumber: user?.user?.phoneNumber,
-						name: user?.user?.displayName,
-						image: user?.user?.photoURL,
-					}),
-				})
-					.then((res) => res.json())
-					.then((data) => {
-						console.log(data);
-						setSignInLoading(false);
-						toast.success("login success");
-						navigate("/");
-					})
-					.catch((err) => {
-						setSignInLoading(false);
-						console.log(err);
-					});
-			})
-			.catch((err) => {
-				let message = err.message.split(":")[1];
-				setError(message);
-				console.log(err);
-			});
+	const signInWithGoogle = async () => {
+		try {
+			// TODO:: signin with google
+			const { user } = await handleGoogleSignIn();
+			if (!user?.uid) {
+				setError("Signin is failed");
+				return;
+			}
+
+			const createUserIntoMongoDb = {
+				email: user?.email,
+				phoneNumber: user?.phoneNumber,
+				name: user?.displayName,
+				image: user?.photoURL,
+			};
+			console.log(
+				"🚀 ~ file: Left.js:77 ~ signInWithGoogle ~ createUserIntoMongoDb",
+				createUserIntoMongoDb
+			);
+			// TODO:: create use into mongodb
+			const data = await axios.post(
+				`${DEFAULT_URL_SERVER}/api/user/`,
+				createUserIntoMongoDb
+			);
+
+			if (data) {
+				toast.success("login success");
+				navigate("/");
+			} else {
+				setError("user is not created\n please ,login agin");
+			}
+			setSignInLoading(false);
+		} catch (err) {
+			let message = err.message.split(":")[1];
+			setError(message);
+			console.log(err);
+		}
 	};
 
 	return (
