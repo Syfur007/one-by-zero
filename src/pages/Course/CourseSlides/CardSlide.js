@@ -6,7 +6,7 @@ function CardSlide({ card }) {
 	const { email, createdAt, session, thumbnail, author, bookName, link } = card;
 
 	return (
-		<div className="sm:px-5">
+		<div className="">
 			<CardProfileTemplate
 				email={email}
 				createdAt={createdAt}
