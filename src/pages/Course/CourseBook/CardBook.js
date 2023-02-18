@@ -6,7 +6,7 @@ function CardBook({ card }) {
 	console.log(card);
 	const { email, createdAt, session, thumbnail, bookName, author, link } = card;
 	return (
-		<div>
+		<div className="">
 			<CardProfileTemplate
 				email={email}
 				createdAt={createdAt}
