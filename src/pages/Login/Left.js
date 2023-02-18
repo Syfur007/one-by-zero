@@ -74,10 +74,7 @@ const Left = () => {
 				name: user?.displayName,
 				image: user?.photoURL,
 			};
-			console.log(
-				"🚀 ~ file: Left.js:77 ~ signInWithGoogle ~ createUserIntoMongoDb",
-				createUserIntoMongoDb
-			);
+
 			// TODO:: create use into mongodb
 			const data = await axios.post(
 				`${DEFAULT_URL_SERVER}/api/user/`,
@@ -85,6 +82,18 @@ const Left = () => {
 			);
 
 			if (data) {
+				//TODO: generate token for user
+				const dataToken = (
+					await axios.get(
+						`${DEFAULT_URL_SERVER}/api/user/jwt?email=${user?.email}`
+					)
+				).data;
+				console.log(dataToken);
+				Cookies.set("one-by-zero-user-token", dataToken?.token, {
+					expires: 30,
+					path: "/",
+				});
+				//TODO: set token for user
 				toast.success("login success");
 				navigate("/");
 			} else {

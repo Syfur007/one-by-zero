@@ -12,6 +12,7 @@ import { FaEllipsisH } from "react-icons/fa";
 import "./CardQuestion.css";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
 import CardProfileTemplate from "../../Shared/CardProfileTemplate/CardProfileTemplate";
+import { Link } from "react-router-dom";
 
 const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 	const { link, examName, session, name, email, createdAt } = question;
@@ -88,7 +89,11 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 								alt=""
 							/>
 							<div>
-								<h3>{userDetails?.name ? userDetails?.name : "unknown"}</h3>
+								<h3 className="hover:underline">
+									<Link to={`/profile?q=${email}`}>
+										{userDetails?.name ? userDetails?.name : "unknown"}
+									</Link>
+								</h3>
 								<Time time={createdAt} />
 							</div>
 						</div>
@@ -166,7 +171,11 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 									alt=""
 								/>
 								<div>
-									<h3>{userDetails?.name ? userDetails?.name : "unknown"}</h3>
+									<h3 className="hover:underline">
+										<Link to={`/profile?q=${email}`}>
+											{userDetails?.name ? userDetails?.name : "unknown"}
+										</Link>
+									</h3>
 									<Time time={createdAt} />
 								</div>
 							</div>

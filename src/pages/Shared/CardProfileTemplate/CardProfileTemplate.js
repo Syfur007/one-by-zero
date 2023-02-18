@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import useSession from "../../../hooks/useSession";
 import useUser from "../../../hooks/useUser";
 import Time from "../Time/Time";
@@ -13,7 +14,9 @@ function CardProfileTemplate({ email, createdAt, session }) {
 					<img src={userDetails?.image} className="w-10 h-10" alt="" />
 				</div>
 				<div className="ml-2">
-					<h3>{userDetails?.name}</h3>
+					<h3 className="hover:underline">
+						<Link to={`/profile?q=${email}`}>{userDetails?.name}</Link>
+					</h3>
 					<Time time={createdAt} />
 				</div>
 			</div>

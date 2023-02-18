@@ -3,22 +3,25 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useContext } from "react";
 import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
 import useUser from "../../../hooks/useUser.js";
 import Loading from "../../Shared/Loading/Loading.js";
 
 const Left = () => {
+	const [searchParams] = useSearchParams();
+	const queryEmail = searchParams.get("q");
 	const { user, setTitle } = useContext(AuthContext);
 	useEffect(() => {
 		setTitle(`Profile-${user?.displayName} | OneByZero`);
 	}, [setTitle, user]);
 
-	const [, , userDetails] = useUser(user?.email);
+	const [, , userDetails] = useUser(queryEmail ? queryEmail : user?.email);
 
-	console.log(userDetails);
+	// console.log(userDetails);
 
 	return (
-		<div className="w-1/2 pt-24 pb-4 pl-5 my-5">
+		<div className="w-full px-5 pt-24 my-5 sm:pb-4 sm:w-1/2">
 			<div className="w-full p-5 rounded-lg  bg-[#282828]">
 				<div className="w-full mb-2 text-center">
 					<img
@@ -27,14 +30,14 @@ const Left = () => {
 						alt=""
 					/>
 				</div>
-				<h3 className="text-center text-white">{user?.displayName}</h3>
+				<h3 className="text-center text-white">{userDetails?.name}</h3>
 				<Button size="sm" color="green" className="mt-5">
 					change image
 				</Button>
 				<p className="mt-5 text-white">
 					<b>Email: </b>{" "}
 					<a href={`mailto:${user?.email}`} className="hover:underline">
-						{user?.email}
+						{userDetails?.email}
 					</a>
 				</p>
 			</div>
