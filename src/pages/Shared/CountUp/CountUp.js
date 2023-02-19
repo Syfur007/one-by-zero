@@ -10,7 +10,9 @@ const CountUpNumber = ({ name, count }) => {
 				>
 					<span ref={countUpRef} />
 					<p>{start}</p>
-					<h2 className="uppercase">{name}</h2>
+					<h2 className="uppercase" onClick={start}>
+						{name}
+					</h2>
 				</div>
 			)}
 		</CountUp>
