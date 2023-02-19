@@ -9,6 +9,7 @@ const CountUpNumber = ({ name, count }) => {
 					className={`flex flex-col items-center justify-center w-40 h-20 mx-5 text-white bg-[${secondary}] rounded-md shadow-lg `}
 				>
 					<span ref={countUpRef} />
+					<p>{start}</p>
 					<h2 className="uppercase">{name}</h2>
 				</div>
 			)}
