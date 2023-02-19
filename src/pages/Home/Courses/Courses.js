@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { getPinCourseFromLocalStorage } from "../../../utils/courseFunctions";
+import { getPinCourseFromLocalStorage } from "../../../utils/functions/courseFunctions";
 import CourseTable from "./CourseTable";
 import Table from "./Table";
 

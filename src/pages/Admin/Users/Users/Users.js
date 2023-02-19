@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { toast } from "react-hot-toast";
 import { primary, secondary } from "../../../../constants/colors";
-import { addUserAsModerator, getUsers } from "../../../../utils/userHttp";
+import { addUserAsModerator, getUsers } from "../../../../utils/https/userHttp";
 import Loading from "../../../Shared/Loading/Loading";
 
 const Users = () => {
@@ -26,7 +26,7 @@ const Users = () => {
 	};
 	console.log(data);
 	return (
-		<div className="pt-16 px-5">
+		<div className="px-5 pt-16">
 			<table class="border-collapse text-white text-left pl-2 border border-slate-500 w-full">
 				<thead>
 					<tr>
@@ -46,7 +46,7 @@ const Users = () => {
 									<td class="border border-slate-700 pl-2 py-2">
 										<img
 											src={user?.image}
-											className="w-12 h-12 rounded-full  mx-auto"
+											className="w-12 h-12 mx-auto rounded-full"
 											alt=""
 										/>
 									</td>

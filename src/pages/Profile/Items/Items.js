@@ -3,7 +3,6 @@ import CardQuestion from "../../Course/CourseQuestion/CardQuestion";
 import CardTemplate from "../../Shared/CardTemplate/CardTemplate";
 
 const Items = ({ items, active }) => {
-	console.log(items);
 	return (
 		<>
 			{items && active === "questions"

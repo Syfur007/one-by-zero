@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
 import { BsPin, BsPinFill } from "react-icons/bs";
 import SubTotal from "./SubTotal";
-import { setPinCourseInLocalStorage } from "../../../utils/courseFunctions";
+import { setPinCourseInLocalStorage } from "../../../utils/functions/courseFunctions";
 import { toast } from "react-hot-toast";
 
 const Table = ({ course, setCoursePin, coursePin, pin }) => {

@@ -53,25 +53,35 @@ const Resources = ({ course: fetchCourseData, setElements }) => {
 						onClick={() => resourceTypesHandler("questions")}
 						className="max-w-[56] max-auto bg-[#373737] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
 					>
-						<h3 className="text-xl font-semibold">Questions</h3>
+						<h3 className="text-xl font-semibold">
+							Questions (<span className="">{courses?.questions?.length}</span>)
+						</h3>
 					</div>
 					<div
 						onClick={() => resourceTypesHandler("books")}
 						className="max-w-[56] max-auto bg-[#373737] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
 					>
-						<h3 className="text-xl font-semibold">Books</h3>
+						<h3 className="text-xl font-semibold">
+							Books (<span className="">{courses?.books?.length}</span>)
+						</h3>
 					</div>
 					<div
 						onClick={() => resourceTypesHandler("notes")}
 						className="max-w-[56] max-auto bg-[#373737] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
 					>
-						<h3 className="text-xl font-semibold">Class Notes</h3>
+						<h3 className="text-xl font-semibold">
+							Class Notes (
+							<span className="">{courses?.handNotes?.length}</span>)
+						</h3>
 					</div>
 					<div
 						onClick={() => resourceTypesHandler("slides")}
 						className="max-w-[56] max-auto bg-[#373737] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
 					>
-						<h3 className="text-xl font-semibold">Lecture Slide</h3>
+						<h3 className="text-xl font-semibold">
+							Lecture Slide (<span className="">{courses?.slides?.length}</span>
+							)
+						</h3>
 					</div>
 				</div>
 			</div>
