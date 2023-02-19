@@ -1,12 +1,9 @@
 # OneByZero Website
-Live website link: [https://kitchen-food-4a61d.web.app/](https://kitchen-food-4a61d.web.app/)
+Live website link: [https://onebyzeroedu.com/](https://onebyzeroedu.com/)
 
-# Overview
-* this website is a food selling based website where you can buy bengali foods  and also abroad foods.
-* It has lots of food which made from home such as Kacchi biryani, Chicken Kabab, khir,dodhi etc.
-* You also can obtain knowledge  by reading the blog of this website
-* You can review our services as you want and also add services.
-* You can also learn cooking from this website.
+# Overview![Screenshot_20230219_141030](https://user-images.githubusercontent.com/41534160/219936686-4bb993d9-f784-492f-9e22-c19ae54fc987.png)
+
+
 
 # Technologies Usage
 * React
