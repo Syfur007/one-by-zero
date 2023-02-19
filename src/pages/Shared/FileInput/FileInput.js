@@ -167,12 +167,12 @@ const FileInput = ({ name, showResources }) => {
 	};
 
 	return (
-		<div className="w-full pt-[70px] pb-10 mt-5 ">
+		<div className="w-full pt-[70px] pb-10 mt-10 ">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className="md:w-1/2 w-[90%] p-10 mx-auto bg-[#373737] shadow-2xl rounded-2xl"
 			>
-				<h1 className="mb-10 text-4xl text-center text-white uppercase">
+				<h1 className="mb-5 text-2xl text-center text-white uppercase">
 					{" "}
 					{showResources ? "Show my Resources" : `give ${name}`}
 				</h1>
@@ -183,7 +183,7 @@ const FileInput = ({ name, showResources }) => {
 					</label>
 					<select
 						{...register("university")}
-						className="w-full select select-bordered"
+						className="w-full select select-sm select-bordered"
 					>
 						<option value="University of Barishal">
 							University of Barishal
@@ -204,7 +204,7 @@ const FileInput = ({ name, showResources }) => {
 					</label>
 					<select
 						{...register("department")}
-						className="w-full select select-bordered"
+						className="w-full select select-sm select-bordered"
 					>
 						<option value="Computer Science & Engineering">
 							Computer Science and Engineering
@@ -216,73 +216,77 @@ const FileInput = ({ name, showResources }) => {
 						))}
 					</select>
 				</div>
-				{/* year */}
-				<div className="mt-5 w-4/3">
-					<label htmlFor="" className="block mb-1 font-bold text-white">
-						year
-					</label>
-					<select
-						{...register("year", { required: "The year is required" })}
-						className="w-full select select-bordered"
-						required
-					>
-						<option
-							value={
-								courseInfoFromLocalStorage?.year
-									? courseInfoFromLocalStorage.year
-									: ""
-							}
+				<div className="flex w-4/3">
+					{/* year */}
+					<div className="w-full mt-5 mr-3">
+						<label htmlFor="" className="block mb-1 font-bold text-white">
+							year
+						</label>
+						<select
+							{...register("year", { required: "The year is required" })}
+							className="w-full select-sm select select-bordered"
+							required
 						>
-							{courseInfoFromLocalStorage
-								? `${
-										courseInfoFromLocalStorage?.year === 1
-											? "1st"
-											: courseInfoFromLocalStorage?.year === 2
-											? "2nd"
-											: courseInfoFromLocalStorage?.year === 3
-											? "3rd"
-											: "4th"
-								  }`
-								: "Select Year"}
-						</option>
-						{years &&
-							years.map((year, index) => (
-								<option value={year.value} key={index}>
-									{year.name}
-								</option>
-							))}
-					</select>
-				</div>
-				{/* semester */}
-				<div className="mt-5 w-4/3">
-					<label htmlFor="" className="block mb-1 font-bold text-white">
-						semester
-					</label>
-					<select
-						{...register("semester", { required: "the semester is required" })}
-						className="w-full select select-bordered"
-						required
-					>
-						<option
-							value={
-								courseInfoFromLocalStorage?.semester
-									? courseInfoFromLocalStorage?.semester
-									: ""
-							}
+							<option
+								value={
+									courseInfoFromLocalStorage?.year
+										? courseInfoFromLocalStorage.year
+										: ""
+								}
+							>
+								{courseInfoFromLocalStorage
+									? `${
+											courseInfoFromLocalStorage?.year === 1
+												? "1st"
+												: courseInfoFromLocalStorage?.year === 2
+												? "2nd"
+												: courseInfoFromLocalStorage?.year === 3
+												? "3rd"
+												: "4th"
+									  }`
+									: "Select Year"}
+							</option>
+							{years &&
+								years.map((year, index) => (
+									<option value={year.value} key={index}>
+										{year.name}
+									</option>
+								))}
+						</select>
+					</div>
+					{/* semester */}
+					<div className="w-full mt-5">
+						<label htmlFor="" className="block mb-1 font-bold text-white">
+							semester
+						</label>
+						<select
+							{...register("semester", {
+								required: "the semester is required",
+							})}
+							className="w-full select select-sm select-bordered"
+							required
 						>
-							{courseInfoFromLocalStorage
-								? courseInfoFromLocalStorage?.semester === 1
-									? "1st"
-									: "2nd"
-								: "Select Semester"}
-						</option>
-						{semesters &&
-							semesters.map((semester, index) => (
-								<option value={semester.value} key={index}>
-									{semester.name}
-								</option>
-							))}
-					</select>
+							<option
+								value={
+									courseInfoFromLocalStorage?.semester
+										? courseInfoFromLocalStorage?.semester
+										: ""
+								}
+							>
+								{courseInfoFromLocalStorage
+									? courseInfoFromLocalStorage?.semester === 1
+										? "1st"
+										: "2nd"
+									: "Select Semester"}
+							</option>
+							{semesters &&
+								semesters.map((semester, index) => (
+									<option value={semester.value} key={index}>
+										{semester.name}
+									</option>
+								))}
+						</select>
+					</div>
 				</div>
 				{/* course title */}
 				<div className="mt-5 w-4/3">
@@ -291,7 +295,7 @@ const FileInput = ({ name, showResources }) => {
 					</label>
 					<select
 						{...register("course")}
-						className="w-full select select-bordered"
+						className="w-full select select-sm select-bordered"
 						required
 					>
 						<option
@@ -318,7 +322,7 @@ const FileInput = ({ name, showResources }) => {
 						<label
 							htmlFor="file-input-modal-3"
 							onClick={() => setShowFileModal(true)}
-							className="btn btn-md btn-primary"
+							className="btn btn-sm btn-primary"
 							disabled={file}
 						>
 							add file
@@ -344,7 +348,7 @@ const FileInput = ({ name, showResources }) => {
 				)}
 
 				<div className="mt-5">
-					<button type="submit" className="btn btn-primary">
+					<button type="submit" className="btn btn-primary btn-sm">
 						{showResources ? "show resources" : `upload ${name}`}
 					</button>
 				</div>
