@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { default_url } from "../../../utils/https/https";
 import { getTotalItems } from "../../../utils/functions/resourceFunctions";
 import Alert from "../../Shared/Alert/Alert";
@@ -23,24 +23,26 @@ const CountResources = () => {
 			}
 		},
 	});
+
+	const slides = useMemo(() => {
+		return getTotalItems(data, "slides");
+	}, [data]);
+	const books = useMemo(() => getTotalItems(data, "books"), [data]);
+	const questions = useMemo(() => getTotalItems(data, "questions"), [data]);
+	const handNotes = useMemo(() => getTotalItems(data, "handNotes"), [data]);
 	if (isLoading) {
 		return <Loading />;
 	}
-
-	const slides = getTotalItems(data, "slides");
-	const books = getTotalItems(data, "books");
-	const questions = getTotalItems(data, "questions");
-	const handNotes = getTotalItems(data, "handNotes");
 	console.log(slides, questions, handNotes, books);
 
 	return error ? (
 		<Alert>{error}</Alert>
 	) : (
 		<div className="flex flex-row justify-center px-5 py-10">
-			<CountUpNumber name="questions" count={questions}></CountUpNumber>
-			<CountUpNumber name="books" count={books}></CountUpNumber>
-			<CountUpNumber name="handNotes" count={handNotes}></CountUpNumber>
-			<CountUpNumber name="slides" count={slides}></CountUpNumber>
+			<CountUpNumber name="questions" value={questions}></CountUpNumber>
+			<CountUpNumber name="books" value={books}></CountUpNumber>
+			<CountUpNumber name="handNotes" value={handNotes}></CountUpNumber>
+			<CountUpNumber name="slides" value={slides}></CountUpNumber>
 		</div>
 	);
 };
