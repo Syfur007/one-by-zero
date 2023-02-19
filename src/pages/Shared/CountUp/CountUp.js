@@ -8,13 +8,13 @@ const CountUpNumber = ({ name, value }) => {
 			if (count < value) {
 				setCount((count) => count + 1);
 			}
-		}, 1);
+		}, 10);
 		return () => clearInterval(interval);
 	}, [count, value]);
 
 	return (
 		<div
-			className={`flex flex-col items-center justify-center w-40 h-20 mx-5 text-white bg-[${secondary}] rounded-md shadow-lg `}
+			className={`flex flex-col items-center justify-center w-40 mt-5 h-20 mx-5 text-white bg-[${secondary}] rounded-md shadow-lg `}
 		>
 			<p>{count}+</p>
 			<h2 className="uppercase">{name}</h2>
