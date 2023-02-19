@@ -23,16 +23,15 @@ const CountResources = () => {
 			}
 		},
 	});
+	if (isLoading) {
+		return <Loading />;
+	}
 
 	const slides = getTotalItems(data, "slides");
 	const books = getTotalItems(data, "books");
 	const questions = getTotalItems(data, "questions");
 	const handNotes = getTotalItems(data, "handNotes");
 	console.log(slides, questions, handNotes, books);
-
-	if (isLoading) {
-		return <Loading />;
-	}
 
 	return error ? (
 		<Alert>{error}</Alert>
