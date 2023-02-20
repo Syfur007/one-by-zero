@@ -50,15 +50,27 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/contribute/slides",
-				element: <Slides></Slides>,
+				element: (
+					<PrivateRoute>
+						<Slides></Slides>
+					</PrivateRoute>
+				),
 			},
 			{
 				path: "/contribute/books",
-				element: <Books></Books>,
+				element: (
+					<PrivateRoute>
+						<Books></Books>
+					</PrivateRoute>
+				),
 			},
 			{
 				path: "/contribute/handnotes",
-				element: <HandNote></HandNote>,
+				element: (
+					<PrivateRoute>
+						<HandNote></HandNote>
+					</PrivateRoute>
+				),
 			},
 			{
 				path: "/resources",

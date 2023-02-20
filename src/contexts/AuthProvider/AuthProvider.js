@@ -13,6 +13,7 @@ import {
 import app from "../../firebase/firebase.config.js";
 import { useState } from "react";
 import { useEffect } from "react";
+import Loading from "../../pages/Shared/Loading/Loading.js";
 export const AuthContext = createContext();
 const auth = getAuth(app);
 
@@ -67,6 +68,10 @@ const AuthProvider = ({ children }) => {
 			unsubscribe();
 		};
 	}, []);
+
+	if (loading) {
+		return <Loading />;
+	}
 
 	const authInfo = {
 		user,

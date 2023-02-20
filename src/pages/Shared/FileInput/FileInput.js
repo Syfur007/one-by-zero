@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
 import FIleModal from "../FileModal/FIleModal.js";
+import Loading from "../Loading/Loading.js";
 
 const FileInput = ({ name, showResources }) => {
 	const [showFileModal, setShowFileModal] = useState(false);
@@ -26,6 +27,7 @@ const FileInput = ({ name, showResources }) => {
 		setCourseInfoFromLocalStorage,
 		years,
 		semesters,
+		courseLoading,
 	} = useContext(CourseContext);
 
 	const { user } = useContext(AuthContext);
@@ -45,8 +47,8 @@ const FileInput = ({ name, showResources }) => {
 	let department =
 		watch("department") || courseInfoFromLocalStorage?.department;
 
-	console.log(year, varsity, semester, department);
-	console.log(courses);
+	// console.log(year, varsity, semester, department);
+	// console.log(courses);
 	// fetch course data
 	useEffect(() => {
 		if (year && semester && varsity && department)
@@ -70,6 +72,8 @@ const FileInput = ({ name, showResources }) => {
 					console.log("sina-error", err);
 				});
 	}, [department, semester, varsity, year]);
+
+	// TODO:: SUBMIT BUTTON
 
 	const onSubmit = async (data) => {
 		const course = data.course;
@@ -142,7 +146,7 @@ const FileInput = ({ name, showResources }) => {
 					`https://server.onebyzeroedu.com/api/contribute/${name}`,
 					createContributeQuestions
 				);
-				console.log(data);
+				// console.log(data);
 				if (data) {
 					toast.success("question is added");
 					setFile("");

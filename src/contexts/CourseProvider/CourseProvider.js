@@ -20,7 +20,7 @@ const CourseProvider = ({ children }) => {
 	const [courseInfoFromLocalStorage, setCourseInfoFromLocalStorage] =
 		useState(null);
 	const handleOpen = () => setOpen(!open);
-	// form information
+	//TODO:: form information
 	useEffect(() => {
 		const fetchUniversities = async () => {
 			const res = await fetch("https://server.onebyzeroedu.com/university");
@@ -76,7 +76,7 @@ const CourseProvider = ({ children }) => {
 		setCourseInfoFromLocalStorage(getMyCourseInfoFromLocalstorage);
 	}, [courseInfoFromLocalStorage?.semester, courseInfoFromLocalStorage?.year]);
 
-	// fetch session
+	//TODO:: fetch session
 	useEffect(() => {
 		fetch("https://server.onebyzeroedu.com/api/session")
 			.then((res) => res.json())
@@ -89,7 +89,7 @@ const CourseProvider = ({ children }) => {
 			});
 	}, []);
 
-	// fetch examNames
+	//TODO: fetch examNames
 	useEffect(() => {
 		fetch("https://server.onebyzeroedu.com/api/examname")
 			.then((res) => res.json())
@@ -102,9 +102,9 @@ const CourseProvider = ({ children }) => {
 			});
 	}, []);
 
-	// fetch course information
+	//TODO:: fetch course information
 	useEffect(() => {
-		// course information
+		//TODO:: course information
 		const fetchCourseData = async () => {
 			setCourseLoading(true);
 			try {

@@ -1,6 +1,4 @@
-import React from "react";
-import { useEffect } from "react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider.js";
 import FileInput from "../Shared/FileInput/FileInput.js";
 

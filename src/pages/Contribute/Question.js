@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useContext } from "react";
+import { useEffect, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider.js";
 import FileInput from "../Shared/FileInput/FileInput.js";
 

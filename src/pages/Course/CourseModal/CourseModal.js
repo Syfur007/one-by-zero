@@ -6,7 +6,7 @@ import {
 	DialogFooter,
 } from "@material-tailwind/react";
 import "../course.config.css";
-import { FaBackward } from "react-icons/fa";
+import { FaArrowLeft, FaBackward } from "react-icons/fa";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
 const CourseModal = ({ elements }) => {
 	const { open, handleOpen } = useContext(CourseContext);
@@ -16,11 +16,11 @@ const CourseModal = ({ elements }) => {
 			<Fragment>
 				<Dialog open={open} size={"xxl"} className="" handler={handleOpen}>
 					<DialogBody divider className="bg-[#1a1a1a] p-10 relative text-white">
-						<p
-							className="fixed text-white cursor-pointer top-2 left-2"
-							onClick={() => handleOpen(false)}
-						>
-							<FaBackward className="w-6 h-6" />
+						<p className="fixed z-50 cursor-pointer top-2 left-2">
+							<FaArrowLeft
+								onClick={() => handleOpen(false)}
+								className="w-6 h-6 text-yellow-700 hover:text-yellow-900"
+							/>
 						</p>
 						{elements}
 					</DialogBody>

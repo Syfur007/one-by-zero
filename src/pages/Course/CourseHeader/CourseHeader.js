@@ -25,9 +25,6 @@ const CourseHeader = ({ setElements }) => {
 						<Tab key="3" value="3">
 							Teacher
 						</Tab>
-						<Tab key="4" value="4">
-							Discussion
-						</Tab>
 					</TabsHeader>
 					<TabsBody
 						animate={{

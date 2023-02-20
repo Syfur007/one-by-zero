@@ -26,20 +26,20 @@ const FIleModal = ({
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const selectedFileTypes = ["application/pdf"];
 
-	// catch session value
+	//TODO:: catch session value
 	const sessionChangeHandler = (e) => {
 		setSession(Number(e.target.value));
 	};
 
-	// submitButtonFuction
+	//TODO:: submitButtonFuction
 	const uploadFileHandler = async () => {
-		// check questions input
+		//TODO:: check questions input
 		if (name === "questions" && (!session || !examName)) {
 			toast.error("Please filled all the empty input");
 			return;
 		}
 
-		// check books input
+		//TODO:: check books input
 		if (
 			(name === "books" || name === "slides" || name === "handnotes") &&
 			(!author || !bookName)
@@ -49,7 +49,7 @@ const FIleModal = ({
 		}
 		// upload file
 		if (uploadFile && selectedFileTypes.includes(uploadFile.type)) {
-			// upload pdf
+			//TODO:: upload pdf
 			const formData = new FormData();
 			formData.append("file", uploadFile);
 			const config = {
@@ -97,7 +97,7 @@ const FIleModal = ({
 				toast.error("Please,add valid file");
 				return;
 			}
-			// upload image
+			// TODO:: upload image
 			const formData = new FormData();
 			formData.append("image", uploadFile);
 			const imageHostKey = process.env.REACT_APP_imgbb_key;
@@ -190,10 +190,10 @@ const FIleModal = ({
 								</label>
 								<select
 									onChange={(e) => setExamName(e.target.value)}
-									className="w-full border-2 text-black rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
+									className="w-full text-black border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
 								>
 									<option
-										className="capitalize text-black"
+										className="text-black capitalize"
 										value=""
 										disabled
 										selected
@@ -204,7 +204,7 @@ const FIleModal = ({
 										examNames.map((exam, index) => (
 											<option
 												key={index}
-												className="capitalize text-black"
+												className="text-black capitalize"
 												value={exam?.name}
 											>
 												{exam?.name}
