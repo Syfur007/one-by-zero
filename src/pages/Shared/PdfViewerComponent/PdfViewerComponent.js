@@ -14,7 +14,7 @@ const PdfViewerComponent = ({ type, file, link }) => {
 
 	const { user } = useContext(AuthContext);
 	const fullViewHandler = () => {
-		alert("Please,Login to see full view");
+		alert("Please,Login to see View");
 		return;
 	};
 
@@ -68,10 +68,10 @@ const PdfViewerComponent = ({ type, file, link }) => {
 							rel="noopener noreferrer"
 							target="_blank"
 						>
-							full view
+							View
 						</a>
 					) : (
-						<button onClick={fullViewHandler}>full view</button>
+						<button onClick={fullViewHandler}>View</button>
 					)}
 				</div>
 			</div>

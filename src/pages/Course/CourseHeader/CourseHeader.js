@@ -23,7 +23,7 @@ const CourseHeader = ({ setElements }) => {
 							Syllabus
 						</Tab>
 						<Tab key="3" value="3">
-							TeacherS
+							Teachers
 						</Tab>
 					</TabsHeader>
 					<TabsBody

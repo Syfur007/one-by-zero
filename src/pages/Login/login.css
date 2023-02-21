@@ -31,13 +31,13 @@
 
 .PhoneInputInput:active,
 .PhoneInputInput:focus {
-	border-color: #5b24ea;
+	border-color: #1a1a1a;
 }
 .button {
-	background: linear-gradient(to right, #5b24ea, #2e029e);
+	background: linear-gradient(to right, #1a1a1a, #282828);
 	transition: 0.5s;
 }
 
 .button:hover {
-	background: linear-gradient(to right, #501ece, #290e6d);
+	background: linear-gradient(to right, #282828, #1a1a1a);
 }

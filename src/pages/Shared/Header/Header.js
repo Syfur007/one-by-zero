@@ -21,12 +21,17 @@ const Header = () => {
 					Home
 				</Link>
 			</li>
-			<li className="hover:bg-[#1a1a1a] rounded-md ">
-				<Link to="/resources">Resources</Link>
+			<li>
+				<Link className="hover:bg-[#1a1a1a] rounded-md " to="/resources">
+					Resources
+				</Link>
 			</li>
 			{user && (role === "admin" || role === "moderator") && (
-				<li className="hover:bg-[#1a1a1a] rounded-md ">
-					<label htmlFor="my-modal-3" className="">
+				<li>
+					<label
+						htmlFor="my-modal-3"
+						className="hover:bg-[#1a1a1a] rounded-md "
+					>
 						Contribute
 					</label>
 				</li>
@@ -102,9 +107,7 @@ const Header = () => {
 								<li onClick={handleClick}>
 									<NavLink
 										className={({ isActive }) =>
-											isActive
-												? "bg-[#1a1a1a]"
-												: "hover:bg-[#1a1a1a] rounded-md "
+											isActive ? "bg-[#1a1a1a]" : "bg-[#1a1a1a] rounded-md "
 										}
 										to="/resources"
 									>

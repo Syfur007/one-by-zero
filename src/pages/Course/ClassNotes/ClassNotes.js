@@ -10,7 +10,7 @@ const ClassNotes = ({ course }) => {
 					{course?.courseTitle}
 				</h2>
 				<h2 className="mb-5 ml-5 text-2xl text-center capitalize">
-					{course?.courseCode}
+					[{course?.courseCode}]
 				</h2>
 			</div>
 			<div>

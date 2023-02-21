@@ -8,7 +8,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 function ThumbnailViewer({ thumbnail, bookName, author, link }) {
 	const { user } = useContext(AuthContext);
 	const fullViewHandler = () => {
-		alert("Please,Login to see full view");
+		alert("Please,Login to see View");
 		return;
 	};
 	return (
@@ -37,10 +37,10 @@ function ThumbnailViewer({ thumbnail, bookName, author, link }) {
 							rel="noreferrer"
 							target="_blank"
 						>
-							full view
+							View
 						</a>
 					) : (
-						<button onClick={fullViewHandler}>full view</button>
+						<button onClick={fullViewHandler}>View</button>
 					)}
 				</div>
 			</div>

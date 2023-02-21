@@ -25,7 +25,7 @@ const CourseQuestion = ({ course }) => {
 					{course?.courseTitle}
 				</h2>
 				<h2 className="mb-5 text-2xl text-center capitalize">
-					{course?.courseCode}
+					[{course?.courseCode}]
 				</h2>
 			</div>
 			<div className="">

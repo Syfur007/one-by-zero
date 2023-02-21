@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider.js";
 import Alert from "../Shared/Alert/Alert.js";
 import SigninLoader from "../Shared/Loading/SigninLoader.js";
+import { primary } from "../../constants/colors.js";
 
 const Left = () => {
 	const navigate = useNavigate();
@@ -116,7 +117,7 @@ const Left = () => {
 				className=" bg-[#ffff] mx-auto login-form-height  rounded-2xl  p-10 lg:w-[70%] w-full m-10"
 			>
 				{error && <Alert>{error}</Alert>}
-				<h1 className="mx-auto text-2xl text-[#5b24ea] font-semibold py-5">
+				<h1 className={`mx-auto text-2xl text-[${primary}] font-semibold py-5`}>
 					Signup
 				</h1>
 				<div className="">
@@ -126,7 +127,7 @@ const Left = () => {
 						{...register("name", {
 							required: "Name should not be empty.",
 						})}
-						className=" border-gray-300 input placeholder:text-gray-600 w-full pl-5 py-2 focus:border-[#5b24ea]  outline-none"
+						className={`" border-gray-300 input placeholder:text-gray-600 w-full pl-5 py-2 focus:border-[${primary}]  outline-none`}
 					/>
 					<p className="mt-1 text-center text-red-800">
 						{errors?.name?.message}
@@ -140,7 +141,7 @@ const Left = () => {
 						{...register("email", {
 							required: "Email should not be empty.",
 						})}
-						className=" border-gray-300 input placeholder:text-gray-600 w-full pl-5 py-2 focus:border-[#5b24ea]  outline-none"
+						className={` border-gray-300 input placeholder:text-gray-600 w-full pl-5 py-2 focus:border-[${primary}]  outline-none`}
 					/>
 					<p className="mt-1 text-center text-red-800">
 						{errors?.email?.message}
@@ -158,7 +159,7 @@ const Left = () => {
 								message: "The password should be at least six characters.",
 							},
 						})}
-						className=" border-gray-300 input placeholder:text-gray-600 w-full pl-5 py-2 focus:border-[#5b24ea]  outline-none"
+						className={` border-gray-300 input placeholder:text-gray-600 w-full pl-5 py-2 focus:border-[${primary}]  outline-none`}
 					/>
 					<p className="mt-1 text-center text-red-800">
 						{errors?.password?.message}
@@ -168,7 +169,7 @@ const Left = () => {
 				<div className="w-full mt-8 ">
 					<button
 						type="submit"
-						className="w-full button bg-[#5b24ea] py-2 rounded-full items-center justify-between text-xl flex text-white"
+						className={`w-full button bg-[${primary}] py-2 rounded-full items-center justify-between text-xl flex text-white`}
 					>
 						<p className="flex-1 text-center">
 							{signupLoading ? (
@@ -180,15 +181,15 @@ const Left = () => {
 								"Register"
 							)}
 						</p>
-						<p className="mr-3 p-2 bg-white rounded-full text-[#5b24ea]">
+						<p className="p-2 mr-3 text-[#1f1d28] bg-white rounded-full">
 							<FaArrowRight></FaArrowRight>
 						</p>
 					</button>
 				</div>
 				<div className="flex items-center w-full mx-auto my-3 text-center sm:w-3/4">
-					<span className="w-full block h-[1px] mr-2 bg-[#5b24ea]"></span>
-					<h4 className="text-2xl text-[#5b24ea] ">OR</h4>
-					<span className="w-full block h-[1px] ml-2 bg-[#5b24ea]"></span>
+					<span className={`w-full block h-[1px] mr-2 bg-[${primary}]`}></span>
+					<h4 className={`text-2xl text-[${primary}] `}>OR</h4>
+					<span className={`w-full block h-[1px] ml-2 bg-[${primary}]`}></span>
 				</div>
 
 				<div className="w-full mx-auto text-center">
@@ -201,7 +202,7 @@ const Left = () => {
 						<span>Signup with google</span>
 					</button>
 				</div>
-				<p className="text-xl mt-5 py-5 text-[#5b24ea]">
+				<p className={`text-xl mt-5 py-5 text-[${primary}]`}>
 					Already have an account?{" "}
 					<Link to="/login" className="font-semibold text-[#1f1d28]">
 						Login

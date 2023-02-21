@@ -6,10 +6,10 @@ import CourseBook from "../CourseBook/CourseBook.js";
 import CourseSlides from "../CourseSlides/CourseSlides.js";
 import { useNavigate } from "react-router-dom";
 import ClassNotes from "../ClassNotes/ClassNotes.js";
-import notes from "../../../images/course_category/handNote.jpg";
-import books from "../../../images/course_category/books.jpg";
-import slides from "../../../images/course_category/slides.jpg";
-import questions from "../../../images/course_category/question.jpg";
+import notes from "../../../images/course_category/notes.png";
+import books from "../../../images/course_category/books.png";
+import slides from "../../../images/course_category/slide.png";
+import questions from "../../../images/course_category/question.png";
 
 const Resources = ({ setElements }) => {
 	const navigate = useNavigate();
@@ -55,65 +55,64 @@ const Resources = ({ setElements }) => {
 				<div className="grid gap-4 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2">
 					<div
 						onClick={() => resourceTypesHandler("questions")}
-						style={{
-							backgroundImage: `url(${questions})`,
-							backgroundPosition: "center",
-							backgroundSize: "cover",
-						}}
-						className="max-w-[56] relative h-[150px] max-auto bg-[#373737] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
+						className=" relative max-auto bg-[#373737] hover:bg-[#686868] transition-all ease-in-out duration-500 cursor-pointer flex flex-col shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
 					>
-						<div class="overlay">
-							<h3 className="text-xl font-semibold">
-								Questions (
-								<span className="">{courses?.questions?.length}</span>)
-							</h3>
+						<div className="w-[100px] h-[100px] p-2 rounded-full">
+							<img
+								src={questions}
+								className="w-full h-full bg-yellow-600 rounded-full "
+								alt=""
+							/>
 						</div>
+						<h3 className="mt-2 text-xl font-semibold">
+							Questions (<span className="">{courses?.questions?.length}</span>)
+						</h3>
 					</div>
 					<div
 						onClick={() => resourceTypesHandler("books")}
-						style={{
-							backgroundImage: `url(${books})`,
-							backgroundPosition: "center",
-							backgroundSize: "cover",
-						}}
-						className="max-w-[56] max-auto bg-[#373737] h-[150px] relative cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
+						className=" relative max-auto bg-[#373737] hover:bg-[#686868] transition-all ease-in-out duration-500 cursor-pointer flex flex-col shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
 					>
-						<div className="overlay">
-							<h3 className="text-xl font-semibold">
-								Books (<span className="">{courses?.books?.length}</span>)
-							</h3>
+						<div className="w-[100px] h-[100px] p-2 rounded-full">
+							<img
+								src={books}
+								className="w-full h-full bg-yellow-600 rounded-full "
+								alt=""
+							/>
 						</div>
+						<h3 className="text-xl font-semibold">
+							Books (<span className="">{courses?.books?.length}</span>)
+						</h3>
 					</div>
 					<div
-						style={{
-							backgroundImage: `url(${notes})`,
-							backgroundPosition: "center",
-							backgroundSize: "cover",
-						}}
 						onClick={() => resourceTypesHandler("notes")}
-						className="max-w-[56] max-auto relative bg-[#373737] h-[150px] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
+						className=" relative max-auto bg-[#373737] hover:bg-[#686868] transition-all ease-in-out duration-500 cursor-pointer flex flex-col shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
 					>
-						<div className="overlay">
-							<h3 className="text-xl font-semibold">
-								Notes (<span className="">{courses?.handNotes?.length}</span>)
-							</h3>
+						<div className="w-[100px] h-[100px] p-2 rounded-full">
+							<img
+								src={notes}
+								className="w-full h-full bg-yellow-600 rounded-full "
+								alt=""
+							/>
 						</div>
+						<h3 className="text-xl font-semibold">
+							Notes (<span className="">{courses?.handNotes?.length}</span>)
+						</h3>
 					</div>
 					<div
-						style={{
-							backgroundImage: `url(${slides})`,
-							backgroundPosition: "center",
-							backgroundSize: "cover",
-						}}
 						onClick={() => resourceTypesHandler("slides")}
-						className="max-w-[56] max-auto bg-[#373737] relative h-[150px] cursor-pointer flex shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
+						className=" relative max-auto bg-[#373737] hover:bg-[#686868] transition-all ease-in-out duration-500 cursor-pointer flex flex-col shadow-lg items-center justify-center p-10 border-2 border-[#1a1a1a] rounded-lg"
 					>
-						<div className="overlay">
-							<h3 className="text-xl font-semibold">
-								Lecture Slides (
-								<span className="">{courses?.slides?.length}</span>)
-							</h3>
+						<div className="w-[100px] h-[100px] p-2 rounded-full">
+							<img
+								src={slides}
+								className="w-full h-full bg-yellow-600 rounded-full "
+								alt=""
+							/>
 						</div>
+						<h3 className="text-xl font-semibold">
+							Lecture Slides (
+							<span className="">{courses?.slides?.length}</span>)
+						</h3>
 					</div>
 				</div>
 			</div>
