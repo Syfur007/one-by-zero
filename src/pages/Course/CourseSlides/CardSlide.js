@@ -2,7 +2,7 @@ import React from "react";
 import CardProfileTemplate from "../../Shared/CardProfileTemplate/CardProfileTemplate";
 import ThumbnailViewer from "../../Shared/ThumbnailViewer/ThumbnailViewer";
 
-function CardSlide({ card }) {
+function CardSlide({ card, setEditSlide }) {
 	const { email, createdAt, session, thumbnail, author, bookName, link } = card;
 
 	return (
@@ -11,6 +11,8 @@ function CardSlide({ card }) {
 				email={email}
 				createdAt={createdAt}
 				session={session}
+				card={card}
+				setUpdateCard={setEditSlide}
 			/>
 			<ThumbnailViewer
 				thumbnail={thumbnail}

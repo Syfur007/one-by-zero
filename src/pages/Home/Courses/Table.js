@@ -32,19 +32,19 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 			{coursePin?._id === course?._id
 				? !pin && (
 						<BsPinFill
-							className="w-6 h-6 absolute top-2 left-2 text-purple-700 cursor-pointer"
+							className="absolute w-6 h-6 text-purple-700 cursor-pointer top-2 left-2"
 							onClick={pinHandler}
 						/>
 				  )
 				: !pin && (
 						<BsPin
-							className="w-6 h-6 absolute top-2 left-2 text-purple-700 cursor-pointer"
+							className="absolute w-6 h-6 text-purple-700 cursor-pointer top-2 left-2"
 							onClick={pinHandler}
 						/>
 				  )}
 
 			<div className="mt-5">
-				<h1 className="font-semibold capitalize text-center text-2xl text-purple-700">{`${
+				<h1 className="text-2xl font-semibold text-center text-white capitalize">{`${
 					getYear[Number(year) - 1]
 				} year  ${getYear[Number(semester) - 1]} semester `}</h1>
 			</div>
@@ -53,11 +53,11 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 				<table className="border-collapse table-auto border border-red-200 bg-[#1a1a1a] w-full mx-auto">
 					<thead>
 						<tr>
-							<th className="border border-slate-600 px-2 py-1">#</th>
-							<th className="border border-slate-600 px-2 py-1">CourseTitle</th>
-							<th className="border border-slate-600 px-2 py-1">CourseCode</th>
-							<th className="border border-slate-600 px-2 py-1">Credit</th>
-							<th className="border border-slate-600 px-2 py-1">Hours</th>
+							<th className="px-2 py-1 border border-slate-600">#</th>
+							<th className="px-2 py-1 border border-slate-600">CourseTitle</th>
+							<th className="px-2 py-1 border border-slate-600">CourseCode</th>
+							<th className="px-2 py-1 border border-slate-600">Credit</th>
+							<th className="px-2 py-1 border border-slate-600">Hours</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -77,7 +77,7 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 														year: year,
 													})
 												}
-												className="text-white text-left pl-5 cursor-pointer hover:underline hover:text-purple-700"
+												className="pl-5 text-left text-white cursor-pointer hover:underline hover:text-purple-700"
 											>
 												{title}
 											</p>

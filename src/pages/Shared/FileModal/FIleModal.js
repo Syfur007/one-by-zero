@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
+import { info, primary } from "../../../constants/colors.js";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
 import Loading from "../Loading/Loading.js";
 import "./FileModal.css";
@@ -141,11 +142,11 @@ const FIleModal = ({
 		<div>
 			{/* Put this part before </body> tag */}
 			<input type="checkbox" id="file-input-modal-3" className="modal-toggle" />
-			<div className="modal bg-[#282828]">
-				<div className="relative bg-[#282828] modal-box">
+			<div className={`modal bg-[${primary}]`}>
+				<div className={`relative bg-[#1a1a1a] modal-box`}>
 					<label
 						htmlFor="file-input-modal-3"
-						className="absolute btn hover:bg-[#25184e] border-2 hover:border-[#25184e] btn-sm btn-circle right-2 top-2"
+						className="absolute btn hover:bg-[#1a1a1a] border-2 hover:border-[#1a1a1a] btn-sm btn-circle right-2 top-2"
 					>
 						✕
 					</label>
@@ -153,7 +154,7 @@ const FIleModal = ({
 					{/* session */}
 					{name !== "books" && (
 						<div className="pt-2">
-							<label htmlFor="" className="mb-2 text-base font-semibold">
+							<label htmlFor="" className="block pb-4 text-base font-semibold">
 								Session
 							</label>
 							<select
@@ -185,12 +186,15 @@ const FIleModal = ({
 					{name === "questions" && (
 						<>
 							<div className="pt-2">
-								<label htmlFor="" className="mb-2 text-base font-semibold">
+								<label
+									htmlFor=""
+									className="block pb-4 text-base font-semibold capitalize"
+								>
 									Exam Name
 								</label>
 								<select
 									onChange={(e) => setExamName(e.target.value)}
-									className="w-full text-black border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
+									className="w-full text-black capitalize border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
 								>
 									<option
 										className="text-black capitalize"
@@ -219,7 +223,10 @@ const FIleModal = ({
 						<>
 							{/* name */}
 							<div className="pt-2">
-								<label htmlFor="" className="mb-2 text-base font-semibold">
+								<label
+									htmlFor=""
+									className="block pb-4 text-base font-semibold capitalize"
+								>
 									{name} Name
 								</label>
 								<input
@@ -244,26 +251,29 @@ const FIleModal = ({
 							{/* thumbnails */}
 
 							<div className="pt-2">
-								<label htmlFor="" className="mb-2 text-base font-semibold">
-									thumbnail
+								<label
+									htmlFor=""
+									className="block pb-4 text-base font-semibold"
+								>
+									Thumbnail
 								</label>
 								<input
 									type="file"
 									onChange={handleThumbnailChange}
-									className="w-full  text-black border-[0.1px] border-gray-400 file-input file-input-primary "
+									className="w-full text-black border-gray-900 file-input file-input-primary "
 								/>
 							</div>
 						</>
 					)}
 
 					<div className="pt-2">
-						<label htmlFor="" className="mb-2 text-base font-semibold">
-							file
+						<label htmlFor="" className="block pb-4 text-base font-semibold">
+							File
 						</label>
 						<input
 							type="file"
 							onChange={handleFileChange}
-							className="w-full text-black  border-[0.1px] border-gray-400 file-input file-input-primary "
+							className="w-full text-black border-gray-900 file-input-primary file-input "
 						/>
 					</div>
 
@@ -271,12 +281,12 @@ const FIleModal = ({
 						<button
 							onClick={uploadFileHandler}
 							type="button"
-							className="capitalize btn btn-sm btn-primary"
+							className={`btn  bg-[${primary}] py-2 shadow-md hover:bg-[${info}] border-0 capitalize btn-sm`}
 						>
-							submit
+							Submit
 						</button>
 						<button
-							className="capitalize btn btn-sm btn-error"
+							className={`btn  bg-[${primary}] py-2 shadow-md hover:bg-[${info}] border-0 capitalize btn-sm`}
 							onClick={() => setShowFileModal(false)}
 						>
 							Cancel

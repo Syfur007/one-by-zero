@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { info, primary } from "../../../constants/colors.js";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
 import FIleModal from "../FileModal/FIleModal.js";
@@ -178,11 +179,14 @@ const FileInput = ({ name, showResources }) => {
 			>
 				<h1 className="mb-5 text-2xl text-center text-white uppercase">
 					{" "}
-					{showResources ? "Show my Resources" : `give ${name}`}
+					{showResources ? "My Resources" : `give ${name}`}
 				</h1>
-				{/* university */}
+				{/* //TODO:: university */}
 				<div className="w-4/3">
-					<label htmlFor="" className="block mb-1 font-bold text-white">
+					<label
+						htmlFor=""
+						className="block mb-1 font-bold text-white capitalize"
+					>
 						university
 					</label>
 					<select
@@ -201,9 +205,12 @@ const FileInput = ({ name, showResources }) => {
 							))}
 					</select>
 				</div>
-				{/* department */}
+				{/*//TODO:: department */}
 				<div className="mt-5 w-4/3">
-					<label htmlFor="" className="block mb-1 font-bold text-white">
+					<label
+						htmlFor=""
+						className="block mb-1 font-bold text-white capitalize"
+					>
 						department
 					</label>
 					<select
@@ -221,9 +228,12 @@ const FileInput = ({ name, showResources }) => {
 					</select>
 				</div>
 				<div className="flex w-4/3">
-					{/* year */}
+					{/* //TODO:: year */}
 					<div className="w-full mt-5 mr-3">
-						<label htmlFor="" className="block mb-1 font-bold text-white">
+						<label
+							htmlFor=""
+							className="block mb-1 font-bold text-white capitalize"
+						>
 							year
 						</label>
 						<select
@@ -258,9 +268,12 @@ const FileInput = ({ name, showResources }) => {
 								))}
 						</select>
 					</div>
-					{/* semester */}
+					{/* //TODO:: semester */}
 					<div className="w-full mt-5">
-						<label htmlFor="" className="block mb-1 font-bold text-white">
+						<label
+							htmlFor=""
+							className="block mb-1 font-bold text-white capitalize"
+						>
 							semester
 						</label>
 						<select
@@ -292,9 +305,12 @@ const FileInput = ({ name, showResources }) => {
 						</select>
 					</div>
 				</div>
-				{/* course title */}
+				{/* //TODO:: course title */}
 				<div className="mt-5 w-4/3">
-					<label htmlFor="" className="block mb-1 font-bold text-white">
+					<label
+						htmlFor=""
+						className="block mb-1 font-bold text-white capitalize"
+					>
 						courseTitle
 					</label>
 					<select
@@ -326,7 +342,7 @@ const FileInput = ({ name, showResources }) => {
 						<label
 							htmlFor="file-input-modal-3"
 							onClick={() => setShowFileModal(true)}
-							className="btn btn-sm btn-primary"
+							className={`capitalize btn btn-sm  bg-[${primary}] py-2  border-0 shadow-md hover:bg-[${info}]`}
 							disabled={file}
 						>
 							add file
@@ -352,7 +368,10 @@ const FileInput = ({ name, showResources }) => {
 				)}
 
 				<div className="mt-5">
-					<button type="submit" className="btn btn-primary btn-sm">
+					<button
+						type="submit"
+						className={`btn  bg-[${primary}] py-2 shadow-md hover:bg-[${info}] border-0 capitalize btn-sm`}
+					>
 						{showResources ? "show resources" : `upload ${name}`}
 					</button>
 				</div>

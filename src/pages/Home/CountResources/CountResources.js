@@ -38,7 +38,7 @@ const CountResources = () => {
 	return error ? (
 		<Alert>{error}</Alert>
 	) : (
-		<div className="flex flex-row flex-wrap justify-center px-5 py-10">
+		<div className="flex flex-row flex-wrap justify-center px-5 py-5">
 			<CountUpNumber name="questions" value={questions}></CountUpNumber>
 			<CountUpNumber name="books" value={books}></CountUpNumber>
 			<CountUpNumber name="handNotes" value={handNotes}></CountUpNumber>

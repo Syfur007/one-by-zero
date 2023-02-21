@@ -20,10 +20,10 @@ const CourseHeader = ({ setElements }) => {
 						</Tab>
 
 						<Tab key="2" value="2">
-							Basic Info
+							Syllabus
 						</Tab>
 						<Tab key="3" value="3">
-							Teacher
+							TeacherS
 						</Tab>
 					</TabsHeader>
 					<TabsBody

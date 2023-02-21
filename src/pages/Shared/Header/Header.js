@@ -17,21 +17,20 @@ const Header = () => {
 	const menuItems = (
 		<>
 			<li>
-				<Link className="hover:bg-[#4d1fc0] rounded-md " to="/">
+				<Link className="hover:bg-[#1a1a1a] rounded-md " to="/">
 					Home
 				</Link>
 			</li>
+			<li className="hover:bg-[#1a1a1a] rounded-md ">
+				<Link to="/resources">Resources</Link>
+			</li>
 			{user && (role === "admin" || role === "moderator") && (
-				<li className="hover:bg-[#4d1fc0] rounded-md ">
+				<li className="hover:bg-[#1a1a1a] rounded-md ">
 					<label htmlFor="my-modal-3" className="">
 						Contribute
 					</label>
 				</li>
 			)}
-
-			<li className="hover:bg-[#4d1fc0] rounded-md ">
-				<Link to="/resources">Resources</Link>
-			</li>
 		</>
 	);
 
@@ -73,15 +72,15 @@ const Header = () => {
 						</label>
 						<ul
 							tabIndex={0}
-							className="p-2 mt-3 shadow bg-[#25184E] menu menu-compact dropdown-content rounded-box w-52"
+							className="p-2 mt-3 shadow bg-[#1a1a1a] menu menu-compact dropdown-content rounded-box w-52"
 						>
 							<>
 								<li>
 									<NavLink
 										className={(navData) =>
 											navData.isActive
-												? "bg-[#4d1fc0]"
-												: "hover:bg-[#4d1fc0] rounded-md"
+												? "bg-[#1a1a1a]"
+												: "hover:bg-[#1a1a1a] rounded-md"
 										}
 										onClick={handleClick}
 										to="/"
@@ -92,7 +91,7 @@ const Header = () => {
 								{user && (
 									<li
 										onClick={handleClick}
-										className="hover:bg-[#4d1fc0] rounded-md "
+										className="hover:bg-[#1a1a1a] rounded-md "
 									>
 										<label htmlFor="my-modal-3" className="">
 											Contribute
@@ -104,8 +103,8 @@ const Header = () => {
 									<NavLink
 										className={({ isActive }) =>
 											isActive
-												? "bg-[#4d1fc0]"
-												: "hover:bg-[#4d1fc0] rounded-md "
+												? "bg-[#1a1a1a]"
+												: "hover:bg-[#1a1a1a] rounded-md "
 										}
 										to="/resources"
 									>
@@ -128,7 +127,7 @@ const Header = () => {
 					{!user?.uid ? (
 						<Link
 							to="/login"
-							className="px-4 py-3 hover:bg-[#4d1fc0] rounded-md"
+							className="px-4 py-3 hover:bg-[#1a1a1a] rounded-md"
 						>
 							Login
 						</Link>
@@ -162,7 +161,7 @@ const Header = () => {
 									<li className="mb-2" onClick={handleClick}>
 										<NavLink
 											className={({ isActive }) =>
-												isActive ? "bg-[#4d1fc0]" : "hover:bg-[#4d1fc0] z-50"
+												isActive ? "bg-[#1a1a1a]" : "hover:bg-[#1a1a1a] z-50"
 											}
 											to="/profile"
 										>
@@ -174,7 +173,7 @@ const Header = () => {
 											<NavLink
 												to="/admin"
 												className={({ isActive }) =>
-													isActive ? "bg-[#4d1fc0]" : "hover:bg-[#4d1fc0] z-50"
+													isActive ? "bg-[#1a1a1a]" : "hover:bg-[#1a1a1a] z-50"
 												}
 											>
 												Admin
@@ -183,7 +182,7 @@ const Header = () => {
 									)}
 									<li onClick={handleClick}>
 										<button
-											className="hover:bg-[#4d1fc0]"
+											className="hover:bg-[#1a1a1a]"
 											onClick={logoutHandler}
 										>
 											logout
@@ -195,6 +194,7 @@ const Header = () => {
 					)}
 				</div>
 			</div>
+			{/* //TODO:: CONTRIBUTE MODAL */}
 			{showModel && (
 				<div className="">
 					<input type="checkbox" id="my-modal-3" className="modal-toggle" />
@@ -210,8 +210,8 @@ const Header = () => {
 								<h1 className="text-2xl font-semibold">
 									What are you want to Contribute?
 								</h1>
-								<ul className="my-5 text-xl">
-									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#3503b4] rounded-sm text-white bg-info">
+								<ul className="my-5 text-xl capitalize">
+									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#1a1a1a] rounded-sm text-white bg-[#424242]">
 										<Link
 											className="block w-full"
 											to="/contribute/questions"
@@ -223,7 +223,7 @@ const Header = () => {
 											questions
 										</Link>
 									</li>
-									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#3503b4] rounded-sm text-white bg-info">
+									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#1a1a1a] rounded-sm text-white bg-[#424242]">
 										<Link
 											className="block w-full"
 											to="/contribute/books"
@@ -235,7 +235,7 @@ const Header = () => {
 											books
 										</Link>
 									</li>
-									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#3503b4] rounded-sm text-white bg-info">
+									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#1a1a1a] rounded-sm text-white bg-[#424242]">
 										<Link
 											className="block w-full"
 											to="/contribute/slides"
@@ -247,9 +247,9 @@ const Header = () => {
 											slides
 										</Link>
 									</li>
-									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#3503b4] rounded-sm text-white bg-info">
+									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#1a1a1a] rounded-sm text-white bg-[#424242]">
 										<Link
-											className="block w-full"
+											className="block w-full "
 											to="/contribute/handnotes"
 											id="my-modal-3"
 											onClick={() => {

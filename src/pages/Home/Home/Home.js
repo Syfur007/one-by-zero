@@ -7,6 +7,7 @@ import { getCourses } from "../../../utils/https/courseHttp.js";
 import Loading from "../../Shared/Loading/Loading.js";
 import CountResources from "../CountResources/CountResources.js";
 import Courses from "../Courses/Courses.js";
+import HomeTitle from "../HomeTitle/HomeTitle.js";
 
 const Home = () => {
 	const { setTitle } = useContext(AuthContext);
@@ -31,6 +32,7 @@ const Home = () => {
 	return (
 		<div className=" bg-[#1a1a1a] pt-[80px]">
 			<CountResources />
+			<HomeTitle />
 			<Courses courses={data} />
 		</div>
 	);

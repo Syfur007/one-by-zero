@@ -18,14 +18,7 @@ const useSession = (value) => {
 			} else {
 				return null;
 			}
-			// fetch(`https://server.onebyzeroedu.com/api/session/${value}`)
-			// 	.then((res) => res.json())
-			// 	.then((session) => {
-			// 		return session;
-			// 	})
-			// 	.catch((err) => {
-			// 		console.log(err);
-			// 	});
+			
 		},
 	});
 

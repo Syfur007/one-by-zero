@@ -1,6 +1,10 @@
 import React from "react";
+import { useState } from "react";
+import UpdateCard from "../../Shared/UpdateCard/UpdateCard";
 import CardSlide from "./CardSlide";
 const CourseSlides = ({ course }) => {
+	const [editSlide, setEditSlide] = useState("");
+	const [deleteSlide, setDeleteSlide] = useState("");
 	return (
 		<div className="w-full ">
 			<h1 className="my-3 text-4xl text-center uppercase">Slides</h1>
@@ -17,7 +21,13 @@ const CourseSlides = ({ course }) => {
 				{course?.slides.length > 0 ? (
 					<div className="grid content-center grid-cols-1 p-2 gap-y-5 gap-x-5 sm:p-10 md:grid-cols-2 lg:grid-cols-3">
 						{course.slides.map((slide, index) => {
-							return <CardSlide card={slide} key={index} />;
+							return (
+								<CardSlide
+									setEditSlide={setEditSlide}
+									card={slide}
+									key={index}
+								/>
+							);
 						})}
 					</div>
 				) : (
@@ -28,6 +38,7 @@ const CourseSlides = ({ course }) => {
 					</div>
 				)}
 			</div>
+			{editSlide && <UpdateCard card={editSlide} setCard={setEditSlide} />}
 		</div>
 	);
 };

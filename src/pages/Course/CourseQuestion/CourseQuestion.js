@@ -15,7 +15,6 @@ const CourseQuestion = ({ course }) => {
 	const { examNames } = useContext(CourseContext);
 	const [questions, setQuestions] = useState("");
 	const [deleteQuestion, setDeleteQuestion] = useState("");
-	console.log(examNames);
 
 	return (
 		<div className="w-full">

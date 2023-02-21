@@ -69,10 +69,6 @@ const AuthProvider = ({ children }) => {
 		};
 	}, []);
 
-	if (loading) {
-		return <Loading />;
-	}
-
 	const authInfo = {
 		user,
 		loading,

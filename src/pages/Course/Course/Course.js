@@ -28,8 +28,11 @@ const Course = () => {
 	return (
 		<div className="pt-[64px]">
 			<h1 className="bg-[#1a1a1a] text-2xl capitalize pt-10 text-white text-center">
-				{courses && courses?.courseTitle}
+				{courses && courses?.courseTitle} [{courses?.courseCode}].
 			</h1>
+			<h3 className="mt-1 text-xl text-center text-white capitalize">
+				Dept. of Computer Science & Engineering, University of Barishal.
+			</h3>
 			<CourseHeader setElements={setElements}></CourseHeader>
 			{elements && <CourseModal elements={elements}></CourseModal>}
 		</div>

@@ -95,8 +95,7 @@ const Resources = ({ setElements }) => {
 					>
 						<div className="overlay">
 							<h3 className="text-xl font-semibold">
-								Class Notes (
-								<span className="">{courses?.handNotes?.length}</span>)
+								Notes (<span className="">{courses?.handNotes?.length}</span>)
 							</h3>
 						</div>
 					</div>
@@ -111,7 +110,7 @@ const Resources = ({ setElements }) => {
 					>
 						<div className="overlay">
 							<h3 className="text-xl font-semibold">
-								Lecture Slide (
+								Lecture Slides (
 								<span className="">{courses?.slides?.length}</span>)
 							</h3>
 						</div>

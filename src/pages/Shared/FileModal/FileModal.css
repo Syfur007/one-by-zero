@@ -3,3 +3,8 @@
 	background-color: #282828;
 	color: #fff;
 }
+
+.file-input-primary::file-selector-button {
+	background-color: #282828;
+	border-color: #282828;
+}
