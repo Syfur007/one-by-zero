@@ -41,8 +41,8 @@ const CountResources = () => {
 		<div className="flex flex-row flex-wrap justify-center px-5 py-5">
 			<CountUpNumber name="questions" value={questions}></CountUpNumber>
 			<CountUpNumber name="books" value={books}></CountUpNumber>
-			<CountUpNumber name="handNotes" value={handNotes}></CountUpNumber>
-			<CountUpNumber name="slides" value={slides}></CountUpNumber>
+			<CountUpNumber name="Notes" value={handNotes}></CountUpNumber>
+			<CountUpNumber name="Lecture Slides" value={slides}></CountUpNumber>
 		</div>
 	);
 };

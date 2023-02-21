@@ -10,11 +10,24 @@ import {
 	TabPanel,
 } from "@material-tailwind/react";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
+import { useEffect } from "react";
 
 const CourseQuestion = ({ course }) => {
 	const { examNames } = useContext(CourseContext);
+	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 	const [questions, setQuestions] = useState("");
 	const [deleteQuestion, setDeleteQuestion] = useState("");
+
+	useEffect(() => {
+		function handleResize() {
+			setScreenWidth(window.innerWidth);
+		}
+
+		window.addEventListener("resize", handleResize);
+
+		// Cleanup function
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
 
 	return (
 		<div className="w-full">
@@ -38,7 +51,11 @@ const CourseQuestion = ({ course }) => {
 										all
 									</Tab>
 									{examNames?.map((examName) => (
-										<Tab key={examName.name} value={examName.name}>
+										<Tab
+											className={`${screenWidth < 620 && "hidden"}`}
+											key={examName.name}
+											value={examName.name}
+										>
 											{examName.name}
 										</Tab>
 									))}

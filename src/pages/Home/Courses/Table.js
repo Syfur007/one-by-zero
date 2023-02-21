@@ -5,11 +5,24 @@ import { BsPin, BsPinFill } from "react-icons/bs";
 import SubTotal from "./SubTotal";
 import { setPinCourseInLocalStorage } from "../../../utils/functions/courseFunctions";
 import { toast } from "react-hot-toast";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Table = ({ course, setCoursePin, coursePin, pin }) => {
 	const { courses, semester, year, varsity } = course;
+	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 	const navigate = useNavigate();
 	const { setMycourseInfo } = useContext(CourseContext);
+	useEffect(() => {
+		function handleResize() {
+			setScreenWidth(window.innerWidth);
+		}
+
+		window.addEventListener("resize", handleResize);
+
+		// Cleanup function
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
 
 	const showResource = async (courseInfo) => {
 		setMycourseInfo(courseInfo);
@@ -25,7 +38,7 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 	const getYear = ["1st", "2nd", "3rd", "4th"];
 	return (
 		<div
-			className={`relative lg:w-[60%]  sm:w-[70%] w-full mx-auto ${
+			className={`relative lg:w-[70%]  sm:w-[80%] w-full mx-auto ${
 				pin && "bg-[#282828] p-5 rounded-md "
 			} `}
 		>
@@ -56,8 +69,20 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 							<th className="px-2 py-1 border border-slate-600">#</th>
 							<th className="px-2 py-1 border border-slate-600">CourseTitle</th>
 							<th className="px-2 py-1 border border-slate-600">CourseCode</th>
-							<th className="px-2 py-1 border border-slate-600">Credit</th>
-							<th className="px-2 py-1 border border-slate-600">Hours</th>
+							<th
+								className={` border border-slate-600 ${
+									screenWidth < 576 && "hidden"
+								} `}
+							>
+								Credit
+							</th>
+							<th
+								className={` border border-slate-600 ${
+									screenWidth < 576 && "hidden"
+								} `}
+							>
+								Hours
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -83,8 +108,20 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 											</p>
 										</td>
 										<td className="border border-slate-600">{code}</td>
-										<td className="border border-slate-600">{credit}</td>
-										<td className="border border-slate-600">{hours}</td>
+										<td
+											className={` border border-slate-600 ${
+												screenWidth < 576 && "hidden"
+											} `}
+										>
+											{credit}
+										</td>
+										<td
+											className={`"hidden border border-slate-600 ${
+												screenWidth < 576 && "hidden"
+											}  `}
+										>
+											{hours}
+										</td>
 									</tr>
 								);
 							})}
