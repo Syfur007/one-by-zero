@@ -186,7 +186,7 @@ const Left = () => {
 
 						{showPasswordForm && (
 							<div className={`my-5  p-5  bg-[${primary}]  rounded-md`}>
-								<div className="flex flex-row items-center justify-center">
+								<div className="flex flex-col items-center justify-center sm:flex-row">
 									<div className="w-full">
 										<Input
 											label="New Password"
@@ -195,7 +195,7 @@ const Left = () => {
 											className={`hover:border-[${secondary}] focus:border-[${secondary}] active:border-[${secondary}]`}
 										/>
 									</div>
-									<div className="w-full ml-2">
+									<div className="w-full mt-2 sm:ml-2">
 										<Input
 											label="Confirm Password"
 											type="password"

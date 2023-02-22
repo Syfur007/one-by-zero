@@ -64,7 +64,7 @@ const Right = () => {
 				data && (
 					<>
 						<div
-							className={`tabs bg-[${secondary}] text-white py-2 tabs-boxed`}
+							className={`tabs text-center bg-[${secondary}] text-white py-2 tabs-boxed`}
 						>
 							<button
 								className={`text-white tab ${
@@ -88,7 +88,7 @@ const Right = () => {
 								}`}
 								onClick={() => setActive("handNotes")}
 							>
-								HandNotes (<span className="">{handNotes}</span>)
+								Notes (<span className="">{handNotes}</span>)
 							</button>
 							<button
 								className={`text-white tab ${
