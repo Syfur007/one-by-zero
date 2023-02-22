@@ -4,11 +4,12 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
 import useUser from "../../../hooks/useUser.js";
 import navbarLogo from "../../../images/navbar-logo.png";
+import { DEFAULT_URL_SERVER } from "../../../constants/url.js";
 
 const Header = () => {
 	const [showModel, setShowModel] = useState(true);
 	const { user, logOut } = useContext(AuthContext);
-	const [role] = useUser(user?.email);
+	const [role, , userDetails] = useUser(user?.email);
 
 	useEffect(() => {
 		setShowModel(true);
@@ -137,7 +138,31 @@ const Header = () => {
 					) : (
 						<>
 							<div className="z-50 mr-2 dropdown dropdown-bottom dropdown-end">
-								{user.photoURL ? (
+								{userDetails?.image ? (
+									<div tabIndex={1} className="w-10 h-10 cursor-pointer">
+										<img
+											src={`${
+												userDetails?.image.includes("i.ibb.co")
+													? userDetails?.image
+													: DEFAULT_URL_SERVER + "/" + userDetails?.image
+											}`}
+											alt=""
+											className="w-10 h-10 rounded-full"
+											title={user?.displayName}
+										/>
+									</div>
+								) : (
+									<div className="w-10 h-10 cursor-pointer " tabIndex={1}>
+										<img
+											src={user.photoURL}
+											data-tip="hello i am anis"
+											className="w-10 h-10 rounded-full tooltip"
+											alt=""
+											title={user?.displayName}
+										/>
+									</div>
+								)}
+								{/* {user.photoURL ? (
 									<div className="w-10 h-10 cursor-pointer " tabIndex={1}>
 										<img
 											src={user.photoURL}
@@ -156,7 +181,7 @@ const Header = () => {
 											title={user?.displayName}
 										/>
 									</div>
-								)}
+								)} */}
 								<ul
 									tabIndex={1}
 									className="p-2 mt-3 z-50 shadow dropdown-content menu bg-[#282828] rounded-box w-52"

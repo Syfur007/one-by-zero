@@ -13,6 +13,7 @@ import "./CardQuestion.css";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
 import CardProfileTemplate from "../../Shared/CardProfileTemplate/CardProfileTemplate";
 import { Link } from "react-router-dom";
+import { DEFAULT_URL_SERVER } from "../../../constants/url";
 
 const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 	const { link, examName, session, name, email, createdAt } = question;
@@ -84,12 +85,16 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 						{/* user information */}
 						<div className="flex items-center w-full">
 							<img
-								src={userDetails?.image}
+								src={`${
+									userDetails?.image.includes("i.ibb.co")
+										? userDetails?.image
+										: DEFAULT_URL_SERVER + "/" + userDetails?.image
+								}`}
 								className="w-[60px] h-[60px] rounded-full border-2 m-2 p-1 border-blue-gray-900"
 								alt=""
 							/>
 							<div>
-								<h3 className="hover:underline">
+								<h3 className="text-white hover:underline">
 									<Link to={`/profile?q=${email}`}>
 										{userDetails?.name ? userDetails?.name : "unknown"}
 									</Link>
@@ -166,7 +171,11 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 							{/* user information */}
 							<div className="flex items-center w-full">
 								<img
-									src={userDetails?.image}
+									src={`${
+										userDetails?.image.includes("i.ibb.co")
+											? userDetails?.image
+											: DEFAULT_URL_SERVER + "/" + userDetails?.image
+									}`}
 									className="w-[60px] h-[60px] rounded-full border-2 m-2 p-1 border-blue-gray-900"
 									alt=""
 								/>

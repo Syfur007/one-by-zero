@@ -63,7 +63,9 @@ const Right = () => {
 			) : (
 				data && (
 					<>
-						<div className={`tabs bg-[${secondary}] py-2 tabs-boxed`}>
+						<div
+							className={`tabs bg-[${secondary}] text-white py-2 tabs-boxed`}
+						>
 							<button
 								className={`text-white tab ${
 									active === "questions" && "tab-active"
