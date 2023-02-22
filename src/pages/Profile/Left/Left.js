@@ -1,4 +1,4 @@
-import { Button } from "@material-tailwind/react";
+import { Button, Input } from "@material-tailwind/react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import React, { useContext, useState } from "react";
@@ -16,9 +16,12 @@ const Left = () => {
 	const [searchParams] = useSearchParams();
 	const queryEmail = searchParams.get("q");
 	const [showUploadImageForm, setShowUploadImageFrom] = useState(false);
+	const [showPasswordForm, setShowPasswordFrom] = useState(false);
+	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
 	const [file, setFile] = useState("");
 	const [url, setUrl] = useState("");
-	const { user, setTitle } = useContext(AuthContext);
+	const { user, setTitle, updateUserPassword } = useContext(AuthContext);
 	useEffect(() => {
 		setTitle(`Profile-${user?.displayName} | OneByZero`);
 	}, [setTitle, user]);
@@ -70,6 +73,33 @@ const Left = () => {
 		}
 	};
 
+	// TODO:: RESET PASSWORD HANDLER
+
+	const resetPasswordHandler = () => {
+		if (password.length <= 5) {
+			alert("Password should be at least six characters");
+			return;
+		}
+
+		if (confirmPassword !== password) {
+			alert("Password doesn't match");
+			return;
+		}
+
+		updateUserPassword(password)
+			.then(() => {
+				// Password updated successfully
+				toast.success("Password updated successfully");
+				setShowPasswordFrom(false);
+				setPassword("");
+				setConfirmPassword("");
+			})
+			.catch((error) => {
+				// An error occurred while updating the password
+				toast.error(error.message);
+			});
+	};
+
 	return (
 		<div className="w-full px-5 pt-24 my-5 sm:pb-4 sm:w-1/2">
 			<div className="w-full p-5 rounded-lg  bg-[#282828]">
@@ -87,6 +117,7 @@ const Left = () => {
 					/>
 				</div>
 				<h3 className="text-center text-white">{userDetails?.name}</h3>
+				{/* //TODO:: CHANGE IMAGE */}
 				{queryEmail ? (
 					queryEmail === user?.email && (
 						<Button
@@ -125,13 +156,66 @@ const Left = () => {
 						)}
 					</>
 				)}
-
+				{/* //TODO:: EMAIL SHOW */}
 				<p className="mt-5 text-white">
 					<b>Email: </b>{" "}
 					<a href={`mailto:${user?.email}`} className="hover:underline">
 						{userDetails?.email}
 					</a>
 				</p>
+				{/* //TODO:: SET NEW PASSWORD */}
+
+				{queryEmail ? (
+					queryEmail === user?.email && (
+						<Button
+							size="sm"
+							className={`mt-5 bg-[${primary}] hover:bg-[${info}]`}
+							onClick={changeImageHandler}
+						>
+							Set Password
+						</Button>
+					)
+				) : (
+					<>
+						<Button
+							size="sm"
+							className={`mt-5 bg-[${primary}] hover:bg-[${secondary}]`}
+							onClick={() => setShowPasswordFrom((prev) => !prev)}
+						>
+							Set Password
+						</Button>
+
+						{showPasswordForm && (
+							<div className={`my-5  p-5  bg-[${primary}]  rounded-md`}>
+								<div className="flex flex-row items-center justify-center">
+									<div className="w-full">
+										<Input
+											label="New Password"
+											type="password"
+											onChange={(e) => setPassword(e.target.value)}
+											className={`hover:border-[${secondary}] focus:border-[${secondary}] active:border-[${secondary}]`}
+										/>
+									</div>
+									<div className="w-full ml-2">
+										<Input
+											label="Confirm Password"
+											type="password"
+											onChange={(e) => setConfirmPassword(e.target.value)}
+											className={`hover:border-[${secondary}] focus:border-[${secondary}] active:border-[${secondary}]`}
+										/>
+									</div>
+								</div>
+								<Button
+									size="sm"
+									className={`mt-5 bg-[${secondary}] hover:bg-[${primary}]`}
+									onClick={resetPasswordHandler}
+								>
+									Reset Password
+								</Button>
+							</div>
+						)}
+					</>
+				)}
 			</div>
 		</div>
 	);

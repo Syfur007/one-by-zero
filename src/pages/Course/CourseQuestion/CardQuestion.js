@@ -95,7 +95,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 							/>
 							<div>
 								<h3 className="text-white hover:underline">
-									<Link to={`/profile?q=${email}`}>
+									<Link className="text-white" to={`/profile?q=${email}`}>
 										{userDetails?.name ? userDetails?.name : "unknown"}
 									</Link>
 								</h3>
@@ -181,7 +181,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 								/>
 								<div>
 									<h3 className="hover:underline">
-										<Link to={`/profile?q=${email}`}>
+										<Link className="text-white" to={`/profile?q=${email}`}>
 											{userDetails?.name ? userDetails?.name : "unknown"}
 										</Link>
 									</h3>

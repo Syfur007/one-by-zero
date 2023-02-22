@@ -9,6 +9,7 @@ import {
 	updateProfile,
 	GoogleAuthProvider,
 	signInWithPopup,
+	updatePassword,
 } from "firebase/auth";
 import app from "../../firebase/firebase.config.js";
 import { useState } from "react";
@@ -48,6 +49,10 @@ const AuthProvider = ({ children }) => {
 		return updateProfile(auth.currentUser, profile);
 	};
 
+	const updateUserPassword = (password) => {
+		return updatePassword(auth.currentUser, password);
+	};
+
 	const logOut = () => {
 		setLoading(true);
 		return signOut(auth);
@@ -76,6 +81,7 @@ const AuthProvider = ({ children }) => {
 		providerLogin,
 		logOut,
 		updateUserProfile,
+		updateUserPassword,
 		createUser,
 		signIn,
 		handleGoogleSignIn,
