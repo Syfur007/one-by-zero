@@ -74,7 +74,6 @@ const Left = () => {
 	};
 
 	// TODO:: RESET PASSWORD HANDLER
-
 	const resetPasswordHandler = () => {
 		if (password.length <= 5) {
 			alert("Password should be at least six characters");
@@ -205,13 +204,15 @@ const Left = () => {
 										/>
 									</div>
 								</div>
-								<Button
-									size="sm"
-									className={`mt-5 bg-[${secondary}] hover:bg-[${primary}]`}
-									onClick={resetPasswordHandler}
-								>
-									Reset Password
-								</Button>
+								{password && (
+									<Button
+										size="sm"
+										className={`mt-5 bg-[${secondary}] hover:bg-[${primary}]`}
+										onClick={resetPasswordHandler}
+									>
+										Reset Password
+									</Button>
+								)}
 							</div>
 						)}
 					</>
