@@ -50,10 +50,15 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 						/>
 				  )
 				: !pin && (
-						<BsPin
-							className="absolute w-6 h-6 text-purple-700 cursor-pointer top-2 left-2"
-							onClick={pinHandler}
-						/>
+						<div className="flex absolute top-2 left-2 justify-between items-center">
+							<p>
+								<BsPin
+									className=" w-6 h-6 text-purple-700 cursor-pointer "
+									onClick={pinHandler}
+								/>
+							</p>
+							<p className="text-purple-800 text-sm py-0">Pin to Top</p>
+						</div>
 				  )}
 
 			<div className="mt-5">
@@ -67,8 +72,10 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 					<thead>
 						<tr>
 							<th className="px-2 py-1 border border-slate-600">#</th>
-							<th className="px-2 py-1 border border-slate-600">CourseTitle</th>
-							<th className="px-2 py-1 border border-slate-600">CourseCode</th>
+							<th className="px-2 py-1 border border-slate-600">
+								Course Title
+							</th>
+							<th className="px-2 py-1 border border-slate-600">Course Code</th>
 							<th
 								className={` border border-slate-600 ${
 									screenWidth < 576 && "hidden"

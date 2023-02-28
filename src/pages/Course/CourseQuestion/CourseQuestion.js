@@ -48,11 +48,11 @@ const CourseQuestion = ({ course }) => {
 							<Tabs value="all">
 								<TabsHeader>
 									<Tab key="all" value="all">
-										all
+										All
 									</Tab>
 									{examNames?.map((examName) => (
 										<Tab
-											className={`${screenWidth < 620 && "hidden"}`}
+											className={`capitalize`}
 											key={examName.name}
 											value={examName.name}
 										>
@@ -76,7 +76,8 @@ const CourseQuestion = ({ course }) => {
 									{examNames.map((examName) => (
 										<TabPanel
 											key={examName.name}
-											className="p-0"
+											className="p-0 capitalize"
+											style={{ textTransform: "capitalize !important" }}
 											value={examName.name}
 										>
 											<div className="grid content-center grid-cols-1 gap-5 p-2 sm:p-10 md:grid-cols-2 lg:grid-cols-3">

@@ -24,14 +24,14 @@ function CardProfileTemplate({
 	return (
 		<div className=" h-[80px] w-full relative flex justify-between items-center bg-[#282828] py-5 px-2 rounded-sm">
 			<div className="flex items-center">
-				<div className="p-3 border-2 border-blue-900 rounded-full">
+				<div className="p-1 border-2 border-blue-900 rounded-full">
 					<img
 						src={`${
 							userDetails?.image.includes("i.ibb.co")
 								? userDetails?.image
 								: DEFAULT_URL_SERVER + "/" + userDetails?.image
 						}`}
-						className="w-10 h-10"
+						className="w-10 h-10 rounded-full"
 						alt=""
 					/>
 				</div>

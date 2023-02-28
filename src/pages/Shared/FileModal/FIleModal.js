@@ -82,7 +82,7 @@ const FIleModal = ({
 					console.log(data);
 					setFile(data);
 					setThumbnail(thumbnailData);
-					toast.success("file Upload successfully \n click the upload button");
+					toast.success("click the upload button");
 					setUploadLoading(false);
 				}
 			} catch (error) {
@@ -202,7 +202,7 @@ const FIleModal = ({
 										disabled
 										selected
 									>
-										select examName
+										Select Exam Name
 									</option>
 									{examNames &&
 										examNames.map((exam, index) => (
@@ -276,6 +276,21 @@ const FIleModal = ({
 							className="w-full text-black border-gray-900 file-input-primary file-input "
 						/>
 					</div>
+					{/* //TODO:: FOR MULTIPLE QUESTION IMAGE */}
+					{name === "questions" && (
+						<div className={`mt-5`}>
+							<span className={`text-yellow-900`}>
+								*If multiple pages, please make PDF first and then upload
+							</span>
+							<a
+								className={`hover:underline ml-3 text-sm bg-[${primary}] px-3 py-1 hover:text-yellow-900 `}
+								href="https://www.ilovepdf.com/jpg_to_pdf"
+								target="_blank"
+							>
+								Create pdf
+							</a>
+						</div>
+					)}
 
 					<div className="flex justify-between pt-5">
 						<button

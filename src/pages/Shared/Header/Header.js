@@ -272,7 +272,7 @@ const Header = () => {
 												setShowModel(false);
 											}}
 										>
-											slides
+											Lecture Slides
 										</Link>
 									</li>
 									<li className="p-2 my-2 cursor-pointer transition-all hover:bg-[#1a1a1a] rounded-sm text-white bg-[#424242]">
@@ -284,7 +284,7 @@ const Header = () => {
 												setShowModel(false);
 											}}
 										>
-											handnotes
+											Notes
 										</Link>
 									</li>
 								</ul>

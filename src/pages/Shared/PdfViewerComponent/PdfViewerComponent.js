@@ -5,12 +5,14 @@ import { DEFAULT_URL_SERVER } from "../../../constants/url";
 import { primary, secondary } from "../../../constants/colors";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import useSession from "../../../hooks/useSession";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const PdfViewerComponent = ({ type, file, link }) => {
+const PdfViewerComponent = ({ type, file, link, session, examName }) => {
 	const [pdfString, setPdfString] = useState("");
 	const [numPages, setNumPages] = useState(null);
 	const [pageNumber, setPageNumber] = useState(1);
+	const [sessionDetails] = useSession(session);
 
 	const { user } = useContext(AuthContext);
 	const fullViewHandler = () => {
@@ -56,9 +58,16 @@ const PdfViewerComponent = ({ type, file, link }) => {
 			</Document>
 
 			<div className="absolute bottom-0 left-0 flex items-center justify-between w-full h-16 px-4  bg-[rgba(0,0,0,0.4)]">
-				<p className="text-xl font-semibold text-white ">
-					Page {pageNumber} of {numPages}
-				</p>
+				<div className="  flex flex-row w-full  question-info">
+					<span className={`  capitalize p-3 badge bg-[${primary}]`}>
+						{examName}
+					</span>
+					{sessionDetails?.name && (
+						<span className={`badge ml-2  p-3 bg-[${primary}]`}>
+							{sessionDetails?.name}
+						</span>
+					)}
+				</div>
 				<div
 					className={`z-10 text-sm font-medium text-white cursor-pointer right-2 bg-[${primary}] px-4 py-2 rounded-md hover:bg-[${secondary}] `}
 				>

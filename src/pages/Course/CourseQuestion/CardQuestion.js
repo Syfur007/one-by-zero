@@ -14,6 +14,7 @@ import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
 import CardProfileTemplate from "../../Shared/CardProfileTemplate/CardProfileTemplate";
 import { Link } from "react-router-dom";
 import { DEFAULT_URL_SERVER } from "../../../constants/url";
+import { primary, secondary } from "../../../constants/colors";
 
 const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 	const { link, examName, session, name, email, createdAt } = question;
@@ -36,6 +37,12 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 				});
 		}
 	}, [user?.email]);
+
+	// TODO:: CHECK WHETHER USER LOGIN OR NOT
+	const fullViewHandler = () => {
+		alert("Please,Login to see View");
+		return;
+	};
 
 	return (
 		<div className="py-2 mb-5">
@@ -120,6 +127,8 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 						file={`.${link}`}
 						link={link}
 						type="pdf"
+						examName={examName}
+						session={session}
 					></PdfViewerComponent>
 				</div>
 			) : (
@@ -188,31 +197,50 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 									<Time time={createdAt} />
 								</div>
 							</div>
-							{/* questions information */}
-
-							{/* <div className="flex items-center justify-end w-full p-2 question-info">
-								<h3 className="p-2 mr-5 badge-success badge">{examName}</h3>
-								{sessionDetails?.name && (
-									<h3 className="p-2 badge-success badge">
-										{sessionDetails?.name}
-									</h3>
-								)}
-							</div> */}
 						</div>
 						{/* questions */}
 						<div className="p-0 card-body">
-							<a
+							<div
 								href={question.link}
-								className="block w-full  h-[400px]"
-								target="_blank"
-								rel="noreferrer"
+								className="block w-full relative  h-[400px]"
 							>
 								<img
 									src={question.link}
 									className="w-full h-full rounded-b-md"
 									alt=""
 								/>
-							</a>
+								<div className="absolute bottom-0 left-0 flex items-center justify-between w-full h-16 px-4  bg-[rgba(0,0,0,0.4)]">
+									{/*//TODO:: Questions information */}
+
+									<div className="  flex flex-row w-full  question-info">
+										<span className={`  capitalize p-3 badge bg-[${primary}]`}>
+											{examName}
+										</span>
+										{sessionDetails?.name && (
+											<span className={`badge ml-2  p-3 bg-[${primary}]`}>
+												{sessionDetails?.name}
+											</span>
+										)}
+									</div>
+
+									{/* //TODO:: VIEW SECTION OF CARD */}
+									<div
+										className={`z-10 text-sm font-medium text-white cursor-pointer right-2 bg-[${primary}] px-4 py-2 rounded-md hover:bg-[${secondary}] `}
+									>
+										{user?.uid ? (
+											<a
+												href={`${link}`}
+												rel="noopener noreferrer"
+												target="_blank"
+											>
+												View
+											</a>
+										) : (
+											<button onClick={fullViewHandler}>View</button>
+										)}
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</>
