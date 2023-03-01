@@ -108,7 +108,7 @@ const Left = () => {
 						src={
 							url
 								? url
-								: userDetails?.image.includes("i.ibb.co")
+								: userDetails?.image?.includes("i.ibb.co")
 								? userDetails?.image
 								: `${DEFAULT_URL_SERVER}/${userDetails?.image}`
 						}
