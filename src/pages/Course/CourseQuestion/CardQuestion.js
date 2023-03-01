@@ -187,12 +187,13 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 						</div>
 						{/* questions */}
 						<div className="p-0 card-body">
-							<div
-								href={question.link}
-								className="block w-full relative  h-[400px]"
-							>
+							<div className="block w-full relative  h-[400px]">
 								<img
-									src={question.link}
+									src={
+										question?.link.includes("uploads/question")
+											? "https://server.onebyzeroedu.com/" + question?.link
+											: question?.link
+									}
 									className="w-full h-full rounded-b-md"
 									alt=""
 								/>

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { FaAngleDoubleRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { info, primary } from "../../../constants/colors.js";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
@@ -372,7 +373,12 @@ const FileInput = ({ name, showResources }) => {
 						type="submit"
 						className={`btn  bg-[${primary}] py-2 shadow-md hover:bg-[${info}] border-0 capitalize btn-sm`}
 					>
-						{showResources ? "show resources" : `upload ${name}`}
+						{showResources
+							? "show resources"
+							: file
+							? "Final step"
+							: `Upload ${name}`}
+						{file && <span>&gt;&gt;</span>}
 					</button>
 				</div>
 			</form>

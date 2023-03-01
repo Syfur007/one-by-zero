@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { info, primary } from "../../../constants/colors.js";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
 import Loading from "../Loading/Loading.js";
+import { getCookie } from "../../../utils/functions/cookiesFunctions.js";
 import "./FileModal.css";
 
 const FIleModal = ({
@@ -24,6 +26,7 @@ const FIleModal = ({
 	const [uploadFile, setUploadFile] = useState("");
 	const [uploadThumbnail, setUploadThumbnail] = useState("");
 	const { sessions, examNames } = useContext(CourseContext);
+	const { user } = useContext(AuthContext);
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const selectedFileTypes = ["application/pdf"];
 
@@ -102,6 +105,7 @@ const FIleModal = ({
 			const config = {
 				headers: {
 					"Content-Type": "multipart/form-data",
+					Authorization: `Bearer ${getCookie()}`,
 				},
 			};
 			const formData = new FormData();
@@ -111,15 +115,22 @@ const FIleModal = ({
 
 			try {
 				// TODO:: QUESTION UPLOAD
+				setUploadLoading(true);
 				const questionUrl = (
 					await axios.post(
-						"https://server.onebyzeroedu.com/api/upload/thumbnail",
+						`https://server.onebyzeroedu.com/api/upload/question?email=${user?.email}`,
 						formData,
 						config
 					)
 				).data;
-			} catch (err) {
-				console.log(err);
+				setFile(questionUrl);
+				setUploadFile("");
+				toast.success("file added \n click the upload button");
+				setUploadLoading(false);
+			} catch (error) {
+				console.log(error);
+				setUploadLoading(false);
+				toast.error(error?.response?.data?.message || error.message);
 			}
 
 			// setUploadLoading(true);
@@ -181,10 +192,10 @@ const FIleModal = ({
 								className="w-full text-black border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
 							>
 								<option
-									value=""
 									className="text-black capitalize"
 									disabled
 									selected
+									value=""
 								>
 									select session
 								</option>
@@ -317,7 +328,7 @@ const FIleModal = ({
 							type="button"
 							className={`btn  bg-[${primary}] py-2 shadow-md hover:bg-[${info}] border-0 capitalize btn-sm`}
 						>
-							Submit
+							Next step &gt;&gt;
 						</button>
 						<button
 							className={`btn  bg-[${primary}] py-2 shadow-md hover:bg-[${info}] border-0 capitalize btn-sm`}
