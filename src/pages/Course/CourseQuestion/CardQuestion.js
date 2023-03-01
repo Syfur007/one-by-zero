@@ -49,8 +49,8 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 			{link && link.includes(".pdf") ? (
 				<div className="relative mx-auto ">
 					<div className="relative flex justify-between items-center rounded-t-md bg-[#282828] border-b-[1px] border-b-gray-500">
-						{/* edit button */}
-						{role === "admin" && (
+						{/* //TODO::edit button */}
+						{(role === "admin" || user?.email === email) && (
 							<div className="absolute cursor-pointer threedot-edit top-2 right-3">
 								<div className="dropdown dropdown-bottom dropdown-end">
 									<label tabIndex={0} className="cursor-pointer ">
@@ -58,7 +58,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 									</label>
 									<ul
 										tabIndex={0}
-										className="p-2 shadow dropdown-content menu bg-[#282828] rounded-box w-52"
+										className="p-2 shadow dropdown-content menu text-white bg-[#282828] rounded-box w-52"
 									>
 										<li>
 											<label
@@ -89,7 +89,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 								</div>
 							</div>
 						)}
-						{/* user information */}
+						{/*//TODO:: user information */}
 						<div className="flex items-center w-full">
 							<img
 								src={`${
@@ -109,19 +109,6 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 								<Time time={createdAt} />
 							</div>
 						</div>
-
-						{/* questions information */}
-
-						{/* <div className="justify-end w-full p-2 fle question-info">
-							<h3 className="p-2 mr-5 text-right badge-success badge">
-								{examName}
-							</h3>
-							{sessionDetails?.name && (
-								<h3 className="p-2 text-right badge-success badge">
-									{sessionDetails?.name}
-								</h3>
-							)}
-						</div> */}
 					</div>
 					<PdfViewerComponent
 						file={`.${link}`}
@@ -133,12 +120,12 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 				</div>
 			) : (
 				<>
-					{/* edit modal  of questions*/}
+					{/*//TODO:: edit modal  of questions*/}
 					<div className="shadow-xl bg-[#282828]  rounded-md card">
-						{/* question information without image */}
+						{/* //TODO:: question information without image */}
 						<div className="relative flex justify-between items-center border-b-[1px] border-b-gray-500">
-							{/* edit button */}
-							{role === "admin" && (
+							{/* //TODO::edit button */}
+							{(role === "admin" || user?.email === email) && (
 								<div className="absolute cursor-pointer threedot-edit top-2 right-3">
 									<div className="dropdown dropdown-bottom dropdown-end">
 										<label tabIndex={0} className="cursor-pointer ">
@@ -146,7 +133,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 										</label>
 										<ul
 											tabIndex={0}
-											className="p-2 shadow dropdown-content menu bg-[#282828] rounded-box w-52"
+											className="p-2 shadow text-white dropdown-content menu bg-[#282828] rounded-box w-52"
 										>
 											<li>
 												<label

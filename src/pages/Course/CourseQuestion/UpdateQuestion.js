@@ -117,7 +117,7 @@ const UpdateQuestion = ({ questions, setQuestions }) => {
 				{uploadLoading && <Loading></Loading>}
 				<input type="checkbox" id="my-update-modal" className="modal-toggle" />
 				<div className="modal">
-					<div className="relative bg-[#190941] modal-box">
+					<div className="relative max-w-[800px] bg-[#190941] modal-box">
 						<label
 							htmlFor="my-update-modal"
 							className="absolute btn btn-sm btn-circle right-2 top-2"
@@ -129,7 +129,7 @@ const UpdateQuestion = ({ questions, setQuestions }) => {
 							className="max-h-[80vh]  py-2"
 							onSubmit={editHandler}
 						>
-							{/* examnames */}
+							{/* examNames */}
 							<div className="pt-2">
 								<label htmlFor="" className="mb-2 text-base font-semibold">
 									Exam Name

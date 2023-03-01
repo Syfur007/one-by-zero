@@ -98,28 +98,47 @@ const FIleModal = ({
 				toast.error("Please,add valid file");
 				return;
 			}
-			// TODO:: upload image
+			// TODO:: upload question
+			const config = {
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
+			};
 			const formData = new FormData();
-			formData.append("image", uploadFile);
-			const imageHostKey = process.env.REACT_APP_imgbb_key;
-			const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
-			setUploadLoading(true);
-			fetch(url, { method: "POST", body: formData })
-				.then((res) => res.json())
-				.then((imgData) => {
-					if (imgData.success) {
-						setFile(imgData.data.url);
-						setUploadFile("");
-						toast.success(
-							"file Upload successfully \n click the upload button"
-						);
-						setUploadLoading(false);
-					}
-				})
-				.catch((err) => {
-					setUploadLoading(false);
-					toast.error(err.message);
-				});
+			formData.append("file", uploadFile);
+			// const imageHostKey = process.env.REACT_APP_imgbb_key;
+			// const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+
+			try {
+				// TODO:: QUESTION UPLOAD
+				const questionUrl = (
+					await axios.post(
+						"https://server.onebyzeroedu.com/api/upload/thumbnail",
+						formData,
+						config
+					)
+				).data;
+			} catch (err) {
+				console.log(err);
+			}
+
+			// setUploadLoading(true);
+			// fetch(url, { method: "POST", body: formData })
+			// 	.then((res) => res.json())
+			// 	.then((imgData) => {
+			// 		if (imgData.success) {
+			// 			setFile(imgData.data.url);
+			// 			setUploadFile("");
+			// 			toast.success(
+			// 				"file Upload successfully \n click the upload button"
+			// 			);
+			// 			setUploadLoading(false);
+			// 		}
+			// 	})
+			// 	.catch((err) => {
+			// 		setUploadLoading(false);
+			// 		toast.error(err.message);
+			// 	});
 		} else {
 			toast.error("Give pdf/image file!");
 		}
@@ -155,7 +174,7 @@ const FIleModal = ({
 					{name !== "books" && (
 						<div className="pt-2">
 							<label htmlFor="" className="block pb-4 text-base font-semibold">
-								Session
+								Session (Admission)
 							</label>
 							<select
 								onChange={sessionChangeHandler}
