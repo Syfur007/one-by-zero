@@ -33,7 +33,6 @@ const FileInput = ({ name, showResources }) => {
 	} = useContext(CourseContext);
 
 	const { user } = useContext(AuthContext);
-
 	const [courses, setCourses] = useState([]);
 	const {
 		register,
@@ -74,6 +73,11 @@ const FileInput = ({ name, showResources }) => {
 					console.log("sina-error", err);
 				});
 	}, [department, semester, varsity, year]);
+
+	// TODO::CHECK USER
+	if (!user?.uid) {
+		navigate("/login");
+	}
 
 	// TODO:: SUBMIT BUTTON
 

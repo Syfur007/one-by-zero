@@ -4,8 +4,11 @@ import { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { DEFAULT_URL_SERVER } from "../../../constants/url";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
 import useSession from "../../../hooks/useSession";
+import { getCookie } from "../../../utils/functions/cookiesFunctions";
 import Loading from "../../Shared/Loading/Loading";
 
 const UpdateQuestion = ({ questions, setQuestions }) => {
@@ -13,6 +16,7 @@ const UpdateQuestion = ({ questions, setQuestions }) => {
 	const [uploadFile, setUploadFile] = useState("");
 	const { examNames, sessions, setCourses, courses } =
 		useContext(CourseContext);
+	const { user } = useContext(AuthContext);
 	const [file, setFile] = useState("");
 	const [sessionDetails] = useSession(questions?.session);
 	const handleFileChange = (event) => {
@@ -37,52 +41,72 @@ const UpdateQuestion = ({ questions, setQuestions }) => {
 		if (uploadFile) {
 			const formData = new FormData();
 			formData.append("image", uploadFile);
-			const imageHostKey = process.env.REACT_APP_imgbb_key;
-			const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
-
+			// const imageHostKey = process.env.REACT_APP_imgbb_key;
+			// const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+			const config = {
+				headers: {
+					"Content-Type": "multipart/form-data",
+					Authorization: `Bearer ${getCookie()}`,
+				},
+			};
 			setUploadLoading(true);
-			fetch(url, { method: "POST", body: formData })
-				.then((res) => res.json())
-				.then((imgData) => {
-					if (imgData.success) {
-						setFile(imgData.data.url);
-						setUploadFile("");
-						updateQuestion = { ...updateQuestion, link: imgData?.data?.url };
-						axios
-							.put(
-								"https://server.onebyzeroedu.com/api/contribute/questions",
-								updateQuestion
-							)
-							.then((data) => {
-								toast.success("question update successfully");
-								setQuestions("");
-								setUploadLoading(false);
-								const updatedQuestion = courses?.questions?.map((course) => {
-									if (course._id === questions._id) {
-										return {
-											...course,
-											link: imgData?.data?.url,
-											examName: examname,
-											session: Number(session),
-										};
-									}
-									return course;
-								});
-								courses.questions = [...updatedQuestion];
-								setCourses(courses);
-								console.log(data);
-							})
-							.catch((err) => {
-								console.log(err);
-								setUploadLoading(false);
-							});
-					}
-				})
-				.catch((err) => {
-					setUploadLoading(false);
-					toast.error(err.message);
-				});
+			// try {
+			// 	const questionUrl = (
+			// 		await axios.post(
+			// 			`https://server.onebyzeroedu.com/api/upload/question?email=${user?.email}`,
+			// 			formData,
+			// 			config
+			// 		)
+			// 	).data;
+			// } catch (error) {
+			// 	console.log(error);
+			// 	setUploadLoading(false);
+			// 	alert(error?.response?.data?.message || error.message);
+			// }
+
+			// fetch(url, { method: "POST", body: formData })
+			// 	.then((res) => res.json())
+			// 	.then((imgData) => {
+			// 		if (imgData.success) {
+			// 			setFile(imgData.data.url);
+			// 			setUploadFile("");
+			// 			updateQuestion = { ...updateQuestion, link: imgData?.data?.url };
+			// 			axios
+			// 				.put(
+			// 					"https://server.onebyzeroedu.com/api/contribute/questions",
+			// 					updateQuestion
+			// 				)
+			// 				.then((data) => {
+			// 					toast.success("question update successfully");
+			// 					setQuestions("");
+			// 					setUploadLoading(false);
+			// 					const updatedQuestion = courses?.questions?.map((course) => {
+			// 						if (course._id === questions._id) {
+			// 							return {
+			// 								...course,
+			// 								link: imgData?.data?.url,
+			// 								examName: examname,
+			// 								session: Number(session),
+			// 							};
+			// 						}
+			// 						return course;
+			// 					});
+			// 					courses.questions = [...updatedQuestion];
+			// 					setCourses(courses);
+			// 					console.log(data);
+			// 				})
+			// 				.catch((err) => {
+			// 					console.log(err);
+			// 					setUploadLoading(false);
+			// 				});
+			// 		}
+			// 	})
+			// 	.catch((err) => {
+			// 		setUploadLoading(false);
+			// 		toast.error(err.message);
+			// 	});
 		} else {
+			//TODO::/ when file is not change
 			axios
 				.put(
 					"https://server.onebyzeroedu.com/api/contribute/questions",
@@ -182,7 +206,13 @@ const UpdateQuestion = ({ questions, setQuestions }) => {
 							<div className="pt-2">
 								<div>
 									<img
-										src={file ? file : questions?.link}
+										src={
+											file
+												? file
+												: questions?.link?.includes("i.ibb.co")
+												? questions?.link
+												: `${DEFAULT_URL_SERVER}/${questions?.link}`
+										}
 										className="h-[500px] w-full"
 										alt=""
 									/>

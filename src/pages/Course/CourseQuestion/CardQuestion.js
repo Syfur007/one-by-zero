@@ -93,7 +93,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 						<div className="flex items-center w-full">
 							<img
 								src={`${
-									userDetails?.image.includes("i.ibb.co")
+									userDetails?.image?.includes("i.ibb.co")
 										? userDetails?.image
 										: DEFAULT_URL_SERVER + "/" + userDetails?.image
 								}`}
@@ -168,7 +168,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 							<div className="flex items-center w-full">
 								<img
 									src={`${
-										userDetails?.image.includes("i.ibb.co")
+										userDetails?.image?.includes("i.ibb.co")
 											? userDetails?.image
 											: DEFAULT_URL_SERVER + "/" + userDetails?.image
 									}`}
@@ -190,7 +190,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 							<div className="block w-full relative  h-[400px]">
 								<img
 									src={
-										question?.link.includes("uploads/question")
+										question?.link?.includes("uploads/question")
 											? "https://server.onebyzeroedu.com/" + question?.link
 											: question?.link
 									}
@@ -217,7 +217,12 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 									>
 										{user?.uid ? (
 											<a
-												href={`${link}`}
+												href={
+													question?.link?.includes("uploads/question")
+														? "https://server.onebyzeroedu.com/" +
+														  question?.link
+														: question?.link
+												}
 												rel="noopener noreferrer"
 												target="_blank"
 											>

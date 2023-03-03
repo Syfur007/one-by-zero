@@ -142,7 +142,7 @@ const Header = () => {
 									<div tabIndex={1} className="w-10 h-10 cursor-pointer">
 										<img
 											src={`${
-												userDetails?.image.includes("i.ibb.co")
+												userDetails?.image?.includes("i.ibb.co")
 													? userDetails?.image
 													: DEFAULT_URL_SERVER + "/" + userDetails?.image
 											}`}

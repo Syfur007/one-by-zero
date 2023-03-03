@@ -110,7 +110,9 @@ const Left = () => {
 								? url
 								: userDetails?.image?.includes("i.ibb.co")
 								? userDetails?.image
-								: `${DEFAULT_URL_SERVER}/${userDetails?.image}`
+								: userDetails?.image?.includes("uploads/profile")
+								? `${DEFAULT_URL_SERVER}/${userDetails?.image}`
+								: userDetails?.images
 						}
 						alt=""
 					/>
