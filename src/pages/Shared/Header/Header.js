@@ -33,7 +33,7 @@ const Header = () => {
 		<>
 			<li>
 				<Link className="hover:bg-[#1a1a1a] rounded-md " to="/">
-					Home {activeUser && "me"}
+					Home
 				</Link>
 			</li>
 			<li>
