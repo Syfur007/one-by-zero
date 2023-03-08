@@ -16,7 +16,7 @@ function CardProfileTemplate({
 	setUpdateCard,
 	card,
 }) {
-	const { user } = useContext(AuthContext);
+	const { user, activeUser } = useContext(AuthContext);
 	const [, , userDetails] = useUser(email);
 	const [role] = useUser(user?.email);
 
@@ -24,7 +24,7 @@ function CardProfileTemplate({
 	return (
 		<div className=" h-[80px] w-full relative flex justify-between items-center bg-[#282828] py-5 px-2 rounded-sm">
 			<div className="flex items-center">
-				<div className="p-1 border-2 border-blue-900 rounded-full">
+				<div className="p-1 relative border-2 border-blue-900 rounded-full">
 					<img
 						src={`${
 							userDetails?.image.includes("i.ibb.co")
@@ -34,6 +34,11 @@ function CardProfileTemplate({
 						className="w-10 h-10 rounded-full"
 						alt=""
 					/>
+					{activeUser && email === user?.email && (
+						<div className="absolute bottom-[-5px] left-[-5px]">
+							<span className="indicator-item indicator-middle badge badge-secondary bg-green-700"></span>
+						</div>
+					)}
 				</div>
 				<div className="ml-2 ">
 					<h3 className="text-white hover:underline">

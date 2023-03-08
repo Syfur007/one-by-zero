@@ -21,7 +21,8 @@ const Left = () => {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [file, setFile] = useState("");
 	const [url, setUrl] = useState("");
-	const { user, setTitle, updateUserPassword } = useContext(AuthContext);
+	const { user, setTitle, updateUserPassword, activeUser } =
+		useContext(AuthContext);
 	useEffect(() => {
 		setTitle(`Profile-${user?.displayName} | OneByZero`);
 	}, [setTitle, user]);
@@ -102,20 +103,27 @@ const Left = () => {
 	return (
 		<div className="w-full px-5 pt-24 my-5 sm:pb-4 sm:w-1/2">
 			<div className="w-full p-5 rounded-lg  bg-[#282828]">
-				<div className="w-full mb-2 text-center">
-					<img
-						className={`w-[100px] h-[100px] mx-auto border-[1px] border-[${primary}] rounded-md`}
-						src={
-							url
-								? url
-								: userDetails?.image?.includes("i.ibb.co")
-								? userDetails?.image
-								: userDetails?.image?.includes("uploads/profile")
-								? `${DEFAULT_URL_SERVER}/${userDetails?.image}`
-								: userDetails?.images
-						}
-						alt=""
-					/>
+				<div className="w-full mb-2 text-center ">
+					<div className="w-[100px] h-[100px] mx-auto relative">
+						<img
+							className={`w-full h-full  border-[1px] border-[${primary}] rounded-md`}
+							src={
+								url
+									? url
+									: userDetails?.image?.includes("i.ibb.co")
+									? userDetails?.image
+									: userDetails?.image?.includes("uploads/profile")
+									? `${DEFAULT_URL_SERVER}/${userDetails?.image}`
+									: userDetails?.images
+							}
+							alt=""
+						/>
+						{activeUser && (
+							<div className="absolute bottom-[-5px] left-[-5px]">
+								<span className="indicator-item indicator-middle badge badge-secondary bg-green-700"></span>
+							</div>
+						)}
+					</div>
 				</div>
 				<h3 className="text-center text-white">{userDetails?.name}</h3>
 				{/* //TODO:: CHANGE IMAGE */}

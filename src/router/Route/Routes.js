@@ -18,6 +18,7 @@ import CreateTemplate from "../../pages/Admin/CreateTemplate/CreateTemplate.js";
 import CourseBookDetails from "../../pages/Course/CourseBook/CourseBookDetails.js";
 import Users from "../../pages/Admin/Users/Users/Users.js";
 import PdfDetails from "../../pages/Shared/PdfDetails/PdfDetails.js";
+import Chat from "../../pages/Chat/Chat.js";
 
 const router = createBrowserRouter([
 	{
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
 			{
 				path: "/pdf",
 				element: <PdfDetails />,
+			},
+			{
+				path: "/chat",
+				element: <Chat />,
 			},
 		],
 	},

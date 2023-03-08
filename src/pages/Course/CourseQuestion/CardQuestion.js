@@ -20,7 +20,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 	const { link, examName, session, name, email, createdAt } = question;
 
 	const [, , userDetails] = useUser(email);
-	const { user } = useContext(AuthContext);
+	const { user, activeUser } = useContext(AuthContext);
 	const { courses } = useContext(CourseContext);
 	const [sessionDetails] = useSession(session);
 
@@ -91,15 +91,22 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 						)}
 						{/*//TODO:: user information */}
 						<div className="flex items-center w-full">
-							<img
-								src={`${
-									userDetails?.image?.includes("i.ibb.co")
-										? userDetails?.image
-										: DEFAULT_URL_SERVER + "/" + userDetails?.image
-								}`}
-								className="w-[60px] h-[60px] rounded-full border-2 m-2 p-1 border-blue-gray-900"
-								alt=""
-							/>
+							<div className="w-[60px] relative  m-2 p-1 h-[60px]">
+								<img
+									src={`${
+										userDetails?.image?.includes("i.ibb.co")
+											? userDetails?.image
+											: DEFAULT_URL_SERVER + "/" + userDetails?.image
+									}`}
+									className="w-full h-full rounded-full border-2  border-blue-gray-900"
+									alt=""
+								/>
+								{activeUser && email === user?.email && (
+									<div className=" absolute bottom-[-2px] left-[2px]">
+										<span className="indicator-item indicator-middle badge badge-secondary bg-green-700"></span>
+									</div>
+								)}
+							</div>
 							<div>
 								<h3 className="text-white hover:underline">
 									<Link className="text-white" to={`/profile?q=${email}`}>
@@ -166,15 +173,22 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 							)}
 							{/* user information */}
 							<div className="flex items-center w-full">
-								<img
-									src={`${
-										userDetails?.image?.includes("i.ibb.co")
-											? userDetails?.image
-											: DEFAULT_URL_SERVER + "/" + userDetails?.image
-									}`}
-									className="w-[60px] h-[60px] rounded-full border-2 m-2 p-1 border-blue-gray-900"
-									alt=""
-								/>
+								<div className="w-[60px] relative m-2    p-1 h-[60px]">
+									<img
+										src={`${
+											userDetails?.image?.includes("i.ibb.co")
+												? userDetails?.image
+												: DEFAULT_URL_SERVER + "/" + userDetails?.image
+										}`}
+										className="w-full h-full border-2 border-blue-gray-900 rounded-full "
+										alt=""
+									/>
+									{activeUser && email === user?.email && (
+										<div className="absolute bottom-[-2px] left-[2px]">
+											<span className="indicator-item indicator-middle badge badge-secondary bg-green-700"></span>
+										</div>
+									)}
+								</div>
 								<div>
 									<h3 className="hover:underline">
 										<Link className="text-white" to={`/profile?q=${email}`}>
