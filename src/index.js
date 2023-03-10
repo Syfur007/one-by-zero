@@ -20,10 +20,10 @@ root.render(
 					<div className="">
 						<div className="mx-auto max-w-screen-2xl bg-primary">
 							<App />
-							<MessengerCustomerChat
+							{/* <MessengerCustomerChat
 								pageId="116328604722401"
 								appId="638587318272202"
-							/>
+							/> */}
 						</div>
 					</div>
 				</CourseProvider>
