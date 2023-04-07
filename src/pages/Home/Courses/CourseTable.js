@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { getPinCourseFromLocalStorage } from "../../../utils/functions/courseFunctions";
+import React from "react";
 import Table from "./Table";
 
 const CourseTable = ({ course, setCoursePin, coursePin }) => {

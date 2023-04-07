@@ -2,15 +2,18 @@ import axios from "axios";
 import React, { createContext, useState } from "react";
 import { useEffect } from "react";
 import Loading from "../../pages/Shared/Loading/Loading.js";
+import {
+	getCourseInfo,
+	getUniversities,
+} from "../../utils/functions/courseFunctions.js";
+import { toast } from "react-hot-toast";
 export const CourseContext = createContext();
 
 const CourseProvider = ({ children }) => {
 	const [open, setOpen] = useState(false);
 	const [universities, setUniversities] = useState([]);
 	const [departments, setDepartments] = useState([]);
-	const [mycourseInfo, setMycourseInfo] = useState(
-		JSON.parse(localStorage.getItem("one-by-zero-courseInfo")) || null
-	);
+	const [mycourseInfo, setMycourseInfo] = useState(getCourseInfo());
 	const [courseLoading, setCourseLoading] = useState(false);
 	const [years, setYears] = useState([]);
 	const [semesters, setSemesters] = useState([]);
@@ -22,12 +25,19 @@ const CourseProvider = ({ children }) => {
 	const handleOpen = () => setOpen(!open);
 	//TODO:: form information
 	useEffect(() => {
-		const fetchUniversities = async () => {
-			const res = await fetch("https://server.onebyzeroedu.com/university");
-			const data = await res.json();
-			setUniversities(data);
+		const initial = async () => {
+			const universitiesData = await getUniversities();
+			console.log(universitiesData);
+			if (!universitiesData?.success) {
+				toast.error(universitiesData?.message, {
+					duration: 1000,
+				});
+				return;
+			}
+			setUniversities(universitiesData?.data);
 		};
-		fetchUniversities();
+
+		initial();
 
 		const fetchDepartment = async () => {
 			const res = await fetch("https://server.onebyzeroedu.com/department");

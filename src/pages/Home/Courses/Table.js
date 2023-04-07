@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider";
 import { BsPin, BsPinFill } from "react-icons/bs";
 import SubTotal from "./SubTotal";
-import { setPinCourseInLocalStorage } from "../../../utils/functions/courseFunctions";
+import {
+	setCourseInfo,
+	setPinCourseInLocalStorage,
+} from "../../../utils/functions/courseFunctions";
 import { toast } from "react-hot-toast";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -12,7 +15,8 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 	const { courses, semester, year, varsity } = course;
 	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 	const navigate = useNavigate();
-	const { setMycourseInfo } = useContext(CourseContext);
+	const { setMycourseInfo, setCourseInfoFromLocalStorage } =
+		useContext(CourseContext);
 	useEffect(() => {
 		function handleResize() {
 			setScreenWidth(window.innerWidth);
@@ -25,6 +29,9 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 	}, []);
 
 	const showResource = async (courseInfo) => {
+		console.log(courseInfo);
+		setCourseInfo(courseInfo);
+		setCourseInfoFromLocalStorage(courseInfo);
 		setMycourseInfo(courseInfo);
 		navigate("/course");
 	};
