@@ -24,7 +24,6 @@ const UpdateQuestion = ({ questions, setQuestions }) => {
 		setUploadFile(event.target.files[0]);
 	};
 
-	console.log(questions);
 	const editHandler = async (e) => {
 		e.preventDefault();
 		const form = e.target;
@@ -127,7 +126,6 @@ const UpdateQuestion = ({ questions, setQuestions }) => {
 					});
 					courses.questions = [...updatedQuestion];
 					setCourses(courses);
-					console.log(data);
 				})
 				.catch((err) => {
 					console.log(err);

@@ -6,8 +6,6 @@ import { info, secondary } from "../../constants/colors";
 
 const ScrollTop = ({ isVisible, setIsVisible }) => {
 	const scrollToTop = () => {
-		console.log("top");
-
 		window.scrollTo({
 			top: 0,
 			behavior: "smooth",

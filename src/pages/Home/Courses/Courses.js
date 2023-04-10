@@ -6,7 +6,6 @@ import Table from "./Table";
 
 const Courses = ({ courses }) => {
 	const [coursePin, setCoursePin] = useState(getPinCourseFromLocalStorage);
-	console.log(courses);
 	return (
 		<div className="pt-2">
 			{coursePin && <Table course={coursePin} pin={true} />}

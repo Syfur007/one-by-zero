@@ -16,7 +16,6 @@ const CourseSlides = ({ course }) => {
 	const [editSlide, setEditSlide] = useState("");
 	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 	const [deleteSlide, setDeleteSlide] = useState("");
-	console.log(screenWidth);
 	const { data, isLoading } = useQuery({
 		queryKey: ["sessions"],
 		queryFn: async () => await getSessions(),

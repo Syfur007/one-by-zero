@@ -4,7 +4,6 @@ import { default_url } from "./https";
 export const getUsers = async () => {
 	try {
 		const { data } = await axios.get(`${default_url}/api/user/all`);
-		console.log(data);
 		return data;
 	} catch (er) {
 		console.log(er);

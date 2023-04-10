@@ -47,7 +47,6 @@ const Left = () => {
 				})
 					.then((res) => res.json())
 					.then((data) => {
-						console.log(data);
 						setSignupLoading(false);
 						navigate("/");
 					})
@@ -79,8 +78,6 @@ const Left = () => {
 	const signInWithGoogle = () => {
 		handleGoogleSignIn()
 			.then((user) => {
-				console.log(user);
-				console.log(user?.user?.email, user?.user?.phoneNumber);
 				fetch("https://server.onebyzeroedu.com/api/user/", {
 					method: "POST",
 					headers: {

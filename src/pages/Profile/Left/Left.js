@@ -53,7 +53,6 @@ const Left = () => {
 		};
 
 		try {
-			console.log(Cookies.get("one-by-zero-user-token"));
 			const profileData = await axios.post(
 				`${DEFAULT_URL_SERVER}/api/upload/profile?email=${user?.email}`,
 				formData,

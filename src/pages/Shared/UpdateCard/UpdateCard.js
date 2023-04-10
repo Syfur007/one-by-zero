@@ -71,7 +71,6 @@ const UpdateCard = ({ card, setCard }) => {
 								});
 								courses.card = [...updatedQuestion];
 								setCourses(courses);
-								console.log(data);
 							})
 							.catch((err) => {
 								console.log(err);
@@ -104,7 +103,6 @@ const UpdateCard = ({ card, setCard }) => {
 					});
 					courses.card = [...updatedQuestion];
 					setCourses(courses);
-					console.log(data);
 				})
 				.catch((err) => {
 					console.log(err);

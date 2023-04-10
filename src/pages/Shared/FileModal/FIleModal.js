@@ -82,7 +82,6 @@ const FIleModal = ({
 				).data;
 
 				if ((data && thumbnailData) || name === "questions") {
-					console.log(data);
 					setFile(data);
 					setThumbnail(thumbnailData);
 					toast.success("click the upload button");

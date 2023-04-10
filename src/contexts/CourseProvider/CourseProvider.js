@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { createContext, useState } from "react";
 import { useEffect } from "react";
-import Loading from "../../pages/Shared/Loading/Loading.js";
 import {
 	getCourseInfo,
 	getUniversities,
@@ -23,9 +22,10 @@ const CourseProvider = ({ children }) => {
 	const [courseInfoFromLocalStorage, setCourseInfoFromLocalStorage] =
 		useState(null);
 	const handleOpen = () => setOpen(!open);
-	//TODO:: form information
+
 	useEffect(() => {
 		const initial = async () => {
+			// TODO:: GET ALL UNIVERSITIES
 			const universitiesData = await getUniversities();
 			console.log(universitiesData);
 			if (!universitiesData?.success) {
@@ -91,7 +91,6 @@ const CourseProvider = ({ children }) => {
 		fetch("https://server.onebyzeroedu.com/api/session")
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
 				setSessions(data);
 			})
 			.catch((err) => {
@@ -104,7 +103,6 @@ const CourseProvider = ({ children }) => {
 		fetch("https://server.onebyzeroedu.com/api/examname")
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
 				setExamNames(data);
 			})
 			.catch((err) => {
@@ -150,6 +148,7 @@ const CourseProvider = ({ children }) => {
 		examNames,
 		courseLoading,
 	};
+
 	return (
 		<CourseContext.Provider value={courseInfo}>
 			{children}

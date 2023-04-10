@@ -23,7 +23,6 @@ const Header = () => {
 			socket.disconnect();
 		};
 	}, []);
-	console.log(notification);
 
 	useEffect(() => {
 		setShowModel(true);

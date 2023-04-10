@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
 	// TODO:: UPDATE EXPIRE TIME FOR ACTIVE USER
 	const updateExpireTime = () => {
 		const expireTime = Date.now() + 10000;
-		console.log(expireTime);
+
 		localStorage.setItem("one-by-zero-edu-expire-time", expireTime);
 	};
 

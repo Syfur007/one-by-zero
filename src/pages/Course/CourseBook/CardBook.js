@@ -3,7 +3,6 @@ import CardProfileTemplate from "../../Shared/CardProfileTemplate/CardProfileTem
 import ThumbnailViewer from "../../Shared/ThumbnailViewer/ThumbnailViewer";
 
 function CardBook({ card }) {
-	console.log(card);
 	const { email, createdAt, session, thumbnail, bookName, author, link } = card;
 	return (
 		<div className="">

@@ -24,7 +24,6 @@ const Users = () => {
 			refetch();
 		}
 	};
-	console.log(data);
 	return (
 		<div className="px-5 pt-16">
 			<table class="border-collapse text-white text-left pl-2 border border-slate-500 w-full">

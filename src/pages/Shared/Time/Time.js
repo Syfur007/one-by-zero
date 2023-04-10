@@ -71,7 +71,9 @@ const Time = ({ time }) => {
 			}
 		}
 	}
-	return <span className="font-bold text-white">{dateOutput} ago </span>;
+	return (
+		<span className="font-bold text-sm text-white">{dateOutput} ago </span>
+	);
 };
 
 export default Time;

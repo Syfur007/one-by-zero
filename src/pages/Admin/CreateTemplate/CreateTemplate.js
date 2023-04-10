@@ -105,13 +105,11 @@ const CreateTemplate = ({ name, showResources }) => {
 		}
 		try {
 			setCreateLoading(true);
-			console.log("before call", createCourseTemplate);
 			const { data } = await axios.post(
 				`https://server.onebyzeroedu.com/api/admin/createCourseTemplate`,
 				createCourseTemplate
 			);
 			if (data) {
-				console.log(data);
 				toast.success("template is created");
 				setCreateLoading(false);
 				reset();

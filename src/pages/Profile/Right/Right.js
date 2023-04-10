@@ -37,7 +37,6 @@ const Right = () => {
 						},
 					}
 				);
-				console.log(data);
 				setError("");
 				return data;
 			} catch (error) {
@@ -54,7 +53,6 @@ const Right = () => {
 	const questions = getTotalItems(data, "questions");
 	const handNotes = getTotalItems(data, "handNotes");
 	const books = getTotalItems(data, "books");
-	console.log(slides, questions, handNotes, books);
 
 	return (
 		<div className="w-full px-5 pb-4 my-5 sm:pt-24 sm:w-1/2">

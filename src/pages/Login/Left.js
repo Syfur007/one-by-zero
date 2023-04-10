@@ -89,7 +89,6 @@ const Left = () => {
 						`${DEFAULT_URL_SERVER}/api/user/jwt?email=${user?.email}`
 					)
 				).data;
-				console.log(dataToken);
 				Cookies.set("one-by-zero-user-token", dataToken?.token, {
 					expires: 30,
 					path: "/",
