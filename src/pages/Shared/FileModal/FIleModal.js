@@ -164,37 +164,6 @@ const FIleModal = ({
 						✕
 					</label>
 
-					{/* session */}
-					{name !== "books" && (
-						<div className="pt-2">
-							<label htmlFor="" className="block pb-4 text-base font-semibold">
-								Session (Admission)
-							</label>
-							<select
-								onChange={sessionChangeHandler}
-								className="w-full text-black border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
-							>
-								<option
-									className="text-black capitalize"
-									disabled
-									selected
-									value=""
-								>
-									select session
-								</option>
-								{sessions &&
-									sessions.map((session, index) => (
-										<option
-											key={index}
-											className="text-black capitalize"
-											value={session.value}
-										>
-											{session.name}
-										</option>
-									))}
-							</select>
-						</div>
-					)}
 					{/* exam name */}
 					{name === "questions" && (
 						<>
@@ -230,6 +199,38 @@ const FIleModal = ({
 								</select>
 							</div>
 						</>
+					)}
+
+					{/* session */}
+					{name !== "books" && (
+						<div className="pt-2">
+							<label htmlFor="" className="block pb-4 text-base font-semibold">
+								Session (Admission)
+							</label>
+							<select
+								onChange={sessionChangeHandler}
+								className="w-full text-black border-2 rounded-md outline-none input active:outline-none focus:outline-none input-bordered"
+							>
+								<option
+									className="text-black capitalize"
+									disabled
+									selected
+									value=""
+								>
+									select session
+								</option>
+								{sessions &&
+									sessions.map((session, index) => (
+										<option
+											key={index}
+											className="text-black capitalize"
+											value={session.value}
+										>
+											{session.name}
+										</option>
+									))}
+							</select>
+						</div>
 					)}
 
 					{(name === "books" || name === "slides" || name === "handnotes") && (

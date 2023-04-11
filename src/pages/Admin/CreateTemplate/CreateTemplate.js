@@ -136,6 +136,7 @@ const CreateTemplate = ({ name, showResources }) => {
 					{showResources ? "Show my Resources" : `give ${name}`}
 				</h1>
 				<div className="w-4/3">
+					s
 					<label htmlFor="" className="mb-1 font-bold text-white capitalize ">
 						university
 					</label>

@@ -10,6 +10,9 @@ import {
 import { toast } from "react-hot-toast";
 import { useEffect } from "react";
 import { useState } from "react";
+import { secondary } from "../../../constants/colors";
+import { info } from "../../../constants/colors";
+import { primary } from "../../../constants/colors";
 
 const Table = ({ course, setCoursePin, coursePin, pin }) => {
 	const { courses, semester, year, varsity } = course;
@@ -39,10 +42,11 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 	const pinHandler = () => {
 		setPinCourseInLocalStorage(course);
 		setCoursePin(course);
-		toast.success("successfully added to pin");
+		toast.success("Successfully Pinned to Top!");
 	};
 
 	const getYear = ["1st", "2nd", "3rd", "4th"];
+	const totalSemester = 2 * Number(year) + Number(semester) - 2;
 	return (
 		<div
 			className={`relative lg:w-[70%]  sm:w-[80%] w-full mx-auto ${
@@ -57,21 +61,31 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 						/>
 				  )
 				: !pin && (
-						<div className="flex absolute top-2 left-2 justify-between items-center">
+						<div
+							onClick={pinHandler}
+							className={`flex px-5 py-2 cursor-pointer shadow-md rounded-md border-2 border-[${primary}] hover:border-white hover:bg-gray-800 hover:font-bold absolute bg-[${secondary}] top-2 left-2 justify-between items-center`}
+						>
 							<p>
-								<BsPin
-									className=" w-6 h-6 text-purple-700 cursor-pointer "
-									onClick={pinHandler}
-								/>
+								<BsPin className=" w-6 h-6 text-white" />
 							</p>
-							<p className="text-purple-800 text-sm py-0">Pin to Top</p>
+							<p className="text-white text-sm py-0">Pin to Top</p>
 						</div>
 				  )}
 
 			<div className="mt-5">
-				<h1 className="text-2xl font-semibold text-center text-white capitalize">{`${
+				<h1 className="text-2xl font-semibold text-center text-white capitalize">
+					{/* {`${
 					getYear[Number(year) - 1]
-				} year  ${getYear[Number(semester) - 1]} semester `}</h1>
+				} year  ${getYear[Number(semester) - 1]} semester `} */}
+					{totalSemester === 1
+						? "1st"
+						: totalSemester === 2
+						? "2nd"
+						: totalSemester === 3
+						? "3rd"
+						: `${totalSemester}th`}{" "}
+					semester
+				</h1>
 			</div>
 			<SubTotal courses={courses} />
 			<div className="overflow-x-auto my-5 text-white text-center bg-[#1a1a1a]">

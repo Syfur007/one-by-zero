@@ -40,7 +40,7 @@ const Header = () => {
 					Resources
 				</Link>
 			</li>
-			{user && (role === "admin" || role === "moderator") && (
+			{user && (
 				<li>
 					<label
 						htmlFor="my-modal-3"
@@ -131,7 +131,7 @@ const Header = () => {
 							</>
 						</ul>
 					</div>
-					<Link href="/" className="block outline-none ">
+					<Link to="/" className="block outline-none ">
 						<img src={navbarLogo} className="h-[70px] min-w-[250px] " alt="" />
 					</Link>
 				</div>

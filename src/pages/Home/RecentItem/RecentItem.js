@@ -2,22 +2,27 @@ import React, { useEffect } from "react";
 import Time from "../../Shared/Time/Time";
 import useSession from "../../../hooks/useSession";
 import { Link } from "react-router-dom";
+import { primary, secondary } from "../../../constants/colors";
 
 const RecentItem = ({ item, questions, slides }) => {
 	const [sessionDetails] = useSession(item?.session);
 
 	return (
-		<div>
+		<div className={`border-gray-700 border-[0.5px] rounded-md p-2 m-2 `}>
 			<div className="py-2">
 				<h4 className="text-white text-md mb-1 hover:underline hover:text-purple-800 cursor-pointer">
 					{questions ? item?.courseTitle : item?.bookName}
 				</h4>
 				{questions && (
 					<p>
-						<span className="badge badge-primary capitalize mr-2">
+						<span
+							className={`badge badge-primary bg-[${primary}] border-white py-2 capitalize mr-2`}
+						>
 							{item?.examName}
 						</span>{" "}
-						<span className="badge badge-primary capitalize">
+						<span
+							className={`badge badge-primary bg-[${primary}] border-white py-2 capitalize mr-2`}
+						>
 							{sessionDetails?.name}
 						</span>
 					</p>

@@ -184,7 +184,7 @@ const FileInput = ({ name, showResources }) => {
 			>
 				<h1 className="mb-5 text-2xl text-center text-white uppercase">
 					{" "}
-					{showResources ? "My Resources" : `give ${name}`}
+					{showResources ? "My Resources" : `contribute ${name}`}
 				</h1>
 				{/* //TODO:: university */}
 				<div className="w-4/3">
@@ -316,7 +316,7 @@ const FileInput = ({ name, showResources }) => {
 						htmlFor=""
 						className="block mb-1 font-bold text-white capitalize"
 					>
-						courseTitle
+						Course Title
 					</label>
 					<select
 						{...register("course")}

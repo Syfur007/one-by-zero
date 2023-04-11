@@ -5,7 +5,7 @@ import RecentItem from "../RecentItem/RecentItem";
 
 const Recent = ({ data, questions, title, slides }) => {
 	return (
-		<div className={`bg-[${secondary}] my-5  rounded-md min-h-[200px]`}>
+		<div className={`bg-[${secondary}] my-5 py-3  rounded-md min-h-[200px]`}>
 			<RecentTitle title={title} />
 			<div className="px-2">
 				{data &&
