@@ -14,7 +14,7 @@ export const getRecentBooks = async (
 		const data = await axios.get(
 			DEFAULT_URL + `api/resources/recent/books?limit=${limit}`
 		);
-		return data?.data?.books;
+		return data?.data;
 	} catch (error) {
 		return [];
 	}
@@ -40,7 +40,7 @@ export const getRecentSlides = async (limit = 3) => {
 			DEFAULT_URL + `api/resources/recent/slides?limit=${limit}`
 		);
 
-		return data?.data?.slides;
+		return data?.data;
 	} catch (error) {
 		return [];
 	}
@@ -51,7 +51,7 @@ export const getRecentHandNotes = async (limit = 3) => {
 			DEFAULT_URL + `api/resources/recent/handNotes?limit=${limit}`
 		);
 
-		return data?.data?.handNotes;
+		return data?.data;
 	} catch (error) {
 		return [];
 	}

@@ -52,7 +52,11 @@ const FIleModal = ({
 			return;
 		}
 		// upload file
-		if (uploadFile && selectedFileTypes.includes(uploadFile.type)) {
+		if (
+			uploadFile &&
+			selectedFileTypes.includes(uploadFile.type) &&
+			!selectedFileTypes.includes(uploadThumbnail.type)
+		) {
 			//TODO:: upload pdf
 			const formData = new FormData();
 			formData.append("file", uploadFile);
@@ -109,8 +113,6 @@ const FIleModal = ({
 			};
 			const formData = new FormData();
 			formData.append("file", uploadFile);
-			// const imageHostKey = process.env.REACT_APP_imgbb_key;
-			// const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
 
 			try {
 				// TODO:: QUESTION UPLOAD
@@ -131,26 +133,8 @@ const FIleModal = ({
 				setUploadLoading(false);
 				toast.error(error?.response?.data?.message || error.message);
 			}
-
-			// setUploadLoading(true);
-			// fetch(url, { method: "POST", body: formData })
-			// 	.then((res) => res.json())
-			// 	.then((imgData) => {
-			// 		if (imgData.success) {
-			// 			setFile(imgData.data.url);
-			// 			setUploadFile("");
-			// 			toast.success(
-			// 				"file Upload successfully \n click the upload button"
-			// 			);
-			// 			setUploadLoading(false);
-			// 		}
-			// 	})
-			// 	.catch((err) => {
-			// 		setUploadLoading(false);
-			// 		toast.error(err.message);
-			// 	});
 		} else {
-			toast.error("Give pdf/image file!");
+			toast.error("Give pdf/image file!\n thumbnail will be image");
 		}
 	};
 

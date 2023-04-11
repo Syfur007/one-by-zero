@@ -6,6 +6,7 @@ import "./thumbnail.css";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 function ThumbnailViewer({ thumbnail, bookName, author, link }) {
+	console.log("thumbnail", thumbnail);
 	const { user } = useContext(AuthContext);
 	const fullViewHandler = () => {
 		alert("Please,Login to see View");
@@ -13,7 +14,8 @@ function ThumbnailViewer({ thumbnail, bookName, author, link }) {
 	};
 	return (
 		<div className="w-full relative h-[350px]">
-			{thumbnail ? (
+			{thumbnail &&
+			!thumbnail.includes("Cannot read property 'path' of undefined") ? (
 				<img
 					src={`https://server.onebyzeroedu.com/${thumbnail}`}
 					className="w-full h-full"
