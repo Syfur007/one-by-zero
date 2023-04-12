@@ -113,7 +113,7 @@ const Left = () => {
 									? userDetails?.image
 									: userDetails?.image?.includes("uploads/profile")
 									? `${DEFAULT_URL_SERVER}/${userDetails?.image}`
-									: userDetails?.images
+									: userDetails?.image
 							}
 							alt=""
 						/>
