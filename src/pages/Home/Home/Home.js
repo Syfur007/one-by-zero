@@ -34,7 +34,10 @@ const Home = () => {
 	const { data, isLoading } = useQuery({
 		queryKey: ["courses", "computer science and engineering"],
 		queryFn: async () => {
-			return await getCourses();
+			return await getCourses({
+				varsity: "University of Barishal",
+				department: "Computer Science & Engineering",
+			});
 		},
 	});
 
@@ -124,6 +127,7 @@ const Home = () => {
 	return (
 		<div className={`bg-[#1a1a1a] pt-[80px] md:px-0 px-2`}>
 			<RecentAnimatedText texts={texts} />
+
 			<div className="    flex flex-col md:flex-row ">
 				<div className="md:w-[75%] w-full">
 					<CountResources />
@@ -133,6 +137,7 @@ const Home = () => {
 					<HomeTitle />
 					<Courses courses={data} />
 				</div>
+
 				<div className={`md:w-[25%] w-full  mt-5 md:mx-5 mx-0 `}>
 					<Recent
 						data={recentQuestions}

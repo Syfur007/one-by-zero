@@ -5,24 +5,10 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
 import useUser from "../../../hooks/useUser.js";
 import navbarLogo from "../../../images/navbar-logo.png";
 import { DEFAULT_URL_SERVER } from "../../../constants/url.js";
-import io from "socket.io-client";
-const ENDPOINT = "http://localhost:8080";
 const Header = () => {
 	const [showModel, setShowModel] = useState(true);
-	const { user, logOut, activeUser } = useContext(AuthContext);
-	const [notification, setNotification] = useState("");
+	const { user, logOut } = useContext(AuthContext);
 	const [role, , userDetails] = useUser(user?.email);
-	useEffect(() => {
-		const socket = io(ENDPOINT);
-
-		socket.on("notification", (data) => {
-			setNotification(data);
-		});
-
-		return () => {
-			socket.disconnect();
-		};
-	}, []);
 
 	useEffect(() => {
 		setShowModel(true);

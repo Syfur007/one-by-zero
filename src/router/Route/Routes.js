@@ -97,10 +97,6 @@ const router = createBrowserRouter([
 				path: "/pdf",
 				element: <PdfDetails />,
 			},
-			{
-				path: "/chat",
-				element: <Chat />,
-			},
 		],
 	},
 	{

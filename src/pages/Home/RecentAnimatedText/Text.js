@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useUser from "../../../hooks/useUser";
 import { DEFAULT_URL_SERVER } from "../../../constants/url";
 import { Link } from "react-router-dom";
 
 const Text = ({ text, email, name }) => {
 	const [, , userDetails] = useUser(email);
+	const [animation, setAnimation] = useState(false);
+
+	useEffect(() => {
+		setAnimation(true);
+	}, []);
 
 	return (
-		<div className="w-full  flex items-center flex-row animated-text">
+		<div
+			className={`w-full  flex items-center flex-row ${
+				animation ? "animated-text" : ""
+			}`}
+		>
 			<div>
 				<img
 					src={

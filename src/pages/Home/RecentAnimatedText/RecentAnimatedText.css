@@ -1,16 +1,19 @@
 .text-container {
 	position: relative;
 	overflow: hidden;
-	white-space: no-wrap;
+	white-space: nowrap;
 }
 
 .animated-text {
 	position: absolute;
 	animation: move-left 16s linear infinite;
+	overflow: hidden;
+	animation-fill-mode: both;
 }
 
 .animated-text:nth-child(1) {
 	animation-delay: 0s;
+	width: 100%;
 }
 
 .animated-text:nth-child(2) {
@@ -20,7 +23,6 @@
 .animated-text:nth-child(3) {
 	animation-delay: 8s;
 }
-
 .animated-text:nth-child(4) {
 	animation-delay: 12s;
 }
