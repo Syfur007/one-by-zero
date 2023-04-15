@@ -45,7 +45,6 @@ const FileInput = ({ name, showResources }) => {
 	let year = watch("year") || courseInfoFromLocalStorage?.year;
 	let semester = watch("semester") || courseInfoFromLocalStorage?.semester;
 	let varsity = watch("university") || courseInfoFromLocalStorage?.varsity;
-
 	let department =
 		watch("department") || courseInfoFromLocalStorage?.department;
 
@@ -73,7 +72,7 @@ const FileInput = ({ name, showResources }) => {
 				.then((data) => {
 					const dataCourses = data[0]?.courses;
 					dataCourses?.sort((a, b) => a.title.localeCompare(b.title));
-					setCourses(dataCourses);
+					setCourses(dataCourses || []);
 				})
 				.catch((err) => {
 					console.log("sina-error", err);
@@ -89,11 +88,14 @@ const FileInput = ({ name, showResources }) => {
 	// TODO:: SUBMIT BUTTON
 
 	const onSubmit = async (data) => {
-		const course = data.course;
-		const department = data.department;
-		let semester = Number(data.semester);
-		const university = data.university;
-		const year = Number(data.year);
+		const course = data.course || courseInfoFromLocalStorage?.courseTitle;
+		const department =
+			data.department || courseInfoFromLocalStorage?.department;
+		let semester =
+			Number(data.semester) || courseInfoFromLocalStorage?.semester;
+		const university =
+			data.university || courseInfoFromLocalStorage?.university;
+		const year = Number(data.year) || courseInfoFromLocalStorage?.year;
 
 		const courseInfo = {
 			courseTitle: course,
@@ -104,6 +106,7 @@ const FileInput = ({ name, showResources }) => {
 		};
 
 		if (!course || !department || !semester || !varsity || !year) {
+			console.log(courseInfo);
 			toast.error("please,Fill all the blank");
 			return;
 		}
