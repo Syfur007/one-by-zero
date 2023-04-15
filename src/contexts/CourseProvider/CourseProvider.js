@@ -6,6 +6,7 @@ import {
 	getUniversities,
 } from "../../utils/functions/courseFunctions.js";
 import { toast } from "react-hot-toast";
+import { departmentYear } from "../../utils/db/data.js";
 export const CourseContext = createContext();
 
 const CourseProvider = ({ children }) => {
@@ -115,12 +116,19 @@ const CourseProvider = ({ children }) => {
 		//TODO:: course information
 		const fetchCourseData = async () => {
 			setCourseLoading(true);
+
+			// TODO:: DELETE SEMESTER FOR YEARLY DEPARTMENT
+			if (departmentYear.includes(mycourseInfo?.department)) {
+				delete mycourseInfo.semester;
+			}
+
 			try {
 				const { data } = await axios.post(
 					"https://server.onebyzeroedu.com/resources/course",
 					mycourseInfo
 				);
 				setCourseLoading(false);
+				console.log("sina-course");
 				setCourses(data);
 			} catch (error) {
 				setCourseLoading(false);

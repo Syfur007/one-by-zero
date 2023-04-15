@@ -9,6 +9,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider.js";
 import { CourseContext } from "../../../contexts/CourseProvider/CourseProvider.js";
 import FIleModal from "../FileModal/FIleModal.js";
 import Loading from "../Loading/Loading.js";
+import { departmentYear } from "../../../utils/db/data.js";
 
 const FileInput = ({ name, showResources }) => {
 	const [showFileModal, setShowFileModal] = useState(false);
@@ -52,7 +53,10 @@ const FileInput = ({ name, showResources }) => {
 	// console.log(courses);
 	// fetch course data
 	useEffect(() => {
-		if (year && semester && varsity && department)
+		if (
+			(year && semester && varsity && department) ||
+			(year && varsity && department && departmentYear.includes(department))
+		) {
 			fetch("https://server.onebyzeroedu.com/courses", {
 				method: "POST",
 				headers: {
@@ -60,18 +64,21 @@ const FileInput = ({ name, showResources }) => {
 				},
 				body: JSON.stringify({
 					year: Number(year),
-					semester: Number(semester),
+					semester: departmentYear.includes(department) ? 0 : Number(semester),
 					varsity,
 					department,
 				}),
 			})
 				.then((res) => res.json())
 				.then((data) => {
-					setCourses(data[0]?.courses);
+					const dataCourses = data[0]?.courses;
+					dataCourses?.sort((a, b) => a.title.localeCompare(b.title));
+					setCourses(dataCourses);
 				})
 				.catch((err) => {
 					console.log("sina-error", err);
 				});
+		}
 	}, [department, semester, varsity, year]);
 
 	// TODO::CHECK USER
@@ -84,7 +91,7 @@ const FileInput = ({ name, showResources }) => {
 	const onSubmit = async (data) => {
 		const course = data.course;
 		const department = data.department;
-		const semester = Number(data.semester);
+		let semester = Number(data.semester);
 		const university = data.university;
 		const year = Number(data.year);
 
@@ -204,7 +211,7 @@ const FileInput = ({ name, showResources }) => {
 
 						{universities &&
 							universities.map((uni) => (
-								<option value={uni.name} disabled key={uni._id}>
+								<option value={uni.name} key={uni._id}>
 									{uni.name}
 								</option>
 							))}
@@ -222,14 +229,27 @@ const FileInput = ({ name, showResources }) => {
 						{...register("department")}
 						className="w-full select select-sm select-bordered"
 					>
-						<option value="Computer Science & Engineering">
-							Computer Science and Engineering
+						<option
+							value={
+								courseInfoFromLocalStorage?.department
+									? courseInfoFromLocalStorage?.department
+									: ""
+							}
+						>
+							{courseInfoFromLocalStorage?.department
+								? courseInfoFromLocalStorage.department
+								: "Select department"}
 						</option>
-						{departments?.map((university) => (
-							<option disabled value={university.name} key={university._id}>
-								{university.name}
-							</option>
-						))}
+						{departments?.map((department) => {
+							if (courseInfoFromLocalStorage?.department === department) {
+								return "";
+							}
+							return (
+								<option value={department.name} key={department._id}>
+									{department.name}
+								</option>
+							);
+						})}
 					</select>
 				</div>
 				<div className="flex w-4/3">
@@ -326,12 +346,22 @@ const FileInput = ({ name, showResources }) => {
 						<option
 							value={
 								courseInfoFromLocalStorage?.courseTitle
-									? courseInfoFromLocalStorage?.courseTitle
+									? courses.findIndex(
+											(course) =>
+												course.title === courseInfoFromLocalStorage?.courseTitle
+									  ) > -1
+										? courseInfoFromLocalStorage?.courseTitle
+										: ""
 									: ""
 							}
 						>
-							{courseInfoFromLocalStorage
-								? courseInfoFromLocalStorage?.courseTitle
+							{courseInfoFromLocalStorage?.courseTitle
+								? courses.findIndex(
+										(course) =>
+											course.title === courseInfoFromLocalStorage?.courseTitle
+								  ) > -1
+									? courseInfoFromLocalStorage?.courseTitle
+									: "Select Course"
 								: "Select Course"}
 						</option>
 						{courses &&

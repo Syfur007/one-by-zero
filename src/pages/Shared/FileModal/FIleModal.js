@@ -26,7 +26,7 @@ const FIleModal = ({
 	const [uploadFile, setUploadFile] = useState("");
 	const [uploadThumbnail, setUploadThumbnail] = useState("");
 	const { sessions, examNames } = useContext(CourseContext);
-	const { user } = useContext(AuthContext);
+	const { user, logOut } = useContext(AuthContext);
 	const [uploadLoading, setUploadLoading] = useState(false);
 	const selectedFileTypes = ["application/pdf"];
 
@@ -132,6 +132,7 @@ const FIleModal = ({
 				console.log(error);
 				setUploadLoading(false);
 				toast.error(error?.response?.data?.message || error.message);
+				await logOut();
 			}
 		} else {
 			toast.error("Give pdf/image file!\n thumbnail will be image");
