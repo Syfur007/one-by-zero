@@ -8,7 +8,11 @@ const PrivateRoute = ({ children }) => {
 	const location = useLocation();
 
 	if (loading) {
-		return <Loading></Loading>;
+		return (
+			<div className="py-20">
+				<Loading></Loading>
+			</div>
+		);
 	}
 
 	if (user) {

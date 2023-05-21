@@ -13,7 +13,7 @@ const DeleteQuestion = ({ deleteQuestion, setDeleteQuestion }) => {
 
 		try {
 			const data = await axios.delete(
-				`http://localhost:8080/api/contribute/questions?courseId=${deleteQuestion?.courseId}&questionId=${deleteQuestion?.questionId}&link=${deleteQuestion?.link}`
+				`${DEFAULT_URL_SERVER}/api/contribute/questions?courseId=${deleteQuestion?.courseId}&questionId=${deleteQuestion?.questionId}&link=${deleteQuestion?.link}`
 			);
 			const filteredQuestions = courses?.questions.filter(
 				(question) => question._id !== deleteQuestion?.questionId

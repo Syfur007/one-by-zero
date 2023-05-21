@@ -28,6 +28,8 @@ const Left = () => {
 		const email = watch("email");
 		const password = watch("password");
 
+		console.log({ email, password });
+
 		try {
 			//TODO:sign with email and password
 			const { user } = await signIn(email, password);

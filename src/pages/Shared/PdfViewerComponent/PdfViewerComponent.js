@@ -6,6 +6,8 @@ import { primary, secondary } from "../../../constants/colors";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import useSession from "../../../hooks/useSession";
+import Loading from "../Loading/Loading";
+import SigninLoader from "../Loading/SigninLoader";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const PdfViewerComponent = ({ type, file, link, session, examName }) => {
@@ -13,6 +15,7 @@ const PdfViewerComponent = ({ type, file, link, session, examName }) => {
 	const [numPages, setNumPages] = useState(null);
 	const [pageNumber, setPageNumber] = useState(1);
 	const [sessionDetails] = useSession(session);
+	const [pdfLoading, setPdfLoading] = useState(false);
 
 	const { user } = useContext(AuthContext);
 	const fullViewHandler = () => {
@@ -21,6 +24,7 @@ const PdfViewerComponent = ({ type, file, link, session, examName }) => {
 	};
 
 	useEffect(() => {
+		setPdfLoading(true);
 		axios(`https://server.onebyzeroedu.com/api/pdf/`, {
 			method: "POST",
 			responseType: "blob", //Force to receive data in a Blob Format
@@ -36,9 +40,11 @@ const PdfViewerComponent = ({ type, file, link, session, examName }) => {
 					base64String = reader.result;
 					setPdfString(base64String.substr(base64String.indexOf(",") + 1));
 				};
+				setPdfLoading(false);
 			})
 			.catch((error) => {
 				console.log(error);
+				setPdfLoading(false);
 			});
 
 		let base64String;
@@ -46,16 +52,23 @@ const PdfViewerComponent = ({ type, file, link, session, examName }) => {
 
 	const onDocumentLoadSuccess = ({ numPages }) => {
 		setNumPages(numPages);
+		setPdfLoading(false);
 	};
 
 	return (
-		<div className="w-full relative max-h-[400px] bg-red-400">
-			<Document
-				file={`data:application/pdf;base64,${pdfString}`}
-				onLoadSuccess={onDocumentLoadSuccess}
-			>
-				<Page pageNumber={pageNumber} />
-			</Document>
+		<div className="w-full relative max-h-[400px] h-[400px] bg-red-400">
+			{pdfLoading ? (
+				<div className="h-full w-full justify-center items-center flex">
+					<SigninLoader />
+				</div>
+			) : (
+				<Document
+					file={`data:application/pdf;base64,${pdfString}`}
+					onLoadSuccess={onDocumentLoadSuccess}
+				>
+					<Page pageNumber={pageNumber} />
+				</Document>
+			)}
 
 			<div className="absolute bottom-0 left-0 flex items-center justify-between w-full h-16 px-4  bg-[rgba(0,0,0,0.4)]">
 				<div className="  flex flex-row w-full  question-info">

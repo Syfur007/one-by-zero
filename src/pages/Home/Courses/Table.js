@@ -72,7 +72,7 @@ const Table = ({ course, setCoursePin, coursePin, pin }) => {
 						</div>
 				  )}
 
-			<div className="mt-5">
+			<div className="mt-10">
 				<h1 className="text-2xl font-semibold text-center text-white capitalize">
 					{/* {`${
 					getYear[Number(year) - 1]

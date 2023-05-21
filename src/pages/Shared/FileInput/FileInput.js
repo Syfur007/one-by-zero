@@ -413,9 +413,9 @@ const FileInput = ({ name, showResources }) => {
 						{showResources
 							? "show resources"
 							: file
-							? "Final step"
+							? "👉🏽 Now Click Here to Upload"
 							: `Upload ${name}`}
-						{file && <span>&gt;&gt;</span>}
+						{/* {file && <span>&gt;&gt;</span>} */}
 					</button>
 				</div>
 			</form>

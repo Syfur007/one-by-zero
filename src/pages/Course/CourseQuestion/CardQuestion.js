@@ -171,7 +171,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 									</div>
 								</div>
 							)}
-							{/* user information */}
+							{/* //TODO:: user information */}
 							<div className="flex items-center w-full">
 								<div className="w-[60px] relative m-2    p-1 h-[60px]">
 									<img
@@ -199,7 +199,7 @@ const CardQuestion = ({ question, setQuestions, setDeleteQuestion }) => {
 								</div>
 							</div>
 						</div>
-						{/* questions */}
+						{/* //TODO: questions */}
 						<div className="p-0 card-body">
 							<div className="block w-full relative  h-[400px]">
 								<img
